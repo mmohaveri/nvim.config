@@ -11,19 +11,19 @@ local lsp_servers = {
     -- "gopls",
     -- "html",
     -- "jqls",
-    -- "jsonls",
+    "json_language_server",
     "lua_language_server",
     "pyright",
     "ruff",
+    "toml_language_server",
+    "yaml_language_server",
     -- "rust_analyzer",
     -- "solc",
     -- "solidity",
     -- "sqlls",
-    -- "taplo",
     -- "texlab",
     -- "tsserver",
     -- "volar",
-    -- "yamlls",
 }
 
 lsp_setup()
