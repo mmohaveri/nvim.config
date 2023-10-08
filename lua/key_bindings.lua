@@ -11,7 +11,8 @@ keymap("n", "<leader>s", vim.cmd.vsplit)
 -- Buffer navigation
 keymap("n", "<leader>l", ":bnext<CR>", options)
 keymap("n", "<leader>h", ":bprevious<CR>", options)
-keymap("n", "<leader>q", ":Bdelete <CR>", options)
+keymap("n", "<leader>d", ":Bdelete <CR>", options)
+keymap("n", "<leader>dd", ":%bd | NvimTreeFocus <CR>", options)
 
 -- Window navigation
 keymap("n", "<leader><leader>h", "<C-w>h", options)
@@ -32,8 +33,10 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
 
 -- telescope
 keymap("n", "<leader>t", ":Telescope<CR>", {})
-keymap('n', '<C-f>', telescope_builtin.live_grep, {})
+keymap('n', "<leader>lg", telescope_builtin.live_grep, {})
 keymap("n", "<leader>ff", telescope_builtin.find_files, {})
 keymap("n", "<leader>fgf", telescope_builtin.git_files, {})
-keymap('n', '<leader>fb', telescope_builtin.buffers, {})
+keymap("n", "<leader>fb", telescope_builtin.buffers, {})
+keymap("n", "<leader>tr", telescope_builtin.resume, {})
+
 -- keymap('n', '<leader>fh', telescope_builtin.help_tags, {})
