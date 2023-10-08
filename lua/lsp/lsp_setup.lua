@@ -18,7 +18,7 @@ local signs = {
 }
 
 local diagnostic_config = {
-    virtual_text = false,
+    virtual_text = true,
     signs = {
         active = signs,
     },
