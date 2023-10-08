@@ -37,7 +37,7 @@ local function register_lsp(lsp_defenition)
     vim.api.nvim_create_autocmd("FileType", {
         pattern = lsp_defenition.pattern,
         callback = function()
-            local client = vim.lsp.start_client(
+            local client = vim.lsp.start(
                 vim.tbl_extend(
                     "force",
                     {
