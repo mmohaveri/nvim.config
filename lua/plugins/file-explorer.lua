@@ -103,7 +103,7 @@ Module.plugin_spec = {
                     ".vscode",
                     ".ruff_cache",
                     ".pytest_cache",
-                    "__pycahce__",
+                    "__pycache__",
                 },
                 exclude = {
                     ".gitignore"
