@@ -30,6 +30,10 @@ Module.plugin_spec = {
     {
         "famiu/bufdelete.nvim",
     },
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
+    },
 }
 
 Module.activate = function() end
