@@ -27,8 +27,6 @@ Currently this configuration uses the following plugins:
     - `telescope`
     - `nvim-lsp-file-operations`
 - For editors look and ease of use:
-    - `bufferline.nvim`
-    - `winbar.nvim`
     - `lualine.nvim`
     - `smartcolumn.nvim`
     - `bufdelete.nvim`
@@ -98,6 +96,29 @@ cargo install taplo-cli --locked --features lsp
 - undo-tree
 - harpoon
 - glow.nvim
+- nvim-notify
+- Inlay Hint
+- Formatter.nvim
+- Noice
 
 ### Configuration
+
 Configure auto formatting on save.
+
+
+## Choice justification
+
+### Bufferline plugins are missing
+
+This config does not use any bufferline plugin to show open buffers in a manner similar to tabs in other IDEs.
+That's because the idea of tabs in other IDEs do not transfer well to open buffers in vim. You can't re-order
+open buffers and navigating between open buffers using :bnext and :bprevious is not trivial (due to order of the buffers).
+
+A better way to navigate in vim is to use native GoToDefenition, FindUsage, and other navigation tools like NvimTree, Telescope, and Harpoon.
+
+
+### A custom WinBar is being used
+
+Normal WinBar plugins either provide too much, or too little. I just need a WinBar that shows the file (and its path) in a readable way while
+showing the state of the buffer. That's why this configuration has its own WinBar (which is heaviliy influenced by WinBar.nvim plugin).
+
