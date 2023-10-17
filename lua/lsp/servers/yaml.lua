@@ -1,6 +1,7 @@
 local Module = {}
 
-Module.pattern = "yaml"
+Module.filetypes = { "yaml", "yaml.docker-compose" }
+
 Module.root_indicators = {
     '.git',
 }
@@ -11,7 +12,6 @@ Module.config = {
         "yaml-language-server",
         "--stdio",
     },
-    filetypes = { 'yaml' },
     single_file_support = true,
     settings = {
         redhat = {
@@ -19,7 +19,20 @@ Module.config = {
                 enabled = false,
             },
         },
+        yaml = {
+            schemas = require("lsp.servers.jsonschema_mappings")
+        },
     },
 }
+
+Module.description = [[
+Provides language server support for YAML files.
+Uses [yaml-language-server](https://github.com/redhat-developer/yaml-language-server)
+which can be installed via npm:
+
+```sh
+npm i -g yaml-language-server
+```
+]]
 
 return Module

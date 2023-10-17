@@ -1,7 +1,9 @@
 local Module = {}
 
-Module.pattern = "html"
+Module.filetypes = { "html" }
+
 Module.root_indicators = {
+    "package.json",
     '.git',
 }
 
@@ -11,7 +13,6 @@ Module.config = {
         "vscode-html-language-server",
         "--stdio",
     },
-    filetypes = { "html" },
     single_file_support = true,
     init_options = {
         provideFormatter = true,
@@ -27,6 +28,16 @@ Module.config = {
     },
     settings = {},
 }
+
+Module.description = [[
+Provides language server support for HTML files.
+Uses [vscode-langservers-extracted](https://github.com/hrsh7th/vscode-langservers-extracted) which
+can be installed via `npm`:
+
+```sh
+npm i -g vscode-langservers-extracted
+```
+]]
 
 return Module
 

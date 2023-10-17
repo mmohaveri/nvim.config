@@ -1,10 +1,14 @@
 local Module = {}
 
-Module.pattern = "python"
+Module.filetypes = { "python" }
+
 Module.root_indicators = {
-    'pyproject.toml',
-    'requirements.txt',
-    'Pipfile',
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    ".git",
 }
 
 Module.config = {
@@ -12,9 +16,23 @@ Module.config = {
     cmd = {
         "ruff-lsp",
     },
-    filetypes = { 'python' },
     single_file_support = true,
+    init_options = {
+        settings = {
+            args = {} -- extra CLI arguments for ruff
+        }
+    },
     settings = {},
 }
+
+Module.description = [[
+Provides linting for python files.
+Uses [ruff-lsp](vscode-langservers-extracted) which uses `ruff` behind the scene.
+It can be installed via `pip`:
+
+```sh
+pip install ruff-lsp
+```
+]]
 
 return Module

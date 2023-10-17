@@ -1,10 +1,14 @@
 local Module = {}
 
-Module.pattern = "python"
+Module.filetypes = { "python" }
+
 Module.root_indicators = {
-    'pyproject.toml',
-    'requirements.txt',
-    'Pipfile',
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    ".git",
 }
 
 Module.config = {
@@ -13,7 +17,6 @@ Module.config = {
         "pyright-langserver",
         "--stdio",
     },
-    filetypes = { 'python' },
     single_file_support = true,
     settings = {
         python = {
@@ -25,5 +28,14 @@ Module.config = {
         },
     },
 }
+
+Module.description = [[
+Provides langserver support for Python files.
+Uses [pyright](https://github.com/microsoft/pyright) which can be installed via pip:
+
+```sh
+pip install pyright
+```
+]]
 
 return Module

@@ -1,8 +1,7 @@
 local Module = {}
 
-local schemas = require("lsp.servers.json_schema_mappings")
+Module.filetypes = { "json", "jsonc" }
 
-Module.pattern = "json"
 Module.root_indicators = {
     '.git',
 }
@@ -13,17 +12,26 @@ Module.config = {
         "vscode-json-language-server",
         "--stdio",
     },
-    filetypes = { 'json' },
     single_file_support = true,
     init_options = {
         provideFormatter = true,
     },
     settings = {
         json = {
-            schemas = schemas,
+            schemas = require("lsp.servers.jsonschema_mappings"),
         },
     },
 }
+
+Module.description = [[
+Provides language server support for CSS, SCSS, & LESS files.
+Uses [vscode-langservers-extracted](https://github.com/hrsh7th/vscode-langservers-extracted) which
+can be installed via `npm`:
+
+```sh
+npm i -g vscode-langservers-extracted
+```
+]]
 
 return Module
 

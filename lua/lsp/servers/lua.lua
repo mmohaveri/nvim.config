@@ -1,6 +1,7 @@
 local Module = {}
 
-Module.pattern = "lua"
+Module.filetypes = { "lua" }
+
 Module.root_indicators = {
     ".luarc.json",
     ".luarc.jsonc",
@@ -9,6 +10,7 @@ Module.root_indicators = {
     "stylua.toml",
     "selene.toml",
     "selene.yml",
+    "selene.yaml",
     ".git",
 }
 
@@ -19,10 +21,12 @@ Module.config = {
         "--metapath",
         vim.fn.stdpath("cache") .. "/lua-language-server",
     },
-    filetypes = { 'lua' },
     single_file_support = true,
     settings = {
         Lua = {
+            runtime = {
+                -- version: "LuaJIT",
+            },
             telemetry = {
                 enable = false,
             },
@@ -40,5 +44,10 @@ Module.config = {
         },
     },
 }
+
+Module.description = [[
+Provides language server support for Lua files.
+Uses [lua-language-server](https://github.com/luals/lua-language-server)
+]]
 
 return Module

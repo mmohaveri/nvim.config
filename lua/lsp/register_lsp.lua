@@ -35,15 +35,17 @@ end
 
 local function register_lsp(lsp_defenition)
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = lsp_defenition.pattern,
+        pattern = lsp_defenition.filetypes,
         callback = function()
+            local client_capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+
             local client = vim.lsp.start(
                 vim.tbl_extend(
                     "force",
                     {
-                        capabilities = cmp_lsp.default_capabilities(),
+                        capabilities = client_capabilities,
                         on_attach = function(client, buffer_number)
-                            if client.name == "tsserver" then
+                            if client.name == "typescript" then
                                 client.server_capabilities.documentFormattingProvider = false
                             end
                             set_lsp_keymaps(buffer_number)

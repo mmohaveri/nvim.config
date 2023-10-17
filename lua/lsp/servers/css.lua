@@ -1,8 +1,10 @@
 local Module = {}
 
-Module.pattern = "css"
+Module.filetypes = { "css", "scss", "less" }
+
 Module.root_indicators = {
-    '.git',
+    "package.json",
+    ".git",
 }
 
 Module.config = {
@@ -11,7 +13,6 @@ Module.config = {
         "vscode-css-language-server",
         "--stdio",
     },
-    filetypes = { "css", "scss", "less" },
     single_file_support = true,
     settings = {
         css = {
@@ -25,6 +26,16 @@ Module.config = {
         },
     },
 }
+
+Module.description = [[
+Provides language server support for CSS, SCSS, & LESS files.
+Uses [vscode-langservers-extracted](https://github.com/hrsh7th/vscode-langservers-extracted) which
+can be installed via `npm`:
+
+```sh
+npm i -g vscode-langservers-extracted
+```
+]]
 
 return Module
 
