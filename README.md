@@ -55,10 +55,21 @@ language server users will need to have write access to it. The easiest way it t
 execute permissions for all users to this directory.
 
 ### Python
+
 Install `pyright` and `ruff-lsp` in the python environment that you want, just keep in mind that
 you need to start the nvim process while the virtual environment is active.
 
+### Javascript & Typescript
+
+Install `typescript` and `typescript-language-server` from npm:
+
+
+```bash
+npm install -g typescript typescript-language-server
+```
+
 ### YAML
+
 Install [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) from npm:
 
 
@@ -67,6 +78,7 @@ npm install -g yaml-language-server
 ```
 
 ### HTML, CSS, JSON, and ESlint
+
 Install [`vscode-langservers-extracted`](https://github.com/hrsh7th/vscode-langservers-extracted) from npm:
 
 ```bash
@@ -81,6 +93,7 @@ It will provide following language servers:
 - vscode-eslint-language-server
 
 ### TOML
+
 Install [taplo](https://github.com/tamasfe/taplo). As the npm build does not have
 lsp feature enabled, so you'll need to either download the full
 binary release, or install it using cargo (with lsp feature):  

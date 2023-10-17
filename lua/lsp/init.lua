@@ -18,13 +18,13 @@ local lsp_servers = {
     "pyright",
     "ruff",
     "toml",
+    "typescript",
     "yaml",
     -- "rust_analyzer",
     -- "solc",
     -- "solidity",
     -- "sqlls",
     -- "texlab",
-    -- "tsserver",
     -- "volar",
 }
 
