@@ -23,9 +23,6 @@ local notify_config = {
     timeout = 5000,
 }
 
-local lsp_notify_config = {
-}
-
 Module.plugin_spec = {
     {
         "nvim-lualine/lualine.nvim",
@@ -44,7 +41,10 @@ Module.plugin_spec = {
     },
     {
         "rcarriga/nvim-notify",
-        config = notify_config,
+        opts = notify_config,
+        init = function ()
+            vim.notify = require("notify")
+        end
     },
 }
 
