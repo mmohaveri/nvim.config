@@ -1,5 +1,11 @@
 local function save_buffer_if_writable()
-    if (not vim.bo.readonly) and (vim.bo.buftype == "") then
+    local is_not_readonly = not vim.bo.readonly
+    local is_untyped_buffer = (vim.bo.buftype == "")
+    local has_file_name = (vim.api.nvim_buf_get_name(0) ~= "")
+
+    local is_writable = is_untyped_buffer and is_not_readonly and has_file_name
+
+    if is_writable  then
         vim.api.nvim_command(":w")
     end
 end
