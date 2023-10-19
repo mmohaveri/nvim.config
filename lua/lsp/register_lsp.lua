@@ -8,6 +8,12 @@ local function register_lsp(lsp_defenition)
         callback = function()
             local client_capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
 
+            local lsp_server_binray = lsp_defenition.config.cmd[1]
+
+            if not helpers.binary_exists(lsp_server_binray) then
+                return
+            end
+
             local client = vim.lsp.start(
                 vim.tbl_extend(
                     "force",
