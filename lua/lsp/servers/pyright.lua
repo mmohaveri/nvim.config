@@ -27,6 +27,20 @@ Module.config = {
             },
         },
     },
+    commands = {
+        PyrightOrganizeImports = {
+            function ()
+                local params = {
+                    command = 'pyright.organizeimports',
+                    arguments = {
+                        vim.uri_from_bufnr(0)
+                    },
+                }
+                vim.lsp.buf.execute_command(params)
+            end,
+            description = "Organize imports using pyright"
+        }
+    }
 }
 
 Module.description = [[
