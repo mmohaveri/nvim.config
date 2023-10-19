@@ -7,7 +7,7 @@ Module.root_indicators = {
 }
 
 Module.config = {
-    name = "json-language-server",
+    name = "json",
     cmd = {
         "vscode-json-language-server",
         "--stdio",

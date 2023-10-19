@@ -7,7 +7,7 @@ Module.root_indicators = {
 }
 
 Module.config = {
-    name = "toml-language-server",
+    name = "toml",
     cmd = {
         "taplo",
         "lsp",

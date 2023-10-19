@@ -17,7 +17,7 @@ Module.root_indicators = {
 }
 
 Module.config = {
-    name = "typescript-language-server",
+    name = "typescript",
     cmd = {
         "typescript-language-server",
         "--stdio",

@@ -8,7 +8,7 @@ Module.root_indicators = {
 }
 
 Module.config = {
-    name = "css-language-server",
+    name = "css",
     cmd = {
         "vscode-css-language-server",
         "--stdio",
