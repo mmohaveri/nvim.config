@@ -30,6 +30,8 @@ Currently this configuration uses the following plugins:
     - `lualine.nvim`
     - `smartcolumn.nvim`
     - `bufdelete.nvim`
+    - `nvim-notify`
+    - `nvim-lsp-notify`
 - For code completion:
     - `nvim-cmp`
     - `cmp-buffer`
@@ -109,7 +111,6 @@ cargo install taplo-cli --locked --features lsp
 - undo-tree
 - harpoon
 - glow.nvim
-- nvim-notify
 - Inlay Hint
 - Formatter.nvim
 - Noice

@@ -46,6 +46,13 @@ Module.plugin_spec = {
             vim.notify = require("notify")
         end
     },
+    {
+        "mrded/nvim-lsp-notify",
+        config = true,
+        dependencies = {
+            "rcarriga/nvim-notify",
+        }
+    },
 }
 
 Module.activate = function() end
