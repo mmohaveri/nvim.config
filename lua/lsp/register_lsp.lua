@@ -1,4 +1,5 @@
 local cmp_lsp = require("cmp_nvim_lsp")
+local notify = require("notify")
 
 local helpers = require("lsp.helpers")
 
@@ -11,6 +12,13 @@ local function register_lsp(lsp_defenition)
             local lsp_server_binray = lsp_defenition.config.cmd[1]
 
             if not helpers.binary_exists(lsp_server_binray) then
+                local error_msg = "Failed to start '" ..
+                    lsp_defenition.config.name ..
+                    "' LSP client. '" ..
+                    lsp_server_binray ..
+                    "' binary does not exist!"
+
+                notify(error_msg, "error")
                 return
             end
 
@@ -34,6 +42,8 @@ local function register_lsp(lsp_defenition)
             )
 
             vim.lsp.buf_attach_client(0, client)
+
+            notify(lsp_defenition.config.name .. " LSP client attached.")
         end
     })
 end
