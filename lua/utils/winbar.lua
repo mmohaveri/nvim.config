@@ -2,7 +2,6 @@ local Module = {}
 
 local web_devicons = require("nvim-web-devicons")
 
-
 local icons = {
     file = '',
     seperator = '⮞',
@@ -28,7 +27,8 @@ local colors = {
 }
 
 local exclude_filetype = {
-    'NvimTree',
+    "NvimTree",
+    "DressingInput",
 }
 
 local function get_tag()
@@ -88,7 +88,7 @@ local function update_winbar()
         return
     end
 
-    vim.api.nvim_set_option_value('winbar', get_value(), { scope = 'local' })
+    pcall(vim.api.nvim_set_option_value,'winbar', get_value(), { scope = 'local' })
 end
 
 Module.setup = function()
