@@ -1,6 +1,5 @@
 local Module = {}
 
-
 local smartcolumn_config = {
     colorcolumn = {
         "100",
@@ -18,6 +17,15 @@ local smartcolumn_config = {
     scope = "window",
 }
 
+local notify_config = {
+    render = "wrapped-compact",
+    stages = "slide",
+    timeout = 5000,
+}
+
+local lsp_notify_config = {
+}
+
 Module.plugin_spec = {
     {
         "nvim-lualine/lualine.nvim",
@@ -33,6 +41,10 @@ Module.plugin_spec = {
     {
         'stevearc/dressing.nvim',
         opts = {},
+    },
+    {
+        "rcarriga/nvim-notify",
+        config = notify_config,
     },
 }
 
