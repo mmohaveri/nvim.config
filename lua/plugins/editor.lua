@@ -29,18 +29,18 @@ local lsp_notify_config = {
 Module.plugin_spec = {
     {
         "nvim-lualine/lualine.nvim",
-        opts = {},
+        config = true,
     },
     {
         "m4xshen/smartcolumn.nvim",
-        config = smartcolumn_config,
+        opts = smartcolumn_config,
     },
     {
         "famiu/bufdelete.nvim",
     },
     {
         'stevearc/dressing.nvim',
-        opts = {},
+        config = true,
     },
     {
         "rcarriga/nvim-notify",
