@@ -2,16 +2,14 @@ local lsp_setup = require("lsp.lsp_setup")
 local register_lsp = require("lsp.register_lsp")
 
 local lsp_servers = {
-    -- "cssls",
     -- "cssmodules_ls",
     -- "docker_compose_language_service",
     -- "dockerls",
     -- "eslint",
     -- "golangci_lint_ls",
-    -- "gopls",
-    -- "html",
     -- "jqls",
     "css",
+    "go",
     "html",
     "json",
     "lua",
