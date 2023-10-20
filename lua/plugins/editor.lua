@@ -53,6 +53,9 @@ Module.plugin_spec = {
             "rcarriga/nvim-notify",
         }
     },
+    {
+        "mbbill/undotree",
+    },
 }
 
 Module.activate = function() end

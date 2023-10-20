@@ -29,6 +29,7 @@ local colors = {
 local exclude_filetype = {
     "NvimTree",
     "DressingInput",
+    "undotree",
 }
 
 local function get_tag()
