@@ -2,6 +2,9 @@ local Module = {}
 
 Module.plugin_spec = {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+    },
     build = ":TSUpdate",
     config = function()
         local configs = require("nvim-treesitter.configs")
@@ -60,7 +63,11 @@ Module.plugin_spec = {
             indent = {
                 enable = true,
                 disable = {},
-            }
+            },
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+            },
         }
 
         configs.setup(config)

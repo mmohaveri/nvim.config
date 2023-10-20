@@ -32,6 +32,7 @@ Currently this configuration uses the following plugins:
     - `bufdelete.nvim`
     - `nvim-notify`
     - `nvim-lsp-notify`
+    - `undotree`
 - For code completion:
     - `nvim-cmp`
     - `cmp-buffer`
@@ -41,6 +42,8 @@ Currently this configuration uses the following plugins:
     - `cmp-nvim-lua`
     - `LuaSnip`
     - `nvim-ts-autotag`
+    - `comment.nvim`
+    - `nvim-ts-context-commentstring`
 
 It's recommended to install `ripgrep` and `fd` for a better telescope experience.
 ## Intall LSPs
@@ -108,9 +111,7 @@ cargo install taplo-cli --locked --features lsp
 
 ### Plugins
 
-- undo-tree
 - harpoon
-- glow.nvim
 - Inlay Hint
 - Formatter.nvim
 - Noice

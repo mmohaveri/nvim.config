@@ -39,9 +39,37 @@ Module.plugin_spec = {
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        opts = {},
+        config = true,
     },
     { "windwp/nvim-ts-autotag" },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        config = true,
+    },
+    {
+        'numToStr/Comment.nvim',
+        dependencies = {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+        },
+        opts = function ()
+            return {
+                toggler = {
+                    line = "tcl",
+                    block = "tcb",
+                },
+                opleader = {
+                    line = "tcl",
+                    block = "tcb",
+                },
+                mappings = {
+                    basic = true,
+                    extra = false,
+                },
+                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+            }
+        end,
+        lazy = false,
+    },
 }
 
 Module.activate = function()
