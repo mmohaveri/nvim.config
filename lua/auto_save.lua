@@ -6,7 +6,7 @@ local function save_buffer_if_writable()
     local is_writable = is_untyped_buffer and is_not_readonly and has_file_name
 
     if is_writable  then
-        vim.api.nvim_command(":w")
+        vim.api.nvim_command("write")
     end
 end
 
