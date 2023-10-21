@@ -10,12 +10,14 @@ local function save_buffer_if_writable()
     end
 end
 
-vim.api.nvim_create_autocmd("BufLeave", {
-    pattern = "*",
-    callback = save_buffer_if_writable,
-})
+vim.api.nvim_create_autocmd(
+    {
+        "BufLeave",
+        "FocusLost",
+    },
+    {
+        pattern = "*",
+        callback = save_buffer_if_writable,
+    }
+)
 
-vim.api.nvim_create_autocmd("FocusLost", {
-    pattern = "*",
-    callback = save_buffer_if_writable,
-})
