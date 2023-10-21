@@ -13,22 +13,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
-local theme = require("plugins.theme")
-local syntax_highlighting = require("plugins.syntax-highlighting")
-local file_explorer = require("plugins.file-explorer")
-local editor = require("plugins.editor")
-local completion = require("plugins.completion")
-local miscs = require("plugins.misc")
+local plugins = {
+    require("plugins.theme"),
+    require("plugins.syntax-highlighting"),
+    require("plugins.file-explorer"),
+    require("plugins.editor"),
+    require("plugins.completion"),
+    require("plugins.misc"),
+}
 
-require("lazy").setup({
-    theme.plugin_spec,
-    syntax_highlighting.plugin_spec,
-    file_explorer.plugin_spec,
-    editor.plugin_spec,
-    completion.plugin_spec,
-    miscs.plugin_spec,
-})
+local plugins_spec = {}
 
-editor.activate()
-completion.activate()
+for _, p in ipairs(plugins) do
+    table.insert(plugins_spec, p.plugin_spec)
+end
+
+require("lazy").setup(plugins_spec)
+
+for _, p in ipairs(plugins) do
+    pcall(p.activate)
+end
 
