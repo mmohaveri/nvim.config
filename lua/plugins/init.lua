@@ -19,6 +19,7 @@ local plugins = {
     require("plugins.file-explorer"),
     require("plugins.editor"),
     require("plugins.completion"),
+    require("plugins.lint"),
     require("plugins.misc"),
 }
 
