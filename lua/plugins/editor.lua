@@ -56,6 +56,10 @@ Module.plugin_spec = {
     {
         "mbbill/undotree",
     },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = true,
+    }
 }
 
 Module.activate = function() end

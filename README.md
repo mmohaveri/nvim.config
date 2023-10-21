@@ -33,6 +33,7 @@ Currently this configuration uses the following plugins:
     - `nvim-notify`
     - `nvim-lsp-notify`
     - `undotree`
+    - `gitsigns.nvim`
 - For code completion:
     - `nvim-cmp`
     - `cmp-buffer`
@@ -46,6 +47,7 @@ Currently this configuration uses the following plugins:
     - `nvim-ts-context-commentstring`
 
 It's recommended to install `ripgrep` and `fd` for a better telescope experience.
+
 ## Intall LSPs
 
 As newer versions of neovim make it easy to instanciate language servers without any additional plugins,
@@ -107,20 +109,6 @@ binary release, or install it using cargo (with lsp feature):
 cargo install taplo-cli --locked --features lsp
 ```
 
-## Wishlist
-
-### Plugins
-
-- harpoon
-- Inlay Hint
-- Formatter.nvim
-- Noice
-
-### Configuration
-
-Configure auto formatting on save.
-
-
 ## Choice justification
 
 ### Bufferline plugins are missing
@@ -137,3 +125,25 @@ A better way to navigate in vim is to use native GoToDefenition, FindUsage, and 
 Normal WinBar plugins either provide too much, or too little. I just need a WinBar that shows the file (and its path) in a readable way while
 showing the state of the buffer. That's why this configuration has its own WinBar (which is heaviliy influenced by WinBar.nvim plugin).
 
+## Wishlist
+
+- Inlay Hint
+- Noice
+- Code formatting
+    - Configure auto formatting on save.
+    - [Formatter.nvim](https://github.com/mhartington/formatter.nvim) plugin
+- A buffer switcher/manager plugin
+    - harpoon
+    - [JABS.nvim](https://github.com/matbme/JABS.nvim)
+    - [buffer_manager.nvim](https://github.com/j-morano/buffer_manager.nvim)
+- [rest.nvim](https://github.com/rest-nvim/rest.nvim) plugin to test REST APIs easier.
+- Code folding
+    - [nvim-origami](https://github.com/chrisgrieser/nvim-origami)
+- Close extra buffers, maybe of the following plugins
+    - [close-buffers.nvim](https://github.com/kazhala/close-buffers.nvim)
+    - [nvim-early0retirement](https://github.com/chrisgrieser/nvim-early-retirement)
+- Better colour column, maybe of the following plugins
+    - [virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim)
+    - [virtcolumn.nvim](https://github.com/xiyaowong/virtcolumn.nvim)
+- A termianl emulator
+    - [ToggleTerm]()
