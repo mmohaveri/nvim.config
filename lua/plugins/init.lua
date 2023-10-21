@@ -18,6 +18,7 @@ local syntax_highlighting = require("plugins.syntax-highlighting")
 local file_explorer = require("plugins.file-explorer")
 local editor = require("plugins.editor")
 local completion = require("plugins.completion")
+local miscs = require("plugins.misc")
 
 require("lazy").setup({
     theme.plugin_spec,
@@ -25,6 +26,7 @@ require("lazy").setup({
     file_explorer.plugin_spec,
     editor.plugin_spec,
     completion.plugin_spec,
+    miscs.plugin_spec,
 })
 
 editor.activate()
