@@ -4,7 +4,7 @@ This repository contains my neovim configuration.
 
 ## Installation
 
-First of all, install neovim by downloading its latest vrsion from [its repository](https://github.com/neovim/neovim/releases).
+First of all, install neovim by downloading its latest version from [its repository](https://github.com/neovim/neovim/releases).
 You can put in in `/usr/local` or `~/.local`, just don't forget to add its bin directory to your `PATH`.
 
 ## Configuration and plugins
@@ -45,14 +45,24 @@ Currently this configuration uses the following plugins:
     - `nvim-ts-autotag`
     - `comment.nvim`
     - `nvim-ts-context-commentstring`
+- Linting & formatting
+    - `nvim-lit`
 
 It's recommended to install `ripgrep` and `fd` for a better telescope experience.
 
-## Intall LSPs
+## Install LSPs, linters and formatters
 
 As newer versions of neovim make it easy to instanciate language servers without any additional plugins,
 we're not using any language server helper or package manager (like `lspconfig` and `mason`). This way we'll
-have to install and configure language servers manually, but it will gives us more granular controll over them.
+have to install and configure language servers manually, but it will gives us more granular control over them.
+
+### All files
+
+This configuration uses cspell to spell check. You can install it using npm:
+
+```bash
+npm install -g cspell
+```
 
 ### Lua
 
@@ -63,8 +73,10 @@ execute permissions for all users to this directory.
 
 ### Python
 
-Install `pyright` and `ruff-lsp` in the python environment that you want, just keep in mind that
+For LSP, install `pyright` and `ruff-lsp` in the python environment that you want, just keep in mind that
 you need to start the nvim process while the virtual environment is active.
+
+For lint, install `ruff`.
 
 ### Javascript & Typescript
 
@@ -77,11 +89,17 @@ npm install -g typescript typescript-language-server
 
 ### YAML
 
-Install [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) from npm:
+For LSP install [`yaml-language-server`](https://github.com/redhat-developer/yaml-language-server) from npm:
 
 
 ```bash
 npm install -g yaml-language-server
+```
+
+For lint, install [`yamllint`]() from pip:
+
+```bash
+pipx install yamllint
 ```
 
 ### HTML, CSS, JSON, and ESlint
@@ -109,6 +127,13 @@ binary release, or install it using cargo (with lsp feature):
 cargo install taplo-cli --locked --features lsp
 ```
 
+### markdown
+
+For lint, install [`markdownlint-cli`]() from npm. Also install [vale]() for better lints.
+
+```bash
+npm install -g markdownlint-cli
+```
 ## Choice justification
 
 ### Bufferline plugins are missing
@@ -117,21 +142,21 @@ This config does not use any bufferline plugin to show open buffers in a manner 
 That's because the idea of tabs in other IDEs do not transfer well to open buffers in vim. You can't re-order
 open buffers and navigating between open buffers using :bnext and :bprevious is not trivial (due to order of the buffers).
 
-A better way to navigate in vim is to use native GoToDefenition, FindUsage, and other navigation tools like NvimTree, Telescope, and Harpoon.
+A better way to navigate in vim is to use native GoToDefinition, FindUsage, and other navigation tools like NvimTree, Telescope, and Harpoon.
 
 
 ### A custom WinBar is being used
 
 Normal WinBar plugins either provide too much, or too little. I just need a WinBar that shows the file (and its path) in a readable way while
-showing the state of the buffer. That's why this configuration has its own WinBar (which is heaviliy influenced by WinBar.nvim plugin).
+showing the state of the buffer. That's why this configuration has its own WinBar (which is heavily influenced by WinBar.nvim plugin).
 
 ## Wishlist
 
 - Inlay Hint
-- Noice
 - Code formatting
     - Configure auto formatting on save.
     - [Formatter.nvim](https://github.com/mhartington/formatter.nvim) plugin
+- Wrap text for text files (like markdown)
 - A buffer switcher/manager plugin
     - harpoon
     - [JABS.nvim](https://github.com/matbme/JABS.nvim)
@@ -142,8 +167,9 @@ showing the state of the buffer. That's why this configuration has its own WinBa
 - Close extra buffers, maybe of the following plugins
     - [close-buffers.nvim](https://github.com/kazhala/close-buffers.nvim)
     - [nvim-early0retirement](https://github.com/chrisgrieser/nvim-early-retirement)
-- Better colour column, maybe of the following plugins
+- Better color column, maybe of the following plugins
     - [virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim)
     - [virtcolumn.nvim](https://github.com/xiyaowong/virtcolumn.nvim)
-- A termianl emulator
+- A terminal emulator
     - [ToggleTerm]()
+- Noice
