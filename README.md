@@ -134,6 +134,13 @@ For lint, install [`markdownlint-cli`]() from npm. Also install [vale]() for bet
 ```bash
 npm install -g markdownlint-cli
 ```
+
+### LaTeX
+
+Install [LTeX Language Server](https://github.com/valentjn/ltex-ls) for lsp. Simply download 
+the latest release from the repository and put it in `/usr/local/`, finally add the path of
+the `bin` directory to your `PATH`.
+
 ## Choice justification
 
 ### Bufferline plugins are missing

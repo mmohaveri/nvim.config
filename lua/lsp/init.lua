@@ -15,6 +15,7 @@ local lsp_servers = {
     "lua",
     "pyright",
     "ruff",
+    "tex",
     "toml",
     "typescript",
     "yaml",
