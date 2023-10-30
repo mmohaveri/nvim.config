@@ -19,6 +19,15 @@ local linters_by_ft = {
     },
     yaml = {
         "yamllint",
+    },
+    typescript = {
+        "eslint"
+    },
+    javascript = {
+        "eslint"
+    },
+    vue = {
+        "eslint"
     }
 }
 
