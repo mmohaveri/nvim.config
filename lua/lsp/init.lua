@@ -18,13 +18,13 @@ local lsp_servers = {
     "tex",
     "toml",
     "typescript",
+    "vue",
     "yaml",
     -- "rust_analyzer",
     -- "solc",
     -- "solidity",
     -- "sqlls",
     -- "texlab",
-    -- "volar",
 }
 
 lsp_setup()
