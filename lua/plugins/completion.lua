@@ -29,6 +29,10 @@ local kind_icons = {
 return {
     {
         "hrsh7th/nvim-cmp",
+        event = {
+            "InsertEnter",
+            "CmdlineEnter"
+        },
         dependencies = {
             {"L3MON4D3/LuaSnip"},
             { "hrsh7th/cmp-buffer" },
@@ -105,13 +109,23 @@ return {
         event = "InsertEnter",
         config = true,
     },
-    { "windwp/nvim-ts-autotag" },
+    {
+        "windwp/nvim-ts-autotag",
+        event = "InsertEnter",
+    },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
-        config = true,
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
     },
     {
         'numToStr/Comment.nvim',
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         dependencies = {
             "JoosepAlviste/nvim-ts-context-commentstring",
         },
@@ -132,7 +146,6 @@ return {
                 pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
             }
         end,
-        lazy = false,
     },
 }
 

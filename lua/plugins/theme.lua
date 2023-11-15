@@ -1,5 +1,6 @@
 return {
     "Mofiqul/vscode.nvim",
+    priority = 1000,
     init = function () require('vscode').load() end,
     opts = {
         style = 'dark',

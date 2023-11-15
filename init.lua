@@ -1,3 +1,4 @@
+require("key_bindings")
 require("general_config")
 
 -- Setup lazy.nvim plugin manager
@@ -17,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 
-require("key_bindings")
 require("lsp")
 require("auto_save")
 require("UI")

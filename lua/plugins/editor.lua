@@ -1,25 +1,5 @@
-local smartcolumn_config = {
-    colorcolumn = {
-        "100",
-        "120",
-        "130",
-    },
-    disabled_filetypes = {
-        "help",
-        "text",
-        "markdown",
-        "NvimTree",
-        "lazy",
-        "mason",
-    },
-    scope = "window",
-}
-
-local notify_config = {
-    render = "wrapped-compact",
-    stages = "slide",
-    timeout = 5000,
-}
+local options = {noremap = true, silent = true}
+local keymap = vim.keymap.set
 
 return {
     {
@@ -28,10 +8,32 @@ return {
     },
     {
         "m4xshen/smartcolumn.nvim",
-        opts = smartcolumn_config,
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
+        opts = {
+            colorcolumn = {
+                "100",
+                "120",
+                "130",
+            },
+            disabled_filetypes = {
+                "help",
+                "text",
+                "markdown",
+                "NvimTree",
+                "lazy",
+                "mason",
+            },
+            scope = "window",
+        },
     },
     {
         "famiu/bufdelete.nvim",
+        config = function ()
+            keymap("n", "<leader>d", ":Bdelete <CR>", options)
+        end
     },
     {
         'stevearc/dressing.nvim',
@@ -39,7 +41,11 @@ return {
     },
     {
         "rcarriga/nvim-notify",
-        opts = notify_config,
+        opts = {
+            render = "wrapped-compact",
+            stages = "slide",
+            timeout = 5000,
+        },
         init = function ()
             vim.notify = require("notify")
         end
@@ -53,9 +59,17 @@ return {
     },
     {
         "mbbill/undotree",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        }
     },
     {
         "lewis6991/gitsigns.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         config = true,
     }
 }
