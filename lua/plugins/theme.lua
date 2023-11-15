@@ -1,9 +1,7 @@
-local Module = {}
-
-Module.plugin_spec = {
+return {
     "Mofiqul/vscode.nvim",
     init = function () require('vscode').load() end,
-    config = {
+    opts = {
         style = 'dark',
         transparent = true,          -- Enable transparent background
         italic_comments = true,      -- Enable italic comment
@@ -14,6 +12,4 @@ Module.plugin_spec = {
         },
     },
 }
-
-return Module
 

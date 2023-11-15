@@ -1,11 +1,7 @@
-local Module = {}
-
-Module.plugin_spec = {
+return {
     {
         "ThePrimeagen/vim-be-good",
         config = false,
     }
 }
-
-return Module
 

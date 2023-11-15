@@ -1,6 +1,4 @@
-local Module = {}
-
-Module.plugin_spec = {
+return {
     {
         "antosha417/nvim-lsp-file-operations",
         dependencies = {
@@ -112,5 +110,3 @@ Module.plugin_spec = {
         },
     },
 }
-
-return Module

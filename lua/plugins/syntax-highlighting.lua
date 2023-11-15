@@ -1,6 +1,4 @@
-local Module = {}
-
-Module.plugin_spec = {
+return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         'JoosepAlviste/nvim-ts-context-commentstring',
@@ -74,4 +72,3 @@ Module.plugin_spec = {
     end
 }
 
-return Module

@@ -1,5 +1,3 @@
-local Module = {}
-
 local smartcolumn_config = {
     colorcolumn = {
         "100",
@@ -23,7 +21,7 @@ local notify_config = {
     timeout = 5000,
 }
 
-Module.plugin_spec = {
+return {
     {
         "nvim-lualine/lualine.nvim",
         config = true,
@@ -62,6 +60,3 @@ Module.plugin_spec = {
     }
 }
 
-Module.activate = function() end
-
-return Module
