@@ -1,7 +1,5 @@
 local Module = {}
 
-local web_devicons = require("nvim-web-devicons")
-
 local icons = {
     file = '',
     seperator = '⮞',
@@ -68,11 +66,17 @@ local function get_value()
             default = true
         end
 
-        file_icon = web_devicons.get_icon(file_name, file_type, { default = default })
+
+        local web_devicons_ok, web_devicons = pcall(require, "nvim-web-devicons")
+
+        if web_devicons_ok then
+            file_icon = web_devicons.get_icon(file_name, file_type, { default = default })
+        end
 
         if not file_icon then
             file_icon = icons.file
         end
+
         result = ' %#' .. highligh_groups.symbols .. '#' .. get_tag() .. ' %*'
         result = result .. '%#' .. highligh_groups.path .. '#' .. file_path .. ' %*'
         result = result .. '%#' .. highligh_groups.file_icon .. '#' .. file_icon .. ' %*'

@@ -1,7 +1,7 @@
 local cmp_lsp = require("cmp_nvim_lsp")
 local notify = require("notify")
 
-local helpers = require("lsp.helpers")
+local helpers = require("nvim_config.lsp.helpers")
 
 local function register_lsp(lsp_definition)
     vim.api.nvim_create_autocmd("FileType", {

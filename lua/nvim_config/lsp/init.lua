@@ -1,5 +1,5 @@
-local lsp_setup = require("lsp.lsp_setup")
-local register_lsp = require("lsp.register_lsp")
+local lsp_setup = require("nvim_config.lsp.lsp_setup")
+local register_lsp = require("nvim_config.lsp.register_lsp")
 
 local lsp_servers = {
     -- "cssmodules_ls",
@@ -29,7 +29,7 @@ local lsp_servers = {
 
 lsp_setup()
 for _, server_name in ipairs(lsp_servers) do
-    local server_module = require("lsp.servers." .. server_name)
+    local server_module = require("nvim_config.lsp.servers." .. server_name)
     register_lsp(server_module)
 end
 
