@@ -37,10 +37,12 @@ return {
     },
     {
         'stevearc/dressing.nvim',
+        event = "VeryLazy",
         config = true,
     },
     {
         "rcarriga/nvim-notify",
+        event = "VeryLazy",
         opts = {
             render = "wrapped-compact",
             stages = "slide",
@@ -52,10 +54,11 @@ return {
     },
     {
         "mrded/nvim-lsp-notify",
-        config = true,
+        event = "VeryLazy",
         dependencies = {
             "rcarriga/nvim-notify",
-        }
+        },
+        config = true,
     },
     {
         "mbbill/undotree",

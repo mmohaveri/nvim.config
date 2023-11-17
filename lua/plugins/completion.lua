@@ -99,6 +99,9 @@ return {
                     experimental = {
                         ghost_text = true,
                     },
+                    completion = {
+                        completeopt = "menu,menuone,preview,noselect"
+                    },
                 }
 
             cmp.setup(cmp_config)

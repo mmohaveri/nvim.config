@@ -112,7 +112,9 @@ return {
         'nvim-telescope/telescope.nvim',
         tag = "0.1.x",
         dependencies = {
-            'nvim-lua/plenary.nvim',
+            "nvim-lua/plenary.nvim",
+            {"nivm-telescope/telescope-fzf-native.nvim", build="make"},
+            "nvim-tree/nvim-web-devicons",
         },
         config = function ()
             local telescope_builtin = require("telescope.builtin")
