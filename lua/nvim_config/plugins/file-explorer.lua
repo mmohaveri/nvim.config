@@ -117,8 +117,22 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = function ()
+            local telescope = require("telescope")
+            local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
 
+            telescope.setup({
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<C-k>"] = telescope_actions.move_selection_previous,
+                            ["<C-j>"] = telescope_actions.move_selection_next,
+                            ["<C-h>"] = telescope_actions.which_key,
+
+                        }
+                    }
+                }
+            })
             keymap("n", "<leader>t", ":Telescope<CR>", options)
             keymap('n', "<leader>lg", telescope_builtin.live_grep, options)
             keymap("n", "<leader>ff", telescope_builtin.find_files, options)
@@ -126,6 +140,8 @@ return {
             keymap("n", "<leader>fb", telescope_builtin.buffers, options)
             keymap("n", "<leader>tr", telescope_builtin.resume, options)
             -- keymap('n', '<leader>fh', telescope_builtin.help_tags, {})
+
+            telescope.load_extension("fzf")
         end
     },
 }
