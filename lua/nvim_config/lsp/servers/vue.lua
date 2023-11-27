@@ -17,7 +17,8 @@ Module.root_indicators = {
 }
 
 local function get_global_typescript_lib_path()
-    local node_path = vim.fn.system("source $HOME/.nvm/nvm.sh && nvm which current")
+    -- Don't forget that vim.fn.system's output has a \n at the end of it!
+    local node_path = vim.fn.system("source $HOME/.nvm/nvm.sh && nvm which current"):sub(1, -2)
     local ts_lib_path = string.gsub(node_path, "/bin/node", "/lib/node_modules/typescript/lib")
     return ts_lib_path
 end
