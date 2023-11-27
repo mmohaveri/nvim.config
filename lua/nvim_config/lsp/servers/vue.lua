@@ -17,16 +17,9 @@ Module.root_indicators = {
 }
 
 local function get_global_typescript_lib_path()
-    local handle = io.popen("nvm which current")
-    if handle ~= nil then
-        local node_path = handle:read("*a")
-        handle:close()
-
-        local ts_lib_path = string.gsub(node_path, "/bin/node", "/lib/node_modules/typescript/lib")
-        return ts_lib_path
-    end
-
-    return ""
+    local node_path = vim.fn.system("source $HOME/.nvm/nvm.sh && nvm which current")
+    local ts_lib_path = string.gsub(node_path, "/bin/node", "/lib/node_modules/typescript/lib")
+    return ts_lib_path
 end
 
 local function get_typescript_lib_path(root_dir)
@@ -54,7 +47,8 @@ Module.config = {
     },
     init_options = {
         typescript = {
-            tsdk = get_typescript_lib_path(".")
+            -- This only works correctly iff you open the neovim from the project's directory.
+            tsdk = get_typescript_lib_path(vim.api.nvim_buf_get_name(0))
         },
     },
     on_new_config = function (new_config, new_root_dir)
