@@ -1,15 +1,9 @@
 local Module = {}
 
-local is_windows = vim.loop.os_uname().version:match 'Windows'
-
-Module.path_separator = is_windows and ';' or ':'
+Module.path_separator = ':'
 
 local function is_fs_root(path)
-    if is_windows then
-        return path:match '^%a:$'
-    else
-        return path == '/'
-    end
+    return path == '/'
 end
 
 function Module.exists (filename)
@@ -26,11 +20,7 @@ function Module.is_file(filename) return Module.exists(filename) == 'file' end
 function Module.join(...) return table.concat(vim.tbl_flatten { ... }, '/') end
 
 function Module.is_absolute(filename)
-    if is_windows then
-      return filename:match '^%a:' or filename:match '^\\\\'
-    else
-      return filename:match '^/'
-    end
+    return filename:match '^/'
 end
 
 function Module.dirname(path)
@@ -41,21 +31,9 @@ function Module.dirname(path)
     end
     local result = path:gsub(strip_sep_pat, ''):gsub(strip_dir_pat, '')
     if #result == 0 then
-        if is_windows then
-            return path:sub(1, 2):upper()
-        else
-            return '/'
-        end
+        return '/'
     end
     return result
-end
-
-function Module.sanitize(path)
-    if is_windows then
-        path = path:sub(1, 1):upper() .. path:sub(2)
-        path = path:gsub('\\', '/')
-    end
-    return path
 end
 
 function Module.traverse_parents(path, callback)
