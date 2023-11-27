@@ -40,6 +40,10 @@ local function get_typescript_lib_path(root_dir)
 end
 
 
+function Module.should_skip()
+    return not utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0))
+end
+
 Module.config = {
     name = "vue-language-server",
     cmd = {

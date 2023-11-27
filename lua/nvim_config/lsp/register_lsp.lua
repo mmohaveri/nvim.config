@@ -8,6 +8,10 @@ local function register_lsp(lsp_definition)
     vim.api.nvim_create_autocmd("FileType", {
         pattern = lsp_definition.filetypes,
         callback = function()
+            if lsp_definition.should_skip ~= nil and lsp_definition.should_skip() then
+                return
+            end
+
             local client_capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
 
             local lsp_server_binary = lsp_definition.config.cmd[1]

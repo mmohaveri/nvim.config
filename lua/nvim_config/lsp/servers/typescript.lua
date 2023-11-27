@@ -1,5 +1,7 @@
 local Module = {}
 
+local utils = require("utils")
+
 Module.filetypes = {
     "javascript",
     "javascriptreact",
@@ -15,6 +17,10 @@ Module.root_indicators = {
     "tsconfig.json",
     "jsconfig.json",
 }
+
+function Module.should_skip()
+    return utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0))
+end
 
 Module.config = {
     name = "typescript",
