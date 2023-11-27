@@ -137,3 +137,4 @@ function Module.find_directory_in_ancestor(start_path, dir_name)
   end)
 end
 
+return Module

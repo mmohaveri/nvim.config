@@ -56,7 +56,7 @@ Module.config = {
     },
     init_options = {
         typescript = {
-            tsdk = ','
+            tsdk = get_typescript_lib_path(".")
         },
     },
     on_new_config = function (new_config, new_root_dir)
