@@ -137,4 +137,8 @@ function Module.find_directory_in_ancestor(start_path, dir_name)
   end)
 end
 
+function Module.binary_exists(binary)
+    return vim.fn.executable(binary) == 1
+end
+
 return Module

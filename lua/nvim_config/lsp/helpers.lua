@@ -66,8 +66,4 @@ Module.set_lsp_keymaps = function (buffer_number)
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-Module.binary_exists = function (binary)
-    return vim.fn.executable(binary) == 1
-end
-
 return Module
