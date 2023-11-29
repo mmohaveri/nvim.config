@@ -1,0 +1,63 @@
+Open cheatsheet                                         | <leader>?
+
+## navigation @custom
+Focus NvimTree                                          | <leader>ls
+Close buffer without changing layout                    | <leader>d
+Move between windows                                    | <leader><leader>h/j/k/l
+Move between buffers                                    | <leader>h/l 
+Resize window                                           | <C-Up/Down/Left/Right>
+
+## telescope @fuzzy @fzf
+Close                                                   | <C-C>
+Toggle selection                                        | <Tab>
+Open file in tab                                        | <C-T>
+Open file in split                                      | <C-X>
+Open file in vsplit                                     | <C-V>
+Scroll up in preview window                             | <C-U>
+Scroll down in preview window                           | <C-D>
+Send to quick fix list                                  | <C-Q>
+Send selected items to quick fix list                   | <M-Q>
+
+## telescope @custom
+Move selection up/down                                  | <C-k/j>
+Open help                                               | <C-h>
+Open telescope                                          | <leader>t
+Live grep  (search in files)                            | <leader>lg
+Find files (search in file names)                       | <leader>ff
+Find git files (search in file names committed to git)  | <leader>fgf
+List buffers                                            | <leader>fb
+Resume telescope                                        | <leader>tr
+
+# ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+# ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+# ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+# ["<C-n>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),  -- replace native vim autocomplete with cmp
+# ["<C-y>"] = cmp.config.disable, -- remove the default `<C-y>` mapping.
+# ["<C-e>"] = cmp.mapping {
+#     i = cmp.mapping.abort(),
+#     c = cmp.mapping.close(),
+# },
+# ["<CR>"] = cmp.mapping.confirm { select = true },
+
+## completion @custom
+Move selection up/down                                  | <C-k/j>
+
+## LSP @custom
+Show references                                         | gR
+Go to declaration                                       | gD
+Show definitions                                        | gd
+Show implementations                                    | gi
+Show type definitions                                   | gt
+Rename symbol                                           | <leader>rn
+Show documentation                                      | K
+Show signature help                                     | <C-k>
+Show actions                                            | <leader>ca
+Go to next/previous diagnostic                          | [d / ]d
+Show line diagnostics                                   | gl
+Show buffer diagnostics                                 | <leader>D
+Add buffer diagnostics to the location list             | <leader>q
+
+## git
+Blame line                                              | :Gitsigns line_blame
+Turn on line by line blame                              | :Gitsigns toggle_current_line_blame
+Show diff                                               | :Gitsigns diffthis
