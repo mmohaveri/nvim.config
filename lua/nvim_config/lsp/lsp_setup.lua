@@ -16,14 +16,36 @@ local signs = {
         text = ""
     },
 }
+local function is_diagnostics_disabled (bufnr)
+    if bufnr == nil then
+        return true
+    end
+
+    local buf_infos = vim.fn.getbufinfo(bufnr)
+    if #buf_infos == 0 then
+        return true
+    end
+
+    local buf_info = buf_infos[1]
+
+    if buf_info.name == nil or buf_info.name == "" then
+        return true
+    end
+end
 
 local diagnostic_config = {
-    virtual_text = true,
-    signs = {
-        active = signs,
-    },
+    virtual_text = function (_, bufnr) return not is_diagnostics_disabled(bufnr) end,
+    signs = function (_, bufnr)
+        if is_diagnostics_disabled(bufnr) then
+            return false
+        end
+
+        return {
+            active = signs,
+        }
+    end,
     update_in_insert = true,
-    underline = true,
+    underline = function (_, bufnr) return not is_diagnostics_disabled(bufnr) end,
     severity_sort = true,
     float = {
         focusable = false,

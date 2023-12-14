@@ -57,6 +57,9 @@ Show line diagnostics                                   | gl
 Show buffer diagnostics                                 | <leader>D
 Add buffer diagnostics to the location list             | <leader>q
 
+## Diagnostics @custom
+Show diagnostics message in a floaing window            | <leader>e
+
 ## git
 Blame line                                              | :Gitsigns line_blame
 Turn on line by line blame                              | :Gitsigns toggle_current_line_blame

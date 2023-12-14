@@ -28,3 +28,6 @@ keymap("n", "<C-Down>", ":resize -2<CR>", options)
 keymap("n", "<C-Left>", ":vertical resize +2<CR>", options)
 keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
 
+-- Global diagnostics
+
+keymap("n", "<leader>e", vim.diagnostic.open_float)
