@@ -1,4 +1,4 @@
-Open cheatsheet                                         | <leader>?
+Open cheatsheet                                         | <leader>? or <leader>`
 
 ## navigation @custom
 Focus NvimTree                                          | <leader>ls
