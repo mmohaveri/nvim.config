@@ -177,6 +177,4 @@ showing the state of the buffer. That's why this configuration has its own WinBa
 - Better color column, maybe of the following plugins
     - [virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim)
     - [virtcolumn.nvim](https://github.com/xiyaowong/virtcolumn.nvim)
-- A terminal emulator
-    - [ToggleTerm]()
 - Noice

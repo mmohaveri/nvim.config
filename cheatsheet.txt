@@ -58,9 +58,15 @@ Show buffer diagnostics                                 | <leader>D
 Add buffer diagnostics to the location list             | <leader>q
 
 ## Diagnostics @custom
-Show diagnostics message in a floaing window            | <leader>e
+Show diagnostics message in a floating window           | <leader>e
 
 ## git
 Blame line                                              | :Gitsigns blame_line
 Turn on line by line blame                              | :Gitsigns toggle_current_line_blame
 Show diff                                               | :Gitsigns diffthis
+
+## Terminal
+Go to normal mode when in terminal                      | <esc>
+Move between windows when in terminal                   | <C-h/j/k/l>
+Move out of terminal                                    | <C-w>
+
