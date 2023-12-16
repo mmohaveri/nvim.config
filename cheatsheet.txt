@@ -61,6 +61,6 @@ Add buffer diagnostics to the location list             | <leader>q
 Show diagnostics message in a floaing window            | <leader>e
 
 ## git
-Blame line                                              | :Gitsigns line_blame
+Blame line                                              | :Gitsigns blame_line
 Turn on line by line blame                              | :Gitsigns toggle_current_line_blame
 Show diff                                               | :Gitsigns diffthis
