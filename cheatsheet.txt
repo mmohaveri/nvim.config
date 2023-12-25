@@ -9,25 +9,41 @@ Resize window                                           | <C-Up/Down/Left/Right>
 
 ## telescope @fuzzy @fzf
 Close                                                   | <C-C>
-Toggle selection                                        | <Tab>
-Open file in tab                                        | <C-T>
-Open file in split                                      | <C-X>
-Open file in vsplit                                     | <C-V>
-Scroll up in preview window                             | <C-U>
-Scroll down in preview window                           | <C-D>
-Send to quick fix list                                  | <C-Q>
-Send selected items to quick fix list                   | <M-Q>
-Add all results to quick fix list                       | <C-q>
 
-## telescope @custom
-Move selection up/down                                  | <C-k/j>
-Open help                                               | <C-h>
+## telescope @open
 Open telescope                                          | <leader>t
 Live grep  (search in files)                            | <leader>lg
 Find files (search in file names)                       | <leader>ff
-Find git files (search in file names committed to git)  | <leader>fgf
 List buffers                                            | <leader>fb
 Resume telescope                                        | <leader>tr
+Search in helps                                         | <leader>fh
+
+## telescope @navigation
+Move selection up/down (in insert mode)                 | <C-j/k>
+Move selection up/down (in normal mode)                 | j/k
+Move selection top/middle/bottom  (in normal mode)      | H/M/L
+Move selection top/bottom of list (in normal mode)      | gg/G
+
+Close (in insert mode)                                  | <C-c>
+Close (in normal mode)                                  | <Esc>
+
+Open                                                    | <CR>
+Open in horizontal split                                | <C-H>
+Open in vertical split                                  | <C-s>
+
+Preview scroll up/down/right/left                       | <A-h/j/k/l>
+
+Scroll results up/down                                  | "PageUp"/"PageDown"
+Scroll results right/left (in insert mode)              | <C-l/h>
+Scroll results right/left (in normal mode)              | l/h
+
+toggle selection & go up/down                           | <Tab> / <S-Tab>
+
+Send all results to quick fix list                      | <C-q>
+Send selected results to quick fix list                 | <M-q>
+
+Open Telescope's help (in insert mode)                  | <C-/>
+Open Telescope's help (in normal mode)                  | /
 
 # ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 # ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -67,7 +83,8 @@ Blame line                                              | :Gitsigns blame_line
 Turn on line by line blame                              | :Gitsigns toggle_current_line_blame
 Show diff                                               | :Gitsigns diffthis
 
-## Terminal
+## Terminal @custom
+Toggle Terminal                                         | <C-\> 
 Go to normal mode when in terminal                      | <esc>
 Move between windows when in terminal                   | <C-h/j/k/l>
 Move out of terminal                                    | <C-w>

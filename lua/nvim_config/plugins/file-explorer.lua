@@ -125,21 +125,105 @@ return {
                 defaults = {
                     mappings = {
                         i = {
-                            ["<C-k>"] = telescope_actions.move_selection_previous,
+                            ["<C-n>"] = false,
                             ["<C-j>"] = telescope_actions.move_selection_next,
-                            ["<C-h>"] = telescope_actions.which_key,
+                            ["<C-p>"] = false,
+                            ["<C-k>"] = telescope_actions.move_selection_previous,
 
-                        }
+                            ["<C-c>"] = telescope_actions.close,
+
+                            ["<Down>"] = telescope_actions.move_selection_next,
+                            ["<Up>"]  = telescope_actions.move_selection_previous,
+
+                            ["<CR>"]  = telescope_actions.select_default,
+                            ["<C-x>"] = false,
+                            ["<C-H>"] = telescope_actions.select_horizontal,
+                            ["<C-v>"] = false,
+                            ["<C-s>"] = telescope_actions.select_vertical,
+                            ["<C-t>"] = false,
+
+                            ["<C-u>"] = false,
+                            ["<A-k>"] = telescope_actions.preview_scrolling_up,
+                            ["<C-d>"] = false,
+                            ["<A-j>"] = telescope_actions.preview_scrolling_down,
+                            ["<C-f>"] = false,
+                            ["<A-h>"] = telescope_actions.preview_scrolling_left,
+                            -- ["<C-k>"] = false,  It's already overwritten with `move_selection_previous`
+                            ["<A-l>"] = telescope_actions.preview_scrolling_right,
+
+
+                            ["<PageUp>"] = telescope_actions.results_scrolling_up,
+                            ["<PageDown>"] = telescope_actions.results_scrolling_down,
+                            ["<M-f>"] = false,
+                            ["<C-l>"] = telescope_actions.results_scrolling_left,
+                            ["<M-k>"] = false,
+                            ["<C-h>"] = telescope_actions.results_scrolling_right,
+
+                            ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
+                            ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+                            ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
+                            ["<M-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
+
+                            -- ["<C-l>"] = false -- disable actions.complete_tag,
+                            ["<C-/>"] = telescope_actions.which_key,
+                            ["<C-_>"] = false, -- disable actions.which_key
+                            ["<C-w>"] = { "<c-s-w>", type = "command" },
+                        },
+                        n = {
+                            ["j"] = telescope_actions.move_selection_next,
+                            ["k"] = telescope_actions.move_selection_previous,
+
+                            ["H"] = telescope_actions.move_to_top,
+                            ["M"] = telescope_actions.move_to_middle,
+                            ["L"] = telescope_actions.move_to_bottom,
+
+                            ["<esc>"] = telescope_actions.close,
+
+                            ["<CR>"]  = telescope_actions.select_default,
+                            ["<C-x>"] = false,
+                            ["<C-H>"] = telescope_actions.select_horizontal,
+                            ["<C-v>"] = false,
+                            ["<C-s>"] = telescope_actions.select_vertical,
+                            ["<C-t>"] = false,
+
+                            ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
+                            ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
+                            ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
+                            ["<M-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
+
+                            ["<Down>"] = telescope_actions.move_selection_next,
+                            ["<Up>"] = telescope_actions.move_selection_previous,
+                            ["gg"] = telescope_actions.move_to_top,
+                            ["G"] = telescope_actions.move_to_bottom,
+
+                            ["<C-u>"] = false,
+                            ["<A-k>"] = telescope_actions.preview_scrolling_up,
+                            ["<C-d>"] = false,
+                            ["<A-j>"] = telescope_actions.preview_scrolling_down,
+                            ["<C-f>"] = false,
+                            ["<A-h>"] = telescope_actions.preview_scrolling_left,
+                            ["<C-k>"] = false,
+                            ["<A-l>"] = telescope_actions.preview_scrolling_right,
+
+                            ["<PageUp>"] = telescope_actions.results_scrolling_up,
+                            ["<PageDown>"] = telescope_actions.results_scrolling_down,
+                            ["<M-f>"] = false,
+                            ["h"] = telescope_actions.results_scrolling_left,
+                            ["<M-k>"] = false,
+                            ["l"] = telescope_actions.results_scrolling_right,
+
+                            ["?"] = false,
+                            ["<C-/>"] = telescope_actions.which_key,
+                        },
                     }
                 }
             })
             keymap("n", "<leader>t", ":Telescope<CR>", options)
             keymap('n', "<leader>lg", telescope_builtin.live_grep, options)
             keymap("n", "<leader>ff", telescope_builtin.find_files, options)
-            keymap("n", "<leader>fgf", telescope_builtin.git_files, options)
             keymap("n", "<leader>fb", telescope_builtin.buffers, options)
             keymap("n", "<leader>tr", telescope_builtin.resume, options)
-            -- keymap('n', '<leader>fh', telescope_builtin.help_tags, {})
+            keymap('n', '<leader>fh', telescope_builtin.help_tags, options)
 
             telescope.load_extension("fzf")
         end
