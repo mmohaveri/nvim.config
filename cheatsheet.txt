@@ -31,11 +31,12 @@ Open                                                    | <CR>
 Open in horizontal split                                | <C-H>
 Open in vertical split                                  | <C-s>
 
-Preview scroll up/down/right/left                       | <A-h/j/k/l>
+Preview scroll up/down                       | <A-j/k>
+# Preview scroll up/down/right/left                       | <A-h/j/k/l>
 
 Scroll results up/down                                  | "PageUp"/"PageDown"
-Scroll results right/left (in insert mode)              | <C-l/h>
-Scroll results right/left (in normal mode)              | l/h
+# Scroll results right/left (in insert mode)              | <C-l/h>
+# Scroll results right/left (in normal mode)              | l/h
 
 toggle selection & go up/down                           | <Tab> / <S-Tab>
 
