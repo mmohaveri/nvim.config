@@ -16,6 +16,11 @@ local signs = {
         text = ""
     },
 }
+
+local function starts_with(inp, prefix)
+    return string.sub(inp, 1, string.len(prefix)) == prefix
+end
+
 local function is_diagnostics_disabled (bufnr)
     if bufnr == nil then
         return true
@@ -28,7 +33,7 @@ local function is_diagnostics_disabled (bufnr)
 
     local buf_info = buf_infos[1]
 
-    if buf_info.name == nil or buf_info.name == "" then
+    if buf_info.name == nil or buf_info.name == "" or starts_with(buf_info.name, "term://") then
         return true
     end
 end
