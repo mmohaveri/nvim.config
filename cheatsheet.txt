@@ -17,6 +17,7 @@ Scroll up in preview window                             | <C-U>
 Scroll down in preview window                           | <C-D>
 Send to quick fix list                                  | <C-Q>
 Send selected items to quick fix list                   | <M-Q>
+Add all results to quick fix list                       | <C-q>
 
 ## telescope @custom
 Move selection up/down                                  | <C-k/j>
@@ -70,3 +71,9 @@ Go to normal mode when in terminal                      | <esc>
 Move between windows when in terminal                   | <C-h/j/k/l>
 Move out of terminal                                    | <C-w>
 
+## Comment
+Toggle Line Comment                                     | <leader>tcl
+Toggle Block Comment                                    | <leader>tcb
+
+## Misc
+Run a command (CMD) on all quickfix entries             | :cdo CMD
