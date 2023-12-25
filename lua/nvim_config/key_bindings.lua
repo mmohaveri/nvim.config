@@ -30,4 +30,5 @@ keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
 
 -- Global diagnostics
 
+keymap("n", "<leader><leader>t", vim.lsp.buf.hover)
 keymap("n", "<leader>e", vim.diagnostic.open_float)

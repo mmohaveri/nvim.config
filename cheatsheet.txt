@@ -48,7 +48,8 @@ Show references                                         | gR
 Go to declaration                                       | gD
 Show definitions                                        | gd
 Show implementations                                    | gi
-Show type definitions                                   | gt
+Go to type definitions                                  | gt
+Show type definitions                                   | <leader><leader>t
 Rename symbol                                           | <leader>rn
 Show documentation                                      | K
 Show signature help                                     | <C-k>
