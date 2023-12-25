@@ -94,5 +94,12 @@ return {
             vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
         end
     },
+    {
+        "willothy/flatten.nvim",
+        config = true,
+        lazy = false,
+        priority = 1001,
+
+    }
 }
 
