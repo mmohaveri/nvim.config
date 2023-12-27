@@ -96,3 +96,6 @@ Toggle Block Comment                                    | <leader>tcb
 
 ## Misc
 Run a command (CMD) on all quickfix entries             | :cdo CMD
+
+## Theme Switcher
+Open Theme Switcher (Themery)                           | :Themery<CR>
