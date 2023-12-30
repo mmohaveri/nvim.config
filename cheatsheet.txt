@@ -7,6 +7,23 @@ Move between windows                                    | <leader><leader>h/j/k/
 Move between buffers                                    | <leader>h/l 
 Resize window                                           | <C-Up/Down/Left/Right>
 
+## Folding
+Toggle Fold                                             | za
+Close Fold                                              | zc
+Open Fold                                               | zo
+
+Toggle Fold Recursively Upward                          | zA
+Close Fold Recursively Upward                           | zC
+Open Fold Recursively Upward                            | zO
+
+Reduce Fold Level in buffer                             | zr
+Increase (More) Fold Level in buffer                    | zm
+Close All Folds                                         | zM
+Open All Folds                                          | zR
+
+Peek Folded Lines                                       | L
+
+
 ## telescope @fuzzy @fzf
 Close                                                   | <C-C>
 
