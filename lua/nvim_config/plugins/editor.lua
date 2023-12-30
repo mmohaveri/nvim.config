@@ -111,12 +111,12 @@ return {
         init = function ()
             function _G.set_terminal_keymaps()
                 local opts = {buffer = 0}
-                vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-                vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-                vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-                vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-                vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-                vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>k]], opts)
+                keymap('t', '<esc>', [[<C-\><C-n>]], opts)
+                keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+                keymap('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+                keymap('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+                keymap('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+                keymap('t', '<C-w>', [[<C-\><C-n><C-w>k]], opts)
             end
 
             vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
@@ -148,11 +148,11 @@ return {
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
 
-            -- vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-            -- vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-            -- vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
-            -- vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
-            vim.keymap.set('n', 'L', function()
+            -- keymap('n', 'zR', require('ufo').openAllFolds)
+            -- keymap('n', 'zM', require('ufo').closeAllFolds)
+            -- keymap('n', 'zr', require('ufo').openFoldsExceptKinds)
+            -- keymap('n', 'zm', require('ufo').closeFoldsWith)
+            keymap('n', 'L', function()
                 local winid = require('ufo').peekFoldedLinesUnderCursor()
                 if not winid then vim.lsp.buf.hover() end
             end)
