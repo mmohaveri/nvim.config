@@ -197,19 +197,6 @@ return {
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
 
-            foldopen = "⮟"
-            foldclose = "⮞"
-
-            local function get_fold(lnum)
-                if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then return ' ' end
-                return vim.fn.foldclosed(lnum) == -1 and foldopen or foldclose
-            end
-
-            _G.get_statuscol = function()
-                return get_fold(vim.v.lnum) .. " %s%l "
-            end
-            vim.o.statuscolumn = "%!v:lua.get_statuscol()"
-
             -- keymap('n', 'zR', require('ufo').openAllFolds)
             -- keymap('n', 'zM', require('ufo').closeAllFolds)
             -- keymap('n', 'zr', require('ufo').openFoldsExceptKinds)
