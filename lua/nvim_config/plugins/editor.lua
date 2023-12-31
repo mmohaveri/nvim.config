@@ -124,6 +124,9 @@ return {
     },
     {
         "willothy/flatten.nvim",
+        dependencies = {
+            "akinsho/toggleterm.nvim",
+        },
         lazy = false,
         priority = 1001,
         opts = function()
@@ -131,7 +134,7 @@ return {
 
           return {
             window = {
-              open = "alternate",
+              open = "current",
             },
             callbacks = {
               should_block = function(argv)
@@ -141,22 +144,16 @@ return {
                 return vim.tbl_contains(argv, "-b") or vim.tbl_contains(argv, "-d")
               end,
               pre_open = function()
-                local term = require("toggleterm.terminal")
-                local termid = term.get_focused_id()
-                saved_terminal = term.get(termid)
+                local toggleterm = require("toggleterm.terminal")
+                local terminal_id = toggleterm.get_focused_id()
+                saved_terminal = toggleterm.get(terminal_id)
               end,
               post_open = function(bufnr, winnr, file_type, is_blocking)
-                if is_blocking and saved_terminal then
-                  -- Hide the terminal while it's blocking
-                  saved_terminal:close()
-                else
-                  -- If it's a normal file, just switch to its window
-                  vim.api.nvim_set_current_win(winnr)
-                end
+                vim.api.nvim_set_current_win(winnr)
 
-                -- If the file is a git commit, create one-shot autocmd to delete its buffer on write
+                -- If the file is a git commit, create one-shot autocmd to delete its buffer on closing it (leaving the window)
                 if file_type == "gitcommit" or file_type == "gitrebase" then
-                  vim.api.nvim_create_autocmd("BufWritePost", {
+                  vim.api.nvim_create_autocmd("BufLeave", {
                     buffer = bufnr,
                     once = true,
                     callback = vim.schedule_wrap(function()
