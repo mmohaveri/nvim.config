@@ -2,12 +2,17 @@ local Module = {}
 
 local path_utils = require("utils.path")
 
-function Module.get_active_client_by_name(bufnr, servername)
+function Module.get_active_client_by_name(bufnr, server_name)
     for _, client in pairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
-        if client.name == servername then
+        if client.name == server_name then
             return client
         end
     end
+
+    vim.notify(
+        "No LSP client with name '" .. server_name .. "' is attached to this buffer.",
+        vim.log.levels.ERROR
+    )
 end
 
 function Module.validate_bufnr(bufnr)

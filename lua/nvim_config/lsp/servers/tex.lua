@@ -16,44 +16,71 @@ local texlab_forward_status = vim.tbl_add_reverse_lookup {
   Unconfigured = 3,
 }
 
+---@param bufnr integer
+local function get_params_for_texlab_lsp(bufnr)
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local params = {
+        textDocument = {
+            uri = vim.uri_from_bufnr(bufnr),
+        },
+        position = {
+            line = pos[1] - 1,
+            character = pos[2],
+        },
+    }
+
+    return params
+end
+
+---@param status_table table<integer, string>
+---@param operation_title string
+local function get_async_response_handler(status_table, operation_title)
+    local function handler(err, result)
+        if err == nil then
+            vim.notify(operation_title .. " " .. status_table[result.status], vim.log.levels.INFO)
+            return
+        end
+
+        vim.notify(tostring(err), vim.log.levels.ERROR)
+    end
+
+    return handler
+end
+
+
+---@param bufnr integer 
 local function buf_build(bufnr)
-  bufnr = util.validate_bufnr(bufnr)
-  local texlab_client = util.get_active_client_by_name(bufnr, 'texlab')
-  local pos = vim.api.nvim_win_get_cursor(0)
-  local params = {
-    textDocument = { uri = vim.uri_from_bufnr(bufnr) },
-    position = { line = pos[1] - 1, character = pos[2] },
-  }
-  if texlab_client then
-    texlab_client.request('textDocument/build', params, function(err, result)
-      if err then
-        error(tostring(err))
-      end
-      print('Build ' .. texlab_build_status[result.status])
-    end, bufnr)
-  else
-    print 'method textDocument/build is not supported by any servers active on the current buffer'
-  end
+    vim.notify("Building using TexLab ...", vim.log.levels.INFO)
+    bufnr = util.validate_bufnr(bufnr)
+    local texlab_lsp_client = util.get_active_client_by_name(bufnr, Module.config.name)
+
+    if texlab_lsp_client == nil then
+        return
+    end
+
+    texlab_lsp_client.request(
+        'textDocument/build',
+        get_params_for_texlab_lsp(bufnr),
+        get_async_response_handler(texlab_build_status, "Build"),
+        bufnr
+    )
 end
 
 local function buf_search(bufnr)
-  bufnr = util.validate_bufnr(bufnr)
-  local texlab_client = util.get_active_client_by_name(bufnr, 'texlab')
-  local pos = vim.api.nvim_win_get_cursor(0)
-  local params = {
-    textDocument = { uri = vim.uri_from_bufnr(bufnr) },
-    position = { line = pos[1] - 1, character = pos[2] },
-  }
-  if texlab_client then
-    texlab_client.request('textDocument/forwardSearch', params, function(err, result)
-      if err then
-        error(tostring(err))
-      end
-      print('Search ' .. texlab_forward_status[result.status])
-    end, bufnr)
-  else
-    print 'method textDocument/forwardSearch is not supported by any servers active on the current buffer'
-  end
+    vim.notify("Searching using TexLab ...", vim.log.levels.INFO)
+    bufnr = util.validate_bufnr(bufnr)
+    local texlab_lsp_client = util.get_active_client_by_name(bufnr, Module.config.name)
+
+    if texlab_lsp_client == nil then
+        return
+    end
+
+    texlab_lsp_client.request(
+        'textDocument/forwardSearch',
+        get_params_for_texlab_lsp(bufnr),
+        get_async_response_handler(texlab_forward_status, "Search"),
+        bufnr
+    )
 end
 
 Module.filetypes = {

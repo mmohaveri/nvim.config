@@ -109,8 +109,9 @@ Module.config = {
     commands = {
         EslintFixAll = {
             function()
+                vim.notify("Fixing all eslint problems", vim.log.levels.INFO)
                 local bufnr = vim.api.nvim_get_current_buf()
-                local eslint_lsp_client = utils.lsp.get_active_client_by_name(0, 'eslint')
+                local eslint_lsp_client = utils.lsp.get_active_client_by_name(0, Module.config.name)
                 if eslint_lsp_client == nil then
                     return
                 end
@@ -125,7 +126,9 @@ Module.config = {
                     },
                 }
 
+                -- TODO: Handle error
                 eslint_lsp_client.request_sync('workspace/executeCommand', params, nil, bufnr)
+                vim.notify("All eslint problems fixed.", vim.log.levels.INFO)
             end,
             description = 'Fix all eslint problems for this buffer',
         },
@@ -135,7 +138,7 @@ Module.config = {
             buffer = bufnr,
             command = "EslintFixAll",
         })
-  end,
+    end,
 }
 
 Module.description = [[

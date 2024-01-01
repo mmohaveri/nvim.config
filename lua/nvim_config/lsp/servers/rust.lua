@@ -11,7 +11,7 @@ local function reload_workspace(bufnr)
             nil,
             function(err)
                 if err then
-                    error(tostring(err))
+                    vim.notify(tostring(err), vim.log.levels.ERROR)
                 end
                 vim.notify('Cargo workspace reloaded', vim.log.levels.INFO)
             end,
