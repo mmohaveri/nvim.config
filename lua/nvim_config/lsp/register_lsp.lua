@@ -1,5 +1,4 @@
 local cmp_lsp = require("cmp_nvim_lsp")
-local notify = require("notify")
 
 local helpers = require("nvim_config.lsp.helpers")
 local utils = require("utils")
@@ -23,7 +22,7 @@ local function register_lsp(lsp_definition)
                     lsp_server_binary ..
                     "' binary does not exist!"
 
-                notify(error_msg, "error")
+                vim.notify(error_msg, vim.log.levels.ERROR)
                 return
             end
 
@@ -48,7 +47,7 @@ local function register_lsp(lsp_definition)
 
             vim.lsp.buf_attach_client(0, client)
 
-            notify(lsp_definition.config.name .. " LSP client attached.")
+            vim.notify("'" .. lsp_definition.config.name .. "' LSP client attached.", vim.log.levels.INFO)
         end
     })
 end

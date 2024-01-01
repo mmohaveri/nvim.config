@@ -5,7 +5,7 @@ local function reload_workspace(bufnr)
     bufnr = utils.lsp.validate_bufnr(bufnr)
     local clients = vim.lsp.get_active_clients { name = 'rust_analyzer', bufnr = bufnr }
     for _, client in ipairs(clients) do
-        vim.notify('Reloading Cargo Workspace')
+        vim.notify("Reloading Cargo Workspace", vim.log.levels.INFO)
         client.request(
             'rust-analyzer/reloadWorkspace',
             nil,
@@ -13,7 +13,7 @@ local function reload_workspace(bufnr)
                 if err then
                     error(tostring(err))
                 end
-                vim.notify('Cargo workspace reloaded')
+                vim.notify('Cargo workspace reloaded', vim.log.levels.INFO)
             end,
             0
         )
