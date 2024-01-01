@@ -45,6 +45,7 @@ local function register_lsp(lsp_definition)
                 )
             )
 
+            helpers.register_user_commands(lsp_definition.config.commands)
             vim.lsp.buf_attach_client(0, client)
 
             vim.notify("'" .. lsp_definition.config.name .. "' LSP client attached.", vim.log.levels.INFO)
