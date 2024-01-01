@@ -25,7 +25,7 @@ Module.config = {
     settings = {
         Lua = {
             runtime = {
-                -- version: "LuaJIT",
+                version = "LuaJIT",
             },
             telemetry = {
                 enable = false,
