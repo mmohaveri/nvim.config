@@ -1,6 +1,34 @@
 local options = {noremap = true, silent = true}
 local keymap = vim.keymap.set
 
+local diagnostic_icons = {
+    hint = "",
+    info = "",
+    warning = "",
+    error = "",
+}
+
+local renderer_glyphs = {
+    default = "",
+    symlink = "",
+    git = {
+        unstaged = "",
+        staged = "S",
+        unmerged = "",
+        renamed = "➜",
+        deleted = "",
+        untracked = "U",
+        ignored = "◌",
+    },
+    folder = {
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+    },
+}
+
 return {
     {
         "nvim-tree/nvim-tree.lua",
@@ -24,12 +52,7 @@ return {
                 },
                 diagnostics = {
                     enable = true,
-                    icons = {
-                        hint = "",
-                        info = "",
-                        warning = "",
-                        error = "",
-                    },
+                    icons = diagnostic_icons,
                 },
                 update_focused_file = {
                     enable = true,
@@ -60,26 +83,7 @@ return {
                             folder_arrow = true,
                             git = true,
                         },
-                        glyphs = {
-                            default = "",
-                            symlink = "",
-                            git = {
-                                unstaged = "",
-                                staged = "S",
-                                unmerged = "",
-                                renamed = "➜",
-                                deleted = "",
-                                untracked = "U",
-                                ignored = "◌",
-                            },
-                            folder = {
-                                default = "",
-                                open = "",
-                                empty = "",
-                                empty_open = "",
-                                symlink = "",
-                            },
-                        },
+                        glyphs = renderer_glyphs,
                     },
                 },
                 filters = {
@@ -113,7 +117,10 @@ return {
         branch = "0.1.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            {"nvim-telescope/telescope-fzf-native.nvim", build="make"},
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build="make"
+            },
             "nvim-tree/nvim-web-devicons",
         },
         config = function ()
