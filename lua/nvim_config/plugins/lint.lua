@@ -23,6 +23,14 @@ local linters_by_file_type = {
     }
 }
 
+local exclude_filetype = {
+    "NvimTree",
+    "DressingInput",
+    "undotree",
+    "toggleterm",
+    "TelescopePrompt",
+}
+
 return {
     {
         "mfussenegger/nvim-lint",
@@ -40,21 +48,18 @@ return {
                 callback = function () lint.try_lint() end,
             })
 
-            vim.api.nvim_create_autocmd(
-                {
-                    "BufEnter",
-                    "BufWritePost",
-                    "TextChanged",
-                    "TextChangedI",
-                },
-                {
-                    callback = function ()
-                        lint.try_lint({"cspell_from_stdin"})
-                    end
-                }
-            )
+            vim.api.nvim_create_autocmd({
+                "BufEnter",
+                "BufWritePost",
+                "TextChanged",
+                "TextChangedI",
+            }, {
+                callback = function()
+                    if vim.bo.readonly or vim.tbl_contains(exclude_filetype, vim.bo.filetype) then return end
 
-        end
-    }
+                    lint.try_lint({ "cspell_from_stdin" })
+                end,
+            })
+        end,
+    },
 }
-

@@ -28,6 +28,8 @@ local exclude_filetype = {
     "NvimTree",
     "DressingInput",
     "undotree",
+    "toggleterm",
+    "TelescopePrompt",
 }
 
 local function get_tag()
