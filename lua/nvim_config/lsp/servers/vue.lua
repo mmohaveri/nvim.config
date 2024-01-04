@@ -3,12 +3,12 @@ local Module = {}
 local utils = require("utils")
 
 Module.filetypes = {
-    'vue',
-    'typescript',
-    'javascript',
-    'javascriptreact',
-    'typescriptreact',
-    'json',
+    "vue",
+    "typescript",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "json",
 }
 
 Module.root_indicators = {
@@ -39,10 +39,7 @@ local function get_typescript_lib_path(root_dir)
     end
 end
 
-
-function Module.should_skip()
-    return not utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0))
-end
+function Module.should_skip() return not utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0)) end
 
 Module.config = {
     name = "vue-language-server",
@@ -53,14 +50,18 @@ Module.config = {
     init_options = {
         typescript = {
             -- This only works correctly iff you open the neovim from the project's directory.
-            tsdk = get_typescript_lib_path(vim.api.nvim_buf_get_name(0))
+            tsdk = get_typescript_lib_path(vim.api.nvim_buf_get_name(0)),
         },
     },
-    on_new_config = function (new_config, new_root_dir)
-        if new_config.init_options and new_config.init_options.typescript and new_config.init_options.typescript.tsdk == '' then
+    on_new_config = function(new_config, new_root_dir)
+        if
+            new_config.init_options
+            and new_config.init_options.typescript
+            and new_config.init_options.typescript.tsdk == ""
+        then
             new_config.init_options.typescript.tsdk = get_typescript_lib_path(new_root_dir)
         end
-    end
+    end,
 }
 
 Module.description = [[

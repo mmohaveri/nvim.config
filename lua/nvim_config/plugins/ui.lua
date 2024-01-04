@@ -1,4 +1,4 @@
-local options = {noremap = true, silent = true}
+local options = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
 return {
@@ -31,7 +31,7 @@ return {
     },
 
     {
-        'stevearc/dressing.nvim',
+        "stevearc/dressing.nvim",
         event = "VeryLazy",
         config = true,
     },
@@ -43,9 +43,7 @@ return {
             stages = "slide",
             timeout = 5000,
         },
-        init = function ()
-            vim.notify = require("notify")
-        end
+        init = function() vim.notify = require("notify") end,
     },
     {
         "mrded/nvim-lsp-notify",
@@ -56,4 +54,3 @@ return {
         config = true,
     },
 }
-

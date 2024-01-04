@@ -38,4 +38,3 @@ npm i -g vscode-langservers-extracted
 ]]
 
 return Module
-

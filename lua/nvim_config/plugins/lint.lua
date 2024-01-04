@@ -13,14 +13,14 @@ local linters_by_file_type = {
         "yamllint",
     },
     typescript = {
-        "eslint"
+        "eslint",
     },
     javascript = {
-        "eslint"
+        "eslint",
     },
     vue = {
-        "eslint"
-    }
+        "eslint",
+    },
 }
 
 local exclude_filetype = {
@@ -38,14 +38,14 @@ return {
             "BufReadPre",
             "BufNewFile",
         },
-        config = function ()
-            local lint = require('lint')
+        config = function()
+            local lint = require("lint")
 
             lint.linters_by_ft = linters_by_file_type
             lint.linters.cspell_from_stdin = require("nvim_config.linters.cspell_from_stdin")
 
             vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-                callback = function () lint.try_lint() end,
+                callback = function() lint.try_lint() end,
             })
 
             vim.api.nvim_create_autocmd({

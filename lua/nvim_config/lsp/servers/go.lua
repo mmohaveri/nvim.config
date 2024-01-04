@@ -27,4 +27,3 @@ go install gopls
 ]]
 
 return Module
-

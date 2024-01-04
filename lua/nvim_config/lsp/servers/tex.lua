@@ -2,19 +2,19 @@ local Module = {}
 
 local util = require("utils.lsp")
 
-local texlab_build_status = vim.tbl_add_reverse_lookup {
-  Success = 0,
-  Error = 1,
-  Failure = 2,
-  Cancelled = 3,
-}
+local texlab_build_status = vim.tbl_add_reverse_lookup({
+    Success = 0,
+    Error = 1,
+    Failure = 2,
+    Cancelled = 3,
+})
 
-local texlab_forward_status = vim.tbl_add_reverse_lookup {
-  Success = 0,
-  Error = 1,
-  Failure = 2,
-  Unconfigured = 3,
-}
+local texlab_forward_status = vim.tbl_add_reverse_lookup({
+    Success = 0,
+    Error = 1,
+    Failure = 2,
+    Unconfigured = 3,
+})
 
 ---@param bufnr integer
 local function get_params_for_texlab_lsp(bufnr)
@@ -47,19 +47,16 @@ local function get_async_response_handler(status_table, operation_title)
     return handler
 end
 
-
----@param bufnr integer 
+---@param bufnr integer
 local function buf_build(bufnr)
     vim.notify("Building using TexLab ...", vim.log.levels.INFO)
     bufnr = util.validate_bufnr(bufnr)
     local texlab_lsp_client = util.get_active_client_by_name(bufnr, Module.config.name)
 
-    if texlab_lsp_client == nil then
-        return
-    end
+    if texlab_lsp_client == nil then return end
 
     texlab_lsp_client.request(
-        'textDocument/build',
+        "textDocument/build",
         get_params_for_texlab_lsp(bufnr),
         get_async_response_handler(texlab_build_status, "Build"),
         bufnr
@@ -71,12 +68,10 @@ local function buf_search(bufnr)
     bufnr = util.validate_bufnr(bufnr)
     local texlab_lsp_client = util.get_active_client_by_name(bufnr, Module.config.name)
 
-    if texlab_lsp_client == nil then
-        return
-    end
+    if texlab_lsp_client == nil then return end
 
     texlab_lsp_client.request(
-        'textDocument/forwardSearch',
+        "textDocument/forwardSearch",
         get_params_for_texlab_lsp(bufnr),
         get_async_response_handler(texlab_forward_status, "Search"),
         bufnr
@@ -91,7 +86,7 @@ Module.filetypes = {
 
 Module.root_indicators = {
     ".git",
-    ".latexmkrc"
+    ".latexmkrc",
 }
 
 Module.config = {
@@ -104,12 +99,12 @@ Module.config = {
         texlab = {
             rootDirectory = nil,
             build = {
-                executable = 'latexmk',
-                args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '%f' },
+                executable = "latexmk",
+                args = { "-xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
                 onSave = false,
                 forwardSearchAfter = false,
             },
-            auxDirectory = '.',
+            auxDirectory = ".",
             forwardSearch = {
                 executable = nil,
                 args = {},
@@ -119,29 +114,25 @@ Module.config = {
                 onEdit = false,
             },
             diagnosticsDelay = 300,
-            latexFormatter = 'latexindent',
+            latexFormatter = "latexindent",
             latexindent = {
-                ['local'] = nil, -- local is a reserved keyword
+                ["local"] = nil, -- local is a reserved keyword
                 modifyLineBreaks = false,
             },
-            bibtexFormatter = 'texlab',
+            bibtexFormatter = "texlab",
             formatterLineLength = 120,
         },
     },
     commands = {
         TexlabBuild = {
-            function()
-                buf_build(0)
-            end,
-            description = 'Build the current buffer',
+            function() buf_build(0) end,
+            description = "Build the current buffer",
         },
         TexlabForward = {
-            function()
-                buf_search(0)
-            end,
-            description = 'Forward search from current position',
+            function() buf_search(0) end,
+            description = "Forward search from current position",
         },
-  },
+    },
 }
 
 Module.description = [[

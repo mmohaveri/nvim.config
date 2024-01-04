@@ -4,18 +4,18 @@ local keymap = vim.keymap.set
 local telescope_builtin = require("telescope.builtin")
 
 function Module.set_lsp_highlight_document_if_client_supports(client)
-  if client.server_capabilities.documentHighlight then
-    vim.api.nvim_exec(
-      [[
+    if client.server_capabilities.documentHighlight then
+        vim.api.nvim_exec(
+            [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]],
-      false
-    )
-  end
+            false
+        )
+    end
 end
 
 ---@param buffer_number integer
@@ -59,19 +59,16 @@ function Module.set_lsp_keymaps(buffer_number)
     keymap("n", "]d", function() vim.diagnostic.goto_next({ border = "rounded" }) end, opts)
 
     opts.desc = "Show buffer diagnostics"
-    keymap("n", "<leader>D", function() telescope_builtin.diagnostics({bufnr=0}) end, opts)
+    keymap("n", "<leader>D", function() telescope_builtin.diagnostics({ bufnr = 0 }) end, opts)
 
     opts.desc = nil
     keymap("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
-    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
-
 
 ---@param input string
-local function _remove_dash_prefix(input)
-    return input.gsub(input, '^%-+', '')
-end
+local function _remove_dash_prefix(input) return input.gsub(input, "^%-+", "") end
 
 ---@param command_definition table<string|integer, any>
 local function _get_command_options(command_definition)
@@ -81,9 +78,7 @@ local function _get_command_options(command_definition)
     for option_name, option_value in pairs(command_definition) do
         if type(option_name) == "string" then
             option_name = _remove_dash_prefix(option_name)
-            if option_name == "description" then
-                option_name = "desc"
-            end
+            if option_name == "description" then option_name = "desc" end
 
             command_options[option_name] = option_value
         end
@@ -94,16 +89,14 @@ end
 
 ---@param user_commands table<string, table<string|integer, any>> | nil
 function Module.register_user_commands(user_commands)
-    if user_commands == nil then
-        return
-    end
+    if user_commands == nil then return end
 
     for command_name, command_definition in pairs(user_commands) do
         local command_function = command_definition[1]
         local command_options = _get_command_options(command_definition)
         vim.api.nvim_create_user_command(
             command_name,
-            function (info) command_function(unpack(info.fargs)) end,
+            function(info) command_function(unpack(info.fargs)) end,
             command_options
         )
 

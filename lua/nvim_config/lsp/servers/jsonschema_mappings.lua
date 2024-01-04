@@ -28,7 +28,7 @@ return {
     {
         description = "Bucklescript config",
         fileMatch = {
-            "bsconfig.json"
+            "bsconfig.json",
         },
         url = "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/8.2.0/docs/docson/build-schema.json",
     },
@@ -92,6 +92,5 @@ return {
             "*.openapi.3.1.yml",
         },
         url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json",
-    }
+    },
 }
-

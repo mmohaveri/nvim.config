@@ -1,4 +1,4 @@
-local options = {noremap = true, silent = true}
+local options = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
 local diagnostic_icons = {
@@ -32,11 +32,11 @@ local renderer_glyphs = {
 return {
     {
         "nvim-tree/nvim-tree.lua",
-        lazy=false,
+        lazy = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        config = function ()
+        config = function()
             keymap("n", "<leader>ls", vim.cmd.NvimTreeFocus)
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
@@ -98,32 +98,32 @@ return {
                         "__pycache__",
                     },
                     exclude = {
-                        ".gitignore"
+                        ".gitignore",
                     },
                 },
             })
-        end
+        end,
     },
     {
         "antosha417/nvim-lsp-file-operations",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-tree.lua"
+            "nvim-tree/nvim-tree.lua",
         },
         config = true,
     },
     {
-        'nvim-telescope/telescope.nvim',
+        "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                build="make"
+                build = "make",
             },
             "nvim-tree/nvim-web-devicons",
         },
-        config = function ()
+        config = function()
             local telescope = require("telescope")
             local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
@@ -140,9 +140,9 @@ return {
                             ["<C-c>"] = telescope_actions.close,
 
                             ["<Down>"] = telescope_actions.move_selection_next,
-                            ["<Up>"]  = telescope_actions.move_selection_previous,
+                            ["<Up>"] = telescope_actions.move_selection_previous,
 
-                            ["<CR>"]  = telescope_actions.select_default,
+                            ["<CR>"] = telescope_actions.select_default,
                             ["<C-x>"] = false,
                             ["<C-H>"] = telescope_actions.select_horizontal,
                             ["<C-v>"] = false,
@@ -157,7 +157,6 @@ return {
                             -- ["<A-h>"] = telescope_actions.preview_scrolling_left,
                             -- ["<C-k>"] = false,  It's already overwritten with `move_selection_previous`
                             -- ["<A-l>"] = telescope_actions.preview_scrolling_right,
-
 
                             ["<PageUp>"] = telescope_actions.results_scrolling_up,
                             ["<PageDown>"] = telescope_actions.results_scrolling_down,
@@ -186,7 +185,7 @@ return {
 
                             ["<esc>"] = telescope_actions.close,
 
-                            ["<CR>"]  = telescope_actions.select_default,
+                            ["<CR>"] = telescope_actions.select_default,
                             ["<C-x>"] = false,
                             ["<C-H>"] = telescope_actions.select_horizontal,
                             ["<C-v>"] = false,
@@ -222,17 +221,17 @@ return {
                             ["?"] = false,
                             ["<C-/>"] = telescope_actions.which_key,
                         },
-                    }
-                }
+                    },
+                },
             })
             keymap("n", "<leader>t", ":Telescope<CR>", options)
-            keymap('n', "<leader>lg", telescope_builtin.live_grep, options)
+            keymap("n", "<leader>lg", telescope_builtin.live_grep, options)
             keymap("n", "<leader>ff", telescope_builtin.find_files, options)
             keymap("n", "<leader>fb", telescope_builtin.buffers, options)
             keymap("n", "<leader>tr", telescope_builtin.resume, options)
-            keymap('n', '<leader>fh', telescope_builtin.help_tags, options)
+            keymap("n", "<leader>fh", telescope_builtin.help_tags, options)
 
             telescope.load_extension("fzf")
-        end
+        end,
     },
 }

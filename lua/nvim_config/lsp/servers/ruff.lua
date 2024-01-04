@@ -19,8 +19,8 @@ Module.config = {
     single_file_support = true,
     init_options = {
         settings = {
-            args = {} -- extra CLI arguments for ruff
-        }
+            args = {}, -- extra CLI arguments for ruff
+        },
     },
     settings = {},
 }

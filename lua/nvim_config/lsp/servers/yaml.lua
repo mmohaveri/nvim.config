@@ -3,7 +3,7 @@ local Module = {}
 Module.filetypes = { "yaml", "yaml.docker-compose" }
 
 Module.root_indicators = {
-    '.git',
+    ".git",
 }
 
 Module.config = {
@@ -20,7 +20,7 @@ Module.config = {
             },
         },
         yaml = {
-            schemas = require("nvim_config.lsp.servers.jsonschema_mappings")
+            schemas = require("nvim_config.lsp.servers.jsonschema_mappings"),
         },
     },
 }

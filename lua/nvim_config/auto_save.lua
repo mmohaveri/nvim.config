@@ -5,19 +5,13 @@ local function save_buffer_if_writable()
 
     local is_writable = is_untyped_buffer and is_not_readonly and has_file_name
 
-    if is_writable  then
-        vim.api.nvim_command("write")
-    end
+    if is_writable then vim.api.nvim_command("write") end
 end
 
-vim.api.nvim_create_autocmd(
-    {
-        "BufLeave",
-        "FocusLost",
-    },
-    {
-        pattern = "*",
-        callback = save_buffer_if_writable,
-    }
-)
-
+vim.api.nvim_create_autocmd({
+    "BufLeave",
+    "FocusLost",
+}, {
+    pattern = "*",
+    callback = save_buffer_if_writable,
+})

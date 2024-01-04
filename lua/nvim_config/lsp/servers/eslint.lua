@@ -34,7 +34,7 @@ Module.config = {
     },
     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
     settings = {
-        validate = 'on',
+        validate = "on",
         packageManager = nil,
         useESLintClass = false,
         experimental = {
@@ -42,27 +42,27 @@ Module.config = {
         },
         codeActionOnSave = {
             enable = false,
-            mode = 'all',
+            mode = "all",
         },
         format = true,
         quiet = false,
-        onIgnoredFiles = 'off',
+        onIgnoredFiles = "off",
         rulesCustomizations = {},
-        run = 'onType',
+        run = "onType",
         problems = {
             shortenToSingleLine = false,
         },
         -- nodePath configures the directory in which the eslint server should start its node_modules resolution.
         -- This path is relative to the workspace folder (root dir) of the server instance.
-        nodePath = '',
+        nodePath = "",
         -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
         workingDirectory = {
-            mode = 'location'
+            mode = "location",
         },
         codeAction = {
             disableRuleComment = {
                 enable = true,
-                location = 'separateLine',
+                location = "separateLine",
             },
             showDocumentation = {
                 enable = true,
@@ -75,34 +75,30 @@ Module.config = {
         -- file (e.g., .eslintrc).
         config.settings.workspaceFolder = {
             uri = new_root_dir,
-            name = vim.fn.fnamemodify(new_root_dir, ':t'),
+            name = vim.fn.fnamemodify(new_root_dir, ":t"),
         }
 
         -- Support flat config
-        if vim.fn.filereadable(new_root_dir .. '/eslint.config.js') == 1 then
+        if vim.fn.filereadable(new_root_dir .. "/eslint.config.js") == 1 then
             config.settings.experimental.useFlatConfig = true
         end
     end,
     handlers = {
-        ['eslint/openDoc'] = function(_, result)
-            if not result then
-                return
-            end
-            os.execute(string.format('xdg-open %q', result.url))
+        ["eslint/openDoc"] = function(_, result)
+            if not result then return end
+            os.execute(string.format("xdg-open %q", result.url))
             return {}
         end,
-        ['eslint/confirmESLintExecution'] = function(_, result)
-            if not result then
-                return
-            end
+        ["eslint/confirmESLintExecution"] = function(_, result)
+            if not result then return end
             return 4 -- approved
         end,
-        ['eslint/probeFailed'] = function()
-            vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
+        ["eslint/probeFailed"] = function()
+            vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
             return {}
         end,
-        ['eslint/noLibrary'] = function()
-            vim.notify('[lspconfig] Unable to find ESLint library.', vim.log.levels.WARN)
+        ["eslint/noLibrary"] = function()
+            vim.notify("[lspconfig] Unable to find ESLint library.", vim.log.levels.WARN)
             return {}
         end,
     },
@@ -112,12 +108,10 @@ Module.config = {
                 vim.notify("Fixing all eslint problems", vim.log.levels.INFO)
                 local bufnr = vim.api.nvim_get_current_buf()
                 local eslint_lsp_client = utils.lsp.get_active_client_by_name(0, Module.config.name)
-                if eslint_lsp_client == nil then
-                    return
-                end
+                if eslint_lsp_client == nil then return end
 
                 local params = {
-                    command = 'eslint.applyAllFixes',
+                    command = "eslint.applyAllFixes",
                     arguments = {
                         {
                             uri = vim.uri_from_bufnr(bufnr),
@@ -127,10 +121,10 @@ Module.config = {
                 }
 
                 -- TODO: Handle error
-                eslint_lsp_client.request_sync('workspace/executeCommand', params, nil, bufnr)
+                eslint_lsp_client.request_sync("workspace/executeCommand", params, nil, bufnr)
                 vim.notify("All eslint problems fixed.", vim.log.levels.INFO)
             end,
-            description = 'Fix all eslint problems for this buffer',
+            description = "Fix all eslint problems for this buffer",
         },
     },
     on_attach = function(_, bufnr)
@@ -151,6 +145,5 @@ be installed via npm:
 npm i -g vscode-langservers-extracted 
 ```
 ]]
-
 
 return Module

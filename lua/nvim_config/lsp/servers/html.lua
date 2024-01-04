@@ -4,7 +4,7 @@ Module.filetypes = { "html" }
 
 Module.root_indicators = {
     "package.json",
-    '.git',
+    ".git",
 }
 
 Module.config = {
@@ -24,7 +24,7 @@ Module.config = {
             "html",
             "css",
             "javascript",
-        }
+        },
     },
     settings = {},
 }
@@ -40,4 +40,3 @@ npm i -g vscode-langservers-extracted
 ]]
 
 return Module
-

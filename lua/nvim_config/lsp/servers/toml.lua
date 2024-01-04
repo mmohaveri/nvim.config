@@ -3,7 +3,7 @@ local Module = {}
 Module.filetypes = { "toml" }
 
 Module.root_indicators = {
-    '.git',
+    ".git",
 }
 
 Module.config = {

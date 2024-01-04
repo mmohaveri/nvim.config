@@ -5,7 +5,7 @@ return {
         "BufNewFile",
     },
     dependencies = {
-        'JoosepAlviste/nvim-ts-context-commentstring',
+        "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
     opts = {
@@ -67,6 +67,5 @@ return {
             enable = true,
             enable_autocmd = false,
         },
-    }
+    },
 }
-

@@ -32,4 +32,3 @@ for _, server_name in ipairs(lsp_servers) do
     local server_module = require("nvim_config.lsp.servers." .. server_name)
     register_lsp(server_module)
 end
-

@@ -18,9 +18,7 @@ Module.root_indicators = {
     "jsconfig.json",
 }
 
-function Module.should_skip()
-    return utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0))
-end
+function Module.should_skip() return utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0)) end
 
 Module.config = {
     name = "typescript",
