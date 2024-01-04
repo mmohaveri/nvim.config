@@ -180,10 +180,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {
-            provider_selector = function(bufnr, filetype, buftype)
-                -- It's possible to use LPS as a provider as well if the treesitter folding is not suitable
-                return { "treesitter", "indent" }
-            end,
+            provider_selector = function(bufnr, filetype, buftype) return { "lsp", "indent" } end,
             fold_virt_text_handler = ufo_virtual_text_handler,
         },
         init = function()

@@ -12,7 +12,15 @@ local function register_lsp(lsp_definition)
             local client_capabilities = vim.tbl_deep_extend(
                 "force",
                 vim.lsp.protocol.make_client_capabilities(),
-                cmp_lsp.default_capabilities()
+                cmp_lsp.default_capabilities(),
+                {
+                    textDocument = {
+                        foldingRange = {
+                            dynamicRegistration = false,
+                            lineFoldingOnly = true,
+                        },
+                    },
+                }
             )
 
             local lsp_server_binary = lsp_definition.config.cmd[1]
