@@ -24,13 +24,8 @@ return {
                 }
             })
 
+            vim.keymap.set("n", "<leader>`", ":Cheatsheet<CR>", {noremap = true, silent = true})
         end,
-        init = function ()
-            local keymap = vim.keymap.set
-
-            local options = {noremap = true, silent = true}
-            keymap("n", "<leader>`", ":Cheatsheet<CR>", options)
-        end
     },
 }
 
