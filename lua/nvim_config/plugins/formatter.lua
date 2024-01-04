@@ -55,6 +55,11 @@ return {
                         require("formatter.filetypes.python").autopep8,
                         -- Requires [ruff](): `pip install ruff`
                         require("formatter.filetypes.python").ruff,
+                        {
+                            exe = "ruff",
+                            args = { "--fix", "-q", "-" },
+                            stdin = true,
+                        },
                     },
                     rust = {
                         require("formatter.filetypes.rust").rustfmt,
