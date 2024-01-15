@@ -94,11 +94,11 @@ Module.config = {
             return 4 -- approved
         end,
         ["eslint/probeFailed"] = function()
-            vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
+            vim.notify("[eslint LSP] ESLint probe failed.", vim.log.levels.WARN)
             return {}
         end,
         ["eslint/noLibrary"] = function()
-            vim.notify("[lspconfig] Unable to find ESLint library.", vim.log.levels.WARN)
+            vim.notify("[eslint LSP] Unable to find ESLint library.", vim.log.levels.WARN)
             return {}
         end,
     },
@@ -142,7 +142,7 @@ Uses `vscode-eslint-language-server` which is a part of
 be installed via npm:
 
 ```sh
-npm i -g vscode-langservers-extracted 
+npm i -g vscode-langservers-extracted
 ```
 ]]
 
