@@ -9,8 +9,9 @@ return {
     },
     build = ":TSUpdate",
     opts = {
-        sync_install = false,
+        sync_install = true,
         auto_install = true,
+        -- Install new parsers by :TSInstall <lang-name>
         ensure_installed = {
             "bash",
             "css",
@@ -47,6 +48,7 @@ return {
             "typescript",
             "tsx",
             "vim",
+            "vue",
             "xml",
             "yaml",
         },
