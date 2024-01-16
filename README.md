@@ -222,6 +222,20 @@ by WinBar.nvim plugin).
 
 ## Wishlist
 
+### Things to look into in future
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap): a Debug Adapter Protocol
+  client implementation for Neovim
+  - [telescope-dap.nvim](https://github.com/nvim-telescope/telescope-dap.nvim)
+- Read [lsp-toggle.nvim](https://github.com/adoyle-h/lsp-toggle.nvim) and
+  integrate it into our flow (it's using lspconfig, we're not)
+- Figure out a better diff mechanism in undotree [delta](https://github.com/dandavison/delta)
+- Store longterm undotree history.
+- Register management using Telescope UI
+
+
+### Misc
+
 - Inlay Hint
 - Wrap text for text files (like markdown)
 - A buffer switcher/manager plugin
