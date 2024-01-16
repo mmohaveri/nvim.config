@@ -52,6 +52,41 @@ Module.config = {
             -- This only works correctly iff you open the neovim from the project's directory.
             tsdk = get_typescript_lib_path(vim.api.nvim_buf_get_name(0)),
         },
+        languageFeatures = {
+            references = true,
+            definition = true,
+            typeDefinition = true,
+            callHierarchy = true,
+            hover = true,
+            rename = true,
+            renameFileRefactoring = true,
+            signatureHelp = true,
+            codeAction = true,
+            completion = {
+                defaultTagNameCase = "both",
+                defaultAttrNameCase = "kebabCase",
+                getDocumentNameCasesRequest = true,
+                getDocumentSelectionRequest = true,
+            },
+            schemaRequestService = true,
+            documentHighlight = true,
+            documentLink = true,
+            codeLens = {
+                showReferencesNotification = true,
+            },
+            diagnostics = true,
+        },
+        documentFeatures = {
+            selectionRange = true,
+            foldingRange = true,
+            linkedEditingRange = true,
+            documentSymbol = true,
+            documentColor = true,
+            documentFormatting = {
+                defaultPrintWidth = 100,
+                getDocumentPrintWidthRequest = true,
+            },
+        },
     },
     on_new_config = function(new_config, new_root_dir)
         if
