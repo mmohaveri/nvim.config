@@ -122,6 +122,7 @@ return {
                 build = "make",
             },
             "nvim-tree/nvim-web-devicons",
+            "OliverChao/telescope-picker-list.nvim",
         },
         config = function()
             local telescope = require("telescope")
@@ -223,15 +224,32 @@ return {
                         },
                     },
                 },
+                extensions = {
+                    picker_list = {
+                        opts = {
+                            toggleterm_manager = require("telescope.themes").get_dropdown({}),
+                        },
+                        excluded_pickers = {
+                            "fzf",
+                            "fd",
+                        },
+                    },
+                },
             })
-            keymap("n", "<leader>t", ":Telescope<CR>", options)
+
+            telescope.load_extension("fzf")
+            telescope.load_extension("notify")
+            telescope.load_extension("toggleterm_manager")
+
+            -- picker_list must be the last one
+            telescope.load_extension("picker_list")
+
+            keymap("n", "<leader>t", telescope.extensions.picker_list.picker_list, options)
             keymap("n", "<leader>lg", telescope_builtin.live_grep, options)
             keymap("n", "<leader>ff", telescope_builtin.find_files, options)
             keymap("n", "<leader>fb", telescope_builtin.buffers, options)
             keymap("n", "<leader>tr", telescope_builtin.resume, options)
             keymap("n", "<leader>fh", telescope_builtin.help_tags, options)
-
-            telescope.load_extension("fzf")
         end,
     },
 }
