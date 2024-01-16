@@ -123,11 +123,15 @@ return {
             },
             "nvim-tree/nvim-web-devicons",
             "OliverChao/telescope-picker-list.nvim",
+            "xiyaowong/telescope-emoji.nvim",
+            "ghassan0/telescope-glyph.nvim",
+            "nvim-telescope/telescope-symbols.nvim",
         },
         config = function()
             local telescope = require("telescope")
             local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
+            local telescope_themes = require("telescope.themes")
 
             telescope.setup({
                 defaults = {
@@ -227,17 +231,33 @@ return {
                 extensions = {
                     picker_list = {
                         opts = {
-                            toggleterm_manager = require("telescope.themes").get_dropdown({}),
+                            emoji = telescope_themes.get_dropdown({}),
+                            glyph = telescope_themes.get_dropdown({}),
+                            symbols = telescope_themes.get_dropdown({}),
+                            toggleterm_manager = telescope_themes.get_dropdown({}),
                         },
                         excluded_pickers = {
                             "fzf",
                             "fd",
+                        },
+                        user_pickers = {
+                            {
+                                "gitmoji",
+                                function()
+                                    telescope_builtin.symbols(telescope_themes.get_dropdown({
+                                        prompt_title = "gitmoji",
+                                        sources = { "gitmoji" },
+                                    }))
+                                end,
+                            },
                         },
                     },
                 },
             })
 
             telescope.load_extension("fzf")
+            telescope.load_extension("emoji")
+            telescope.load_extension("glyph")
             telescope.load_extension("notify")
             telescope.load_extension("toggleterm_manager")
 
