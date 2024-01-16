@@ -35,9 +35,20 @@ return {
         },
         dependencies = {
             {
-                "L3MON4D3/LuaSnip",
-                version = "v2.*",
-                build = "make install_jsregexp",
+                "benfowler/telescope-luasnip.nvim",
+                dependencies = {
+                    "nvim-tree/nvim-tree.lua",
+                    {
+                        "L3MON4D3/LuaSnip",
+                        version = "v2.*",
+                        build = "make install_jsregexp",
+                    },
+                },
+                module = "telescope._extensions.luasnip",
+                config = function()
+                    require("telescope").load_extension("luasnip")
+                    require("telescope._extensions.picker_list.main").register("luasnip")
+                end,
             },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
