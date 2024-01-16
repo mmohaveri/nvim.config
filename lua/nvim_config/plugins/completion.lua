@@ -115,10 +115,6 @@ return {
         config = true,
     },
     {
-        "windwp/nvim-ts-autotag",
-        event = "InsertEnter",
-    },
-    {
         "JoosepAlviste/nvim-ts-context-commentstring",
         event = {
             "BufReadPre",
