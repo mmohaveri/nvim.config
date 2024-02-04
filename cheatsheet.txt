@@ -1,10 +1,10 @@
 Open cheatsheet                                         | <leader>? or <leader>`
 
 ## navigation @custom
-Focus NvimTree                                          | <leader>ls
+Focus NvimTree                                          | <leader>ft
 Close buffer without changing layout                    | <leader>d
 Move between windows                                    | <leader><leader>h/j/k/l
-Move between buffers                                    | <leader>h/l 
+Move between buffers                                    | <leader>h/l
 Resize window                                           | <C-Up/Down/Left/Right>
 
 ## Folding
@@ -29,11 +29,8 @@ Close                                                   | <C-C>
 
 ## telescope @open
 Open telescope                                          | <leader>t
-Live grep  (search in files)                            | <leader>lg
 Find files (search in file names)                       | <leader>ff
-List buffers                                            | <leader>fb
 Resume telescope                                        | <leader>rt
-Search in helps                                         | <leader>fh
 
 ## telescope @navigation
 Move selection up/down (in insert mode)                 | <C-j/k>
@@ -102,7 +99,7 @@ Turn on line by line blame                              | :Gitsigns toggle_curre
 Show diff                                               | :Gitsigns diffthis
 
 ## Terminal @custom
-Toggle Terminal                                         | <C-\> 
+Toggle Terminal                                         | <C-\>
 Go to normal mode when in terminal                      | <esc>
 Move between windows when in terminal                   | <C-h/j/k/l>
 Move out of terminal                                    | <C-w>

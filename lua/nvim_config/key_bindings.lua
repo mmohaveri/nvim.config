@@ -3,7 +3,7 @@ local keymap = vim.keymap.set
 
 vim.g.mapleader = " "
 
-keymap("n", "<leader>ls", ":Lex<CR>")
+keymap("n", "<leader>ft", ":Lex<CR>")
 keymap("n", "<leader>s", vim.cmd.vsplit)
 
 -- Buffer navigation

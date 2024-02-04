@@ -37,7 +37,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            keymap("n", "<leader>ls", vim.cmd.NvimTreeFocus, options)
+            keymap("n", "<leader>ft", vim.cmd.NvimTreeFocus, options)
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
                 auto_reload_on_write = true,
