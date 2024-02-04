@@ -32,7 +32,7 @@ Open telescope                                          | <leader>t
 Live grep  (search in files)                            | <leader>lg
 Find files (search in file names)                       | <leader>ff
 List buffers                                            | <leader>fb
-Resume telescope                                        | <leader>tr
+Resume telescope                                        | <leader>rt
 Search in helps                                         | <leader>fh
 
 ## telescope @navigation

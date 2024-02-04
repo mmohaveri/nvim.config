@@ -158,7 +158,7 @@ return {
             keymap("n", "<leader>lg", telescope_builtin.live_grep, options)
             keymap("n", "<leader>ff", telescope_builtin.find_files, options)
             keymap("n", "<leader>fb", telescope_builtin.buffers, options)
-            keymap("n", "<leader>tr", telescope_builtin.resume, options)
+            keymap("n", "<leader>rt", telescope_builtin.resume, options)
             keymap("n", "<leader>fh", telescope_builtin.help_tags, options)
         end,
     },
