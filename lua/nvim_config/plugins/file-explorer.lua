@@ -99,6 +99,7 @@ return {
                     },
                     exclude = {
                         ".gitignore",
+                        ".github",
                     },
                 },
             })
