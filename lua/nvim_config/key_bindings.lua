@@ -23,10 +23,17 @@ keymap("n", "<leader><leader>l", "<C-w>l", options)
 -- keymap("n", "<leader>right", "<C-w>L", options)
 
 -- Window resize
-keymap("n", "<C-Up>", ":resize +2<CR>", options)
-keymap("n", "<C-Down>", ":resize -2<CR>", options)
-keymap("n", "<C-Left>", ":vertical resize +2<CR>", options)
-keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
+if vim.loop.os_uname().sysname == "Darwin" then
+    keymap("n", "<M-Up>", ":resize +2<CR>", options)
+    keymap("n", "<M-Down>", ":resize -2<CR>", options)
+    keymap("n", "<M-Left>", ":vertical resize +2<CR>", options)
+    keymap("n", "<M-Right>", ":vertical resize -2<CR>", options)
+else
+    keymap("n", "<C-Up>", ":resize +2<CR>", options)
+    keymap("n", "<C-Down>", ":resize -2<CR>", options)
+    keymap("n", "<C-Left>", ":vertical resize +2<CR>", options)
+    keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
+end
 
 -- Global diagnostics
 
