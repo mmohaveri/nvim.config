@@ -129,6 +129,7 @@ return {
                         excluded_pickers = {
                             "fzf",
                             "fd",
+                            "resume",
                         },
                         user_pickers = {
                             {
