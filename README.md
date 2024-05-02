@@ -200,6 +200,14 @@ For formatting install [beutysh](https://github.com/lovesegfault/beautysh):
 pip install beautysh
 ```
 
+### Bash
+
+For parsing & formatting install [shfmt](https://github.com/mvdan/sh):
+
+```bash
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+```
+
 ## Choice justification
 
 ### Bufferline plugins are missing
