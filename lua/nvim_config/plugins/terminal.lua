@@ -27,11 +27,6 @@ return {
             function _G.set_terminal_keymaps()
                 local opts = { noremap = true, silent = true, buffer = 0 }
                 keymap("t", "<esc>", [[<C-\><C-n>]], opts)
-                keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-                keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-                keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-                keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-                keymap("t", "<C-w>", [[<C-\><C-n><C-w>k]], opts)
             end
 
             vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
