@@ -1,5 +1,5 @@
--- Setup lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
         "git",
@@ -10,6 +10,22 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("nvim_config.plugins")
+require("lazy").setup("nvim_config.plugins", {
+    checker = {
+        enabled = true,
+        notify = true,
+        frequency = 60 * 60 * 24, -- check for updates every day
+    },
+    change_detection = {
+        enabled = true,
+        notify = true,
+    },
+    performance = {
+        cache = {
+            enabled = true,
+        },
+    },
+})
