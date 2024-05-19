@@ -62,8 +62,8 @@ return {
 
                             ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
                             ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
-                            ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
-                            ["<M-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
+                            ["<C-a>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
+                            ["<C-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
 
                             -- ["<C-l>"] = false -- disable actions.complete_tag,
                             ["<C-/>"] = telescope_actions.which_key,
@@ -89,8 +89,8 @@ return {
 
                             ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_worse,
                             ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_better,
-                            ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
-                            ["<M-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
+                            ["<C-a>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
+                            ["<C-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
 
                             ["<Down>"] = telescope_actions.move_selection_next,
                             ["<Up>"] = telescope_actions.move_selection_previous,
