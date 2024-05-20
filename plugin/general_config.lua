@@ -32,9 +32,5 @@ vim.hlsearch = true
 -- vim.opt.sp = "en"		-- spell
 -- set clipboard+=unnamed
 
--- WinBar
-local win_bar = require("utils.winbar")
-win_bar.setup()
-
 -- StatusLine
 vim.o.laststatus = 3

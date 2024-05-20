@@ -3,6 +3,13 @@ local keymap = vim.keymap.set
 
 return {
     {
+        dir = "~/.config/nvim/local_plugins/winbar",
+        dependencies = {
+            "nvim-web-devicons",
+        },
+        config = true,
+    },
+    {
         "nvim-lualine/lualine.nvim",
         config = true,
     },
