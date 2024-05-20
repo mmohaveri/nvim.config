@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -12,9 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
-require("nvim_config.key_bindings")
-require("nvim_config.general_config")
 
 require("lazy").setup("nvim_config.plugins", {
     checker = {
@@ -32,8 +31,3 @@ require("lazy").setup("nvim_config.plugins", {
         },
     },
 })
-
-require("nvim_config.lsp")
-require("nvim_config.auto_save")
-
-require("theme")

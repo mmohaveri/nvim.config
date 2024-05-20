@@ -3,13 +3,14 @@ local keymap = vim.keymap.set
 
 vim.g.mapleader = " "
 
-keymap("n", "<leader>ft", ":Lex<CR>")
+-- keymap("n", "<leader>ft", ":Lex<CR>")
 keymap("n", "<leader>s", vim.cmd.vsplit)
 
 -- Buffer navigation
 keymap("n", "<leader>l", ":bnext<CR>", options)
 keymap("n", "<leader>h", ":bprevious<CR>", options)
-keymap("n", "<leader>d", ":bdelete <CR>", options)
+-- keymap("n", "<leader>d", ":bdelete <CR>", options)
+keymap("n", "<leader>d", ":Bdelete <CR>", options)
 
 -- Window navigation
 keymap("n", "<leader><leader>h", "<C-w>h", options)
