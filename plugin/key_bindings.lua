@@ -40,3 +40,5 @@ end
 
 keymap("n", "<leader><leader>t", vim.lsp.buf.hover)
 keymap("n", "<leader>e", vim.diagnostic.open_float)
+keymap("n", "]d", vim.diagnostic.goto_next)
+keymap("n", "[d", vim.diagnostic.goto_prev)
