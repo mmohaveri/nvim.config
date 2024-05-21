@@ -1,6 +1,7 @@
 local Module = {}
 
-local utils = require("utils")
+local lsp = require("lsp_config.utils.lsp")
+local path_utils = require("lsp_config.utils.path")
 
 Module.filetypes = {
     "vue",
@@ -28,18 +29,18 @@ local function get_typescript_lib_path(root_dir)
 
     local local_ts = ""
     local function check_dir(path)
-        local_ts = utils.path.join(path, "node_modules", "typescript", "lib")
-        return utils.path.exists(local_ts)
+        local_ts = path_utils.join(path, "node_modules", "typescript", "lib")
+        return path_utils.exists(local_ts)
     end
 
-    if utils.path.search_ancestors(root_dir, check_dir) then
+    if path_utils.search_ancestors(root_dir, check_dir) then
         return local_ts
     else
         return global_ts
     end
 end
 
-function Module.should_skip() return not utils.lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0)) end
+function Module.should_skip() return not lsp.is_part_of_vue_project(vim.api.nvim_buf_get_name(0)) end
 
 Module.config = {
     name = "vue-language-server",

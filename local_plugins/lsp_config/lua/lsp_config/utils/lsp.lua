@@ -1,6 +1,6 @@
 local Module = {}
 
-local path_utils = require("utils.path")
+local path_utils = require("lsp_config.utils.path")
 
 function Module.get_active_client_by_name(bufnr, server_name)
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do

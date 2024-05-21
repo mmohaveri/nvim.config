@@ -1,7 +1,7 @@
 local cmp_lsp = require("cmp_nvim_lsp")
 
-local helpers = require("nvim_config.lsp.helpers")
-local utils = require("utils")
+local helpers = require("lsp_config.helpers")
+local path = require("lsp_config.utils.path")
 
 local function register_lsp(lsp_definition)
     vim.api.nvim_create_autocmd("FileType", {
@@ -25,7 +25,7 @@ local function register_lsp(lsp_definition)
 
             local lsp_server_binary = lsp_definition.config.cmd[1]
 
-            if not utils.path.binary_exists(lsp_server_binary) then
+            if not path.binary_exists(lsp_server_binary) then
                 local error_msg = "Failed to start '"
                     .. lsp_definition.config.name
                     .. "' LSP client. '"

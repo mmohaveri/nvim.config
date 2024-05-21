@@ -1,6 +1,6 @@
 local Module = {}
 
-local util = require("utils.lsp")
+local util = require("lsp_config.utils.lsp")
 
 local texlab_build_status = vim.tbl_add_reverse_lookup({
     Success = 0,

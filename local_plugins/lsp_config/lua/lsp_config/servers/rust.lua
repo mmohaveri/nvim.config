@@ -1,8 +1,8 @@
 local Module = {}
 
-local utils = require("utils")
+local lsp = require("lsp_config.utils.lsp")
 local function reload_workspace(bufnr)
-    bufnr = utils.lsp.validate_bufnr(bufnr)
+    bufnr = lsp.validate_bufnr(bufnr)
     local clients = vim.lsp.get_active_clients({ name = "rust_analyzer", bufnr = bufnr })
     for _, client in ipairs(clients) do
         vim.notify("Reloading Cargo Workspace", vim.log.levels.INFO)

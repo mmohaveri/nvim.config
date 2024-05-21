@@ -20,7 +20,7 @@ Module.config = {
             },
         },
         yaml = {
-            schemas = require("nvim_config.lsp.servers.jsonschema_mappings"),
+            schemas = require("lsp_config.servers.jsonschema_mappings"),
         },
     },
 }

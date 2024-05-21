@@ -1,6 +1,6 @@
 local Module = {}
 
-local utils = require("utils")
+local lsp = require("lsp_config.utils.lsp")
 
 Module.filetypes = {
     "javascript",
@@ -107,7 +107,7 @@ Module.config = {
             function()
                 vim.notify("Fixing all eslint problems", vim.log.levels.INFO)
                 local bufnr = vim.api.nvim_get_current_buf()
-                local eslint_lsp_client = utils.lsp.get_active_client_by_name(0, Module.config.name)
+                local eslint_lsp_client = lsp.get_active_client_by_name(0, Module.config.name)
                 if eslint_lsp_client == nil then return end
 
                 local params = {
