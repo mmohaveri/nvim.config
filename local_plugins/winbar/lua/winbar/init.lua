@@ -22,6 +22,7 @@ local default_exclude_filetype = {
     "undotree",
     "toggleterm",
     "TelescopePrompt",
+    "buffer_manager",
 }
 
 Module.setup = function()

@@ -3,6 +3,7 @@ local keymap = vim.keymap.set
 
 vim.g.mapleader = " "
 
+local buffer_manage_ui = require("buffer_manager.ui")
 -- keymap("n", "<leader>ft", ":Lex<CR>")
 keymap("n", "<leader>s", vim.cmd.vsplit)
 
@@ -11,6 +12,7 @@ keymap("n", "<leader>l", ":bnext<CR>", options)
 keymap("n", "<leader>h", ":bprevious<CR>", options)
 -- keymap("n", "<leader>d", ":bdelete <CR>", options)
 keymap("n", "<leader>d", ":Bdelete <CR>", options)
+keymap("n", "<leader>b", buffer_manage_ui.toggle_quick_menu, options)
 
 -- Window navigation
 keymap("n", "<leader><leader>h", "<C-w>h", options)
