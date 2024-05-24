@@ -1,8 +1,6 @@
 local options = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
-vim.g.mapleader = " "
-
 local buffer_manage_ui = require("buffer_manager.ui")
 -- keymap("n", "<leader>ft", ":Lex<CR>")
 keymap("n", "<leader>s", vim.cmd.vsplit)
@@ -44,3 +42,5 @@ keymap("n", "<leader><leader>t", vim.lsp.buf.hover)
 keymap("n", "<leader>e", vim.diagnostic.open_float)
 keymap("n", "]d", vim.diagnostic.goto_next)
 keymap("n", "[d", vim.diagnostic.goto_prev)
+
+keymap("t", "<esc>", [[<C-\><C-n>]], options)

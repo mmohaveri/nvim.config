@@ -23,14 +23,6 @@ return {
                 enabled = false,
             },
         },
-        init = function()
-            function _G.set_terminal_keymaps()
-                local opts = { noremap = true, silent = true, buffer = 0 }
-                keymap("t", "<esc>", [[<C-\><C-n>]], opts)
-            end
-
-            vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-        end,
     },
     {
         "willothy/flatten.nvim",
