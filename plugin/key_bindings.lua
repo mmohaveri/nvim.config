@@ -1,70 +1,65 @@
-local options = { noremap = true, silent = true }
-local keymap = vim.keymap.set
+local map_for_mode = function(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true }) end
+local map = function(lhs, rhs) map_for_mode("n", lhs, rhs) end
 
 local buffer_manage_ui = require("buffer_manager.ui")
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
+local ufo = require("ufo")
 
--- keymap("n", "<leader>ft", ":Lex<CR>", options)
-keymap("n", "<leader>s", vim.cmd.vsplit, options)
+map("<leader>ft", vim.cmd.NvimTreeFocus) -- ":Lex<CR>"
+map("<leader>s", vim.cmd.vsplit)
 
 -- Buffer navigation
-keymap("n", "<leader>l", ":bnext<CR>", options)
-keymap("n", "<leader>h", ":bprevious<CR>", options)
--- keymap("n", "<leader>d", ":bdelete <CR>", options)
-keymap("n", "<leader>d", ":Bdelete <CR>", options)
-keymap("n", "<leader>b", buffer_manage_ui.toggle_quick_menu, options)
+map("<leader>l", ":bnext<CR>")
+map("<leader>h", ":bprevious<CR>")
+map("<leader>d", ":Bdelete <CR>") -- ":bdelete <CR>"
+map("<leader>b", buffer_manage_ui.toggle_quick_menu)
 
 -- Window navigation
-keymap("n", "<leader><leader>h", "<C-w>h", options)
-keymap("n", "<leader><leader>j", "<C-w>j", options)
-keymap("n", "<leader><leader>k", "<C-w>k", options)
-keymap("n", "<leader><leader>l", "<C-w>l", options)
+map("<leader><leader>h", "<C-w>h")
+map("<leader><leader>j", "<C-w>j")
+map("<leader><leader>k", "<C-w>k")
+map("<leader><leader>l", "<C-w>l")
 
--- keymap("n", "<leader>left", "<C-w>H", options)
--- keymap("n", "<leader>down", "<C-w>J", options)
--- keymap("n", "<leader>up", "<C-w>K", options)
--- keymap("n", "<leader>right", "<C-w>L", options)
+-- map("<leader>left", "<C-w>H")
+-- map("<leader>down", "<C-w>J")
+-- map("<leader>up", "<C-w>K")
+-- map("<leader>right", "<C-w>L")
 
 -- Window resize
 if vim.loop.os_uname().sysname == "Darwin" then
-    keymap("n", "<M-Up>", ":resize +2<CR>", options)
-    keymap("n", "<M-Down>", ":resize -2<CR>", options)
-    keymap("n", "<M-Left>", ":vertical resize +2<CR>", options)
-    keymap("n", "<M-Right>", ":vertical resize -2<CR>", options)
+    map("<M-Up>", ":resize +2<CR>")
+    map("<M-Down>", ":resize -2<CR>")
+    map("<M-Left>", ":vertical resize +2<CR>")
+    map("<M-Right>", ":vertical resize -2<CR>")
 else
-    keymap("n", "<C-Up>", ":resize +2<CR>", options)
-    keymap("n", "<C-Down>", ":resize -2<CR>", options)
-    keymap("n", "<C-Left>", ":vertical resize +2<CR>", options)
-    keymap("n", "<C-Right>", ":vertical resize -2<CR>", options)
+    map("<C-Up>", ":resize +2<CR>")
+    map("<C-Down>", ":resize -2<CR>")
+    map("<C-Left>", ":vertical resize +2<CR>")
+    map("<C-Right>", ":vertical resize -2<CR>")
 end
 
--- Global diagnostics
+-- Diagnostics
+map("<leader><leader>t", vim.lsp.buf.hover)
+map("<leader>e", vim.diagnostic.open_float)
+map("]d", vim.diagnostic.goto_next)
+map("[d", vim.diagnostic.goto_prev)
 
-keymap("n", "<leader><leader>t", vim.lsp.buf.hover, options)
-keymap("n", "<leader>e", vim.diagnostic.open_float, options)
-keymap("n", "]d", vim.diagnostic.goto_next, options)
-keymap("n", "[d", vim.diagnostic.goto_prev, options)
-
-keymap("t", "<esc>", [[<C-\><C-n>]], options)
+map_for_mode("t", "<esc>", [[<C-\><C-n>]])
 
 local function peek_folded_lines_under_cursor()
-    local winid = require("ufo").peekFoldedLinesUnderCursor()
-    if not winid then vim.lsp.buf.hover() end
+    if not ufo.peekFoldedLinesUnderCursor() then vim.lsp.buf.hover() end
 end
--- keymap('n', 'zR', require('ufo').openAllFolds)
--- keymap('n', 'zM', require('ufo').closeAllFolds)
--- keymap('n', 'zr', require('ufo').openFoldsExceptKinds)
--- keymap('n', 'zm', require('ufo').closeFoldsWith)
+-- map("zR", ufo.openAllFolds)
+-- map("zM", ufo.closeAllFolds)
+-- map("zr", ufo.openFoldsExceptKinds)
+-- map("zm", ufo.closeFoldsWith)
+map("L", peek_folded_lines_under_cursor)
 
-keymap("n", "L", peek_folded_lines_under_cursor, options)
+map("<leader>`", ":Cheatsheet<CR>")
 
-keymap("n", "<leader>`", ":Cheatsheet<CR>", options)
+map("<leader>F", ":FormatWriteLock<CR>")
 
-keymap("n", "<leader>F", ":FormatWriteLock<CR>", options)
-
-keymap("n", "<leader>ft", vim.cmd.NvimTreeFocus, options)
-
-keymap("n", "<leader>t", telescope.extensions.picker_list.picker_list, options)
-keymap("n", "<leader>ff", telescope_builtin.find_files, options)
-keymap("n", "<leader>rt", telescope_builtin.resume, options)
+map("<leader>t", telescope.extensions.picker_list.picker_list)
+map("<leader>ff", telescope_builtin.find_files)
+map("<leader>rt", telescope_builtin.resume)
