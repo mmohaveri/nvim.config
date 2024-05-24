@@ -133,20 +133,20 @@ return {
         config = true,
     },
     {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        event = {
-            "BufReadPre",
-            "BufNewFile",
-        },
-    },
-    {
         "numToStr/Comment.nvim",
         event = {
             "BufReadPre",
             "BufNewFile",
         },
         dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring",
+            {
+                "JoosepAlviste/nvim-ts-context-commentstring",
+                event = {
+                    "BufReadPre",
+                    "BufNewFile",
+                },
+                config = true,
+            },
         },
         opts = function()
             return {
