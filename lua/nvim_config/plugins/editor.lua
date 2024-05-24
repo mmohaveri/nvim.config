@@ -1,6 +1,3 @@
-local options = { noremap = true, silent = true }
-local keymap = vim.keymap.set
-
 local function ufo_virtual_text_handler(virtText, start_line_no, end_line_number, width, truncate)
     local newVirtText = {}
     local suffix = (" 󰁂 %d "):format(end_line_number - start_line_no)
@@ -45,17 +42,6 @@ return {
             vim.o.foldlevel = 99
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
-
-            local function peek_folded_lines_under_cursor()
-                local winid = require("ufo").peekFoldedLinesUnderCursor()
-                if not winid then vim.lsp.buf.hover() end
-            end
-            -- keymap('n', 'zR', require('ufo').openAllFolds)
-            -- keymap('n', 'zM', require('ufo').closeAllFolds)
-            -- keymap('n', 'zr', require('ufo').openFoldsExceptKinds)
-            -- keymap('n', 'zm', require('ufo').closeFoldsWith)
-
-            keymap("n", "L", peek_folded_lines_under_cursor, options)
         end,
     },
 }

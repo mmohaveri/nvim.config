@@ -84,7 +84,6 @@ return {
                 },
             })
 
-            vim.keymap.set("n", "<leader>F", ":FormatWriteLock<CR>", { noremap = true, silent = true })
 
             vim.api.nvim_create_autocmd({ "BufWritePost" }, {
                 command = ":FormatWriteLock",

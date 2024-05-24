@@ -2,8 +2,11 @@ local options = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
 local buffer_manage_ui = require("buffer_manager.ui")
--- keymap("n", "<leader>ft", ":Lex<CR>")
-keymap("n", "<leader>s", vim.cmd.vsplit)
+local telescope = require("telescope")
+local telescope_builtin = require("telescope.builtin")
+
+-- keymap("n", "<leader>ft", ":Lex<CR>", options)
+keymap("n", "<leader>s", vim.cmd.vsplit, options)
 
 -- Buffer navigation
 keymap("n", "<leader>l", ":bnext<CR>", options)
@@ -38,9 +41,30 @@ end
 
 -- Global diagnostics
 
-keymap("n", "<leader><leader>t", vim.lsp.buf.hover)
-keymap("n", "<leader>e", vim.diagnostic.open_float)
-keymap("n", "]d", vim.diagnostic.goto_next)
-keymap("n", "[d", vim.diagnostic.goto_prev)
+keymap("n", "<leader><leader>t", vim.lsp.buf.hover, options)
+keymap("n", "<leader>e", vim.diagnostic.open_float, options)
+keymap("n", "]d", vim.diagnostic.goto_next, options)
+keymap("n", "[d", vim.diagnostic.goto_prev, options)
 
 keymap("t", "<esc>", [[<C-\><C-n>]], options)
+
+local function peek_folded_lines_under_cursor()
+    local winid = require("ufo").peekFoldedLinesUnderCursor()
+    if not winid then vim.lsp.buf.hover() end
+end
+-- keymap('n', 'zR', require('ufo').openAllFolds)
+-- keymap('n', 'zM', require('ufo').closeAllFolds)
+-- keymap('n', 'zr', require('ufo').openFoldsExceptKinds)
+-- keymap('n', 'zm', require('ufo').closeFoldsWith)
+
+keymap("n", "L", peek_folded_lines_under_cursor, options)
+
+keymap("n", "<leader>`", ":Cheatsheet<CR>", options)
+
+keymap("n", "<leader>F", ":FormatWriteLock<CR>", options)
+
+keymap("n", "<leader>ft", vim.cmd.NvimTreeFocus, options)
+
+keymap("n", "<leader>t", telescope.extensions.picker_list.picker_list, options)
+keymap("n", "<leader>ff", telescope_builtin.find_files, options)
+keymap("n", "<leader>rt", telescope_builtin.resume, options)

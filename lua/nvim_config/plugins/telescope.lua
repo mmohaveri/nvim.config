@@ -1,6 +1,3 @@
-local options = { noremap = true, silent = true }
-local keymap = vim.keymap.set
-
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -169,10 +166,6 @@ return {
 
             -- picker_list must be the last one
             telescope.load_extension("picker_list")
-
-            keymap("n", "<leader>t", telescope.extensions.picker_list.picker_list, options)
-            keymap("n", "<leader>ff", telescope_builtin.find_files, options)
-            keymap("n", "<leader>rt", telescope_builtin.resume, options)
         end,
     },
 }

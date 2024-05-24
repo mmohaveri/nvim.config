@@ -23,8 +23,6 @@ return {
                     ["<C-E>"] = actions.edit_user_cheatsheet,
                 },
             })
-
-            vim.keymap.set("n", "<leader>`", ":Cheatsheet<CR>", { noremap = true, silent = true })
         end,
     },
 }
