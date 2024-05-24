@@ -7,4 +7,20 @@ return {
         },
         config = true,
     },
+    {
+        "mrded/nvim-lsp-notify",
+        event = "VeryLazy",
+        dependencies = {
+            "rcarriga/nvim-notify",
+        },
+        config = true,
+    },
+    {
+        "antosha417/nvim-lsp-file-operations",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-tree.lua",
+        },
+        config = true,
+    },
 }

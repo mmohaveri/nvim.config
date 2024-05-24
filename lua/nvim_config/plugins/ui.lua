@@ -52,12 +52,4 @@ return {
         },
         init = function() vim.notify = require("notify") end,
     },
-    {
-        "mrded/nvim-lsp-notify",
-        event = "VeryLazy",
-        dependencies = {
-            "rcarriga/nvim-notify",
-        },
-        config = true,
-    },
 }
