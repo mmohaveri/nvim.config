@@ -42,7 +42,8 @@ local function register_lsp(lsp_definition)
                     if client.name == "typescript" then
                         client.server_capabilities.documentFormattingProvider = false
                     end
-                    helpers.set_lsp_keymaps(buffer_number)
+
+                    if _G.set_lsp_keymaps_for_buffer ~= nil then _G.set_lsp_keymaps_for_buffer(buffer_number) end
                     helpers.set_lsp_highlight_document_if_client_supports(client)
                 end,
                 log_level = vim.lsp.protocol.MessageType.Warning,
