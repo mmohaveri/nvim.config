@@ -5,8 +5,7 @@ return {
             return {
                 logging = true,
                 log_level = vim.log.levels.WARN,
-                -- Formatter configurations for each "filetyle"
-                -- They'll be executed in order
+                -- Formatter of each filetyle will be executed in order
                 filetype = {
                     ["*"] = {
                         require("formatter.filetypes.any").remove_trailing_whitespace,

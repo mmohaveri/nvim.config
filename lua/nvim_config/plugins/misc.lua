@@ -11,9 +11,9 @@ return {
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
         },
-        config = function()
+        opts = function()
             local actions = require("cheatsheet.telescope.actions")
-            require("cheatsheet").setup({
+            return {
                 bundled_cheatsheets = false,
                 bundled_plugin_cheatsheets = false,
                 telescope_mappings = {
@@ -22,7 +22,7 @@ return {
                     ["<C-Y>"] = actions.copy_cheat_value,
                     ["<C-E>"] = actions.edit_user_cheatsheet,
                 },
-            })
+            }
         end,
     },
 }

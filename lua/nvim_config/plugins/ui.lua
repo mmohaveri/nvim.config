@@ -47,6 +47,5 @@ return {
             stages = "slide",
             timeout = 5000,
         },
-        init = function() vim.notify = require("notify") end,
     },
 }

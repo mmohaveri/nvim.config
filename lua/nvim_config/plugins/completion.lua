@@ -63,11 +63,11 @@ return {
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
         },
-        config = function()
+        opts = function()
             local luasnip = require("luasnip")
             local cmp = require("cmp")
 
-            local cmp_config = {
+            return {
                 snippet = {
                     expand = function(args) luasnip.lsp_expand(args.body) end,
                 },
@@ -123,8 +123,6 @@ return {
                     completeopt = "menu,menuone,preview,noselect",
                 },
             }
-
-            cmp.setup(cmp_config)
         end,
     },
     {
@@ -141,14 +139,11 @@ return {
         dependencies = {
             {
                 "JoosepAlviste/nvim-ts-context-commentstring",
-                event = {
-                    "BufReadPre",
-                    "BufNewFile",
-                },
                 config = true,
             },
         },
         opts = function()
+            local ts_context_commentstring_integration = require("ts_context_commentstring.integrations.comment_nvim")
             return {
                 toggler = {
                     line = "tcl",
@@ -162,7 +157,7 @@ return {
                     basic = true,
                     extra = false,
                 },
-                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+                pre_hook = ts_context_commentstring_integration.create_pre_hook(),
             }
         end,
     },

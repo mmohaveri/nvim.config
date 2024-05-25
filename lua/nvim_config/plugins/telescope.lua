@@ -14,17 +14,17 @@ return {
             "ghassan0/telescope-glyph.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             {
-                "nvim-telescope/telescope-live-grep-args.nvim" ,
+                "nvim-telescope/telescope-live-grep-args.nvim",
                 version = "^1.0.0",
-            }
+            },
         },
-        config = function()
+        opts = function()
             local telescope = require("telescope")
             local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
             local telescope_themes = require("telescope.themes")
 
-            telescope.setup({
+            return {
                 defaults = {
                     mappings = {
                         i = {
@@ -119,14 +119,14 @@ return {
                         },
                     },
                     vimgrep_arguments = {
-                      'rg',
-                      '--color=never',
-                      '--no-heading',
-                      '--with-filename',
-                      '--line-number',
-                      '--column',
-                      '--smart-case',
-                      '-u',
+                        "rg",
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--smart-case",
+                        "-u",
                     },
                 },
                 extensions = {
@@ -155,17 +155,7 @@ return {
                         },
                     },
                 },
-            })
-
-            telescope.load_extension("fzf")
-            telescope.load_extension("emoji")
-            telescope.load_extension("glyph")
-            telescope.load_extension("notify")
-            telescope.load_extension("toggleterm_manager")
-            telescope.load_extension("live_grep_args")
-
-            -- picker_list must be the last one
-            telescope.load_extension("picker_list")
+            }
         end,
     },
 }
