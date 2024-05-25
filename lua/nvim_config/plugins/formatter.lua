@@ -1,10 +1,8 @@
 return {
     {
         "mhartington/formatter.nvim",
-        config = function()
-            local util = require("formatter.util")
-
-            require("formatter").setup({
+        opts = function()
+            return {
                 logging = true,
                 log_level = vim.log.levels.WARN,
                 -- Formatter configurations for each "filetyle"
@@ -82,12 +80,7 @@ return {
                         require("formatter.filetypes.yaml").beutysh,
                     },
                 },
-            })
-
-
-            vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-                command = ":FormatWriteLock",
-            })
+            }
         end,
     },
 }
