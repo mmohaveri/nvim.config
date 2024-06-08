@@ -118,6 +118,10 @@ return {
                             ["<C-/>"] = telescope_actions.which_key,
                         },
                     },
+                    file_ignore_patterns = {
+                        "^node_modules/",
+                        "^dist/",
+                    },
                     vimgrep_arguments = {
                         "rg",
                         "--color=never",
