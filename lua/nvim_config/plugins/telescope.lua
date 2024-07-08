@@ -139,12 +139,18 @@ return {
                             emoji = telescope_themes.get_dropdown({}),
                             glyph = telescope_themes.get_dropdown({}),
                             symbols = telescope_themes.get_dropdown({}),
-                            toggleterm_manager = telescope_themes.get_dropdown({}),
                         },
                         excluded_pickers = {
                             "fzf",
-                            "fd",
                             "resume",
+                            -- "fd",
+                            "find_files",
+                            -- "git_bcommit",
+                            "git_branches",
+                            "git_commits",
+                            "git_stash",
+                            "git_status",
+                            "git_files",
                         },
                         user_pickers = {
                             {
@@ -155,6 +161,34 @@ return {
                                         sources = { "gitmoji" },
                                     }))
                                 end,
+                            },
+                            {
+                                "terminals",
+                                function() require("toggleterm-manager").open(telescope_themes.get_dropdown({})) end,
+                            },
+                            {
+                                "find files",
+                                telescope_builtin.find_files,
+                            },
+                            {
+                                "find git files",
+                                telescope_builtin.git_files,
+                            },
+                            {
+                                "git branch (gb)",
+                                telescope_builtin.git_branches,
+                            },
+                            {
+                                "git log",
+                                telescope_builtin.git_commits,
+                            },
+                            {
+                                "git stash",
+                                telescope_builtin.git_stash,
+                            },
+                            {
+                                "git status (gst)",
+                                telescope_builtin.git_status,
                             },
                         },
                     },
@@ -168,11 +202,13 @@ return {
             telescope.load_extension("emoji")
             telescope.load_extension("glyph")
             telescope.load_extension("notify")
-            telescope.load_extension("toggleterm_manager")
             telescope.load_extension("live_grep_args")
 
-            -- picker_list must be the last one
+            -- extenstions loaded before picker_list will automatically get registered in its list.
             telescope.load_extension("picker_list")
+            -- extenstions loaded before picker_list should be registered manaually
+
+            telescope.load_extension("toggleterm_manager")
         end,
     },
 }
