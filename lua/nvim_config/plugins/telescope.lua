@@ -17,6 +17,9 @@ return {
                 "nvim-telescope/telescope-live-grep-args.nvim",
                 version = "^1.0.0",
             },
+            {
+                dir = "~/.config/nvim/local_plugins/lsp_config",
+            },
         },
         opts = function()
             local telescope = require("telescope")
@@ -203,6 +206,7 @@ return {
             telescope.load_extension("glyph")
             telescope.load_extension("notify")
             telescope.load_extension("live_grep_args")
+            telescope.load_extension("lsp_config")
 
             -- extenstions loaded before picker_list will automatically get registered in its list.
             telescope.load_extension("picker_list")
