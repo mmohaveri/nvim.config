@@ -54,7 +54,7 @@ return {
                         require("formatter.filetypes.python").ruff,
                         {
                             exe = "ruff",
-                            args = { "--fix", "-q", "-" },
+                            args = { "check", "--fix", "-q", "-" },
                             stdin = true,
                         },
                     },
