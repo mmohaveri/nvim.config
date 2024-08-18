@@ -9,7 +9,7 @@ Module.root_indicators = {
 Module.config = {
     name = "yaml-language-server",
     cmd = {
-        "yaml",
+        "yaml-language-server",
         "--stdio",
     },
     single_file_support = true,
