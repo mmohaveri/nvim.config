@@ -14,14 +14,10 @@ Module.root_indicators = {
 Module.config = {
     name = "ruff",
     cmd = {
-        "ruff-lsp",
+        "ruff",
+        "server",
     },
     single_file_support = true,
-    init_options = {
-        settings = {
-            args = {}, -- extra CLI arguments for ruff
-        },
-    },
     settings = {},
 }
 
