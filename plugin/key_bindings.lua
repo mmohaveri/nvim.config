@@ -11,7 +11,7 @@ local ufo = require("ufo")
 local show_file_tree = vim.cmd.NvimTreeToggle -- ":Lex<CR>"
 local delete_buffer = ":Bdelete <CR>" -- ":bdelete <CR>"
 local list_buffers = buffer_manage_ui.toggle_quick_menu -- ":buffers"
-local show_refrences = telescope_builtin.lsp_references -- vim.lsp.buf.references
+local show_references = telescope_builtin.lsp_references -- vim.lsp.buf.references
 local show_definitions = telescope_builtin.lsp_definitions -- vim.lsp.buf.definition
 local show_implementations = telescope_builtin.lsp_implementations -- vim.lsp.buf.implementation
 local show_type_definitions = telescope_builtin.lsp_type_definitions
@@ -37,7 +37,7 @@ nmap("<leader><leader>l", "<C-w>l", "Move one window right")
 -- map("<leader>right", "<C-w>L")
 
 -- Window resize
-if vim.loop.os_uname().sysname == "Darwin" then
+if vim.uv.os_uname().sysname == "Darwin" then
     nmap("<M-Up>", ":resize +2<CR>", "Increase window hight")
     nmap("<M-Down>", ":resize -2<CR>", "Decrease window hight")
     nmap("<M-Left>", ":vertical resize +2<CR>", "Increase window width")
@@ -79,7 +79,7 @@ nmap("<leader>rt", telescope_builtin.resume, "Resume last telescope picker")
 function _G.set_lsp_keymaps_for_buffer(bufnr)
     local nmapb = get_nmap_for_buffer(bufnr)
 
-    nmapb("gR", show_refrences, "show references")
+    nmapb("gR", show_references, "show references")
     nmapb("gD", vim.lsp.buf.declaration, "Go to declaration")
     nmapb("gd", show_definitions, "Show definitions")
     nmapb("gi", show_implementations, "Show implementations")
