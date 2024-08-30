@@ -55,7 +55,8 @@ nmap("<leader>e", vim.diagnostic.open_float, "Show diagnostics in floating windo
 nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
 nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
 
-map("t", "<esc>", [[<C-\><C-n>]], "Switch to normal mode from terminal mode")
+-- Using <esc> will prevents us from entering shell's VI mode
+map("t", [[<C-n>]], [[<C-\><C-n>]], "Switch to normal mode from terminal mode")
 
 local function peek_folded_lines_under_cursor()
     if not ufo.peekFoldedLinesUnderCursor() then vim.lsp.buf.hover() end
