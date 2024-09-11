@@ -5,30 +5,23 @@ return {
         config = false,
     },
     {
-        "sudormrfbin/cheatsheet.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/popup.nvim",
-            "nvim-lua/plenary.nvim",
-        },
-        opts = function()
-            local actions = require("cheatsheet.telescope.actions")
-            return {
-                bundled_cheatsheets = false,
-                bundled_plugin_cheatsheets = false,
-                telescope_mappings = {
-                    ["<CR>"] = actions.select_or_fill_commandline,
-                    ["<C-CR>"] = actions.select_or_execute,
-                    ["<C-Y>"] = actions.copy_cheat_value,
-                    ["<C-E>"] = actions.edit_user_cheatsheet,
-                },
-            }
-        end,
-    },
-    {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
         config = true,
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            preset = "helix",
+        },
+        keys = {
+            {
+                "<leader>?",
+                function() require("which-key").show({ global = false }) end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
     },
 }
