@@ -154,7 +154,6 @@ return {
                     before = "require('nightcity')",
                 },
             },
-            themeConfigFile = "~/.config/nvim/plugin/theme.lua",
         },
     },
     {
