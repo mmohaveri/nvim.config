@@ -193,6 +193,14 @@ return {
                                 "git status (gst)",
                                 telescope_builtin.git_status,
                             },
+                            {
+                                "lazy",
+                                function() vim.cmd(":Lazy") end,
+                            },
+                            {
+                                "message",
+                                function() vim.cmd(":messages") end,
+                            },
                         },
                     },
                 },
