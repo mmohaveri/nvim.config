@@ -67,8 +67,6 @@ end
 -- map("zm", ufo.closeFoldsWith)
 nmap("L", peek_folded_lines_under_cursor, "Peek folded lines under the cursor in floating window")
 
-nmap("<leader>`", ":Cheatsheet<CR>", "Show cheatsheet")
-
 nmap("<leader>F", ":FormatWriteLock<CR>", "Format document")
 
 nmap("<leader>t", telescope.extensions.picker_list.picker_list, "Show telescope's pickers list")
