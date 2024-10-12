@@ -1,11 +1,29 @@
 return {
     {
-        dir = "~/.config/nvim/local_plugins/lsp_config",
+        "mmohaveri/EZ-LSP.nvim",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "nvim-telescope/telescope.nvim",
         },
-        config = true,
+        opts = {
+            servers = {
+                "css",
+                "eslint",
+                "go",
+                "html",
+                "json",
+                "lua",
+                "pyright",
+                "ruff",
+                "rust",
+                "tex",
+                "toml",
+                "typescript",
+                "vue",
+                "yaml",
+                "terraform",
+            },
+        },
     },
     {
         "mrded/nvim-lsp-notify",

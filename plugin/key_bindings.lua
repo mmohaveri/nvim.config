@@ -76,7 +76,7 @@ nmap("<leader>ff", telescope_builtin.find_files, "Show telescope's find files")
 nmap("<leader>rt", telescope_builtin.resume, "Resume last telescope picker")
 
 ---@param bufnr integer
-function _G.set_lsp_keymaps_for_buffer(bufnr)
+function _G.ez_lsp_set_lsp_keymaps_for_buffer(bufnr)
     local nmapb = get_nmap_for_buffer(bufnr)
 
     nmapb("gR", show_references, "show references")
