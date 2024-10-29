@@ -1,28 +1,28 @@
 local diagnostic_icons = {
-    hint = "",
-    info = "",
-    warning = "",
-    error = "",
+    hint = " ",
+    info = " ",
+    warning = " ",
+    error = " ",
 }
 
 local renderer_glyphs = {
-    default = "",
-    symlink = "",
+    default = " ",
+    symlink = " ",
     git = {
         unstaged = "",
         staged = "S",
-        unmerged = "",
+        unmerged = " ",
         renamed = "➜",
-        deleted = "",
+        deleted = " ",
         untracked = "U",
-        ignored = "◌",
+        ignored = "◌ ",
     },
     folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
+        default = " ",
+        open = " ",
+        empty = " ",
+        empty_open = " ",
+        symlink = " ",
     },
 }
 

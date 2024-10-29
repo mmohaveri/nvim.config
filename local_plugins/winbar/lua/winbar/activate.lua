@@ -29,11 +29,11 @@ local function get_tag(icons)
     local help_flag = vim.api.nvim_eval_statusline("%H", {}).str == "HLP"
 
     local tag = ""
-    if vim.api.nvim_buf_get_option(0, "mod") then
+    if vim.api.nvim_get_option_value("mod", { buf = 0 }) then
         tag = icons.modified
     elseif help_flag then
         tag = icons.help
-    elseif vim.api.nvim_buf_get_option(0, "readonly") then
+    elseif vim.api.nvim_get_option_value("readonly", { buf = 0 }) then
         tag = icons.locked
     end
 

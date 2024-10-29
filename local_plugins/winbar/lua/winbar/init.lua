@@ -9,11 +9,11 @@ local default_colors = {
 }
 
 local default_icons = {
-    file = "",
-    seperator = ">",
-    modified = "󰏬",
-    locked = "",
-    help = "󰞋",
+    file = " ",
+    seperator = "->",
+    modified = " ",
+    locked = " ",
+    help = "󰞋 ",
 }
 
 local default_exclude_filetype = {
