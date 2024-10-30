@@ -1,6 +1,10 @@
 return {
     {
         dir = "~/.config/nvim/local_plugins/winbar",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         dependencies = {
             "nvim-web-devicons",
         },
@@ -8,6 +12,10 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         config = true,
     },
     {
@@ -33,7 +41,6 @@ return {
             scope = "window",
         },
     },
-
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",

@@ -1,6 +1,10 @@
 return {
     {
         "mhartington/formatter.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         opts = function()
             return {
                 logging = true,

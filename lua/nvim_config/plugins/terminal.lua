@@ -2,6 +2,7 @@ return {
     {
         "akinsho/toggleterm.nvim",
         version = "*",
+        keys = [[<C-\>]],
         opts = {
             size = 20,
             open_mapping = [[<C-\>]],
@@ -24,11 +25,10 @@ return {
     },
     {
         "willothy/flatten.nvim",
+        event = "TermOpen",
         dependencies = {
             "akinsho/toggleterm.nvim",
         },
-        lazy = false,
-        priority = 1001,
         opts = function()
             local saved_terminal
 
@@ -75,6 +75,7 @@ return {
     },
     {
         "ryanmsnyder/toggleterm-manager.nvim",
+        lazy = true,
         dependencies = {
             "akinsho/toggleterm.nvim",
             "nvim-telescope/telescope.nvim",

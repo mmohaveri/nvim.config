@@ -1,6 +1,10 @@
 return {
     {
         "mmohaveri/EZ-LSP.nvim",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "nvim-telescope/telescope.nvim",
@@ -27,7 +31,7 @@ return {
     },
     {
         "mrded/nvim-lsp-notify",
-        event = "VeryLazy",
+        event = "LspAttach",
         dependencies = {
             "rcarriga/nvim-notify",
         },

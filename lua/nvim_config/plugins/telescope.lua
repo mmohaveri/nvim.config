@@ -2,6 +2,11 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
+        key = {
+            "<leader>t",
+            "<leader>b",
+            "<leader>ff",
+        },
         dependencies = {
             "nvim-lua/plenary.nvim",
             {
@@ -16,9 +21,6 @@ return {
             {
                 "nvim-telescope/telescope-live-grep-args.nvim",
                 version = "^1.0.0",
-            },
-            {
-                dir = "~/.config/nvim/local_plugins/lsp_config",
             },
         },
         opts = function()
@@ -170,6 +172,19 @@ return {
                                 function() require("toggleterm-manager").open(telescope_themes.get_dropdown({})) end,
                             },
                             {
+                                "EZ-LSP",
+                                function()
+                                    local _, extension_isloaded = pcall(
+                                        function() telescope.extensions.ez_lsp.ez_lsp() end
+                                    )
+
+                                    if not extension_isloaded then
+                                        telescope.load_extension("ez_lsp")
+                                        telescope.extensions.ez_lsp.ez_lsp()
+                                    end
+                                end,
+                            },
+                            {
                                 "find files",
                                 telescope_builtin.find_files,
                             },
@@ -201,6 +216,13 @@ return {
                                 "message",
                                 function() vim.cmd(":messages") end,
                             },
+                            {
+                                "vim-be-good",
+                                function()
+                                    require("lazy").load({ plugins = { "vim-be-good" } })
+                                    vim.cmd("VimBeGood")
+                                end,
+                            },
                         },
                     },
                 },
@@ -214,13 +236,10 @@ return {
             telescope.load_extension("glyph")
             telescope.load_extension("notify")
             telescope.load_extension("live_grep_args")
-            telescope.load_extension("ez_lsp")
 
             -- extenstions loaded before picker_list will automatically get registered in its list.
             telescope.load_extension("picker_list")
-            -- extenstions loaded before picker_list should be registered manaually
-
-            telescope.load_extension("toggleterm_manager")
+            -- extenstions loaded after picker_list should be registered manaually
         end,
     },
 }

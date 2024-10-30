@@ -1,7 +1,7 @@
 return {
     {
-      "ashfinal/qfview.nvim",
-      event = "UIEnter",
-      config = true,
+        "ashfinal/qfview.nvim",
+        event = "QuickFixCmdPre",
+        config = true,
     },
 }

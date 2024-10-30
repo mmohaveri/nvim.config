@@ -1,13 +1,16 @@
 return {
     {
         "ThePrimeagen/vim-be-good",
-        event = {},
+        lazy = true,
         config = false,
     },
     {
         "kylechui/nvim-surround",
         version = "*",
-        event = "VeryLazy",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         config = true,
     },
     {
