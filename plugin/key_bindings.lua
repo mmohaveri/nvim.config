@@ -97,3 +97,7 @@ function _G.ez_lsp_set_lsp_keymaps_for_buffer(bufnr)
 
     nmapb("<leader>q", vim.diagnostic.setloclist, "")
 end
+
+local FastLiveGrep = require("utils.fast_live_grep")
+
+map("n", "<leader>fw", FastLiveGrep.word_under_cursor)
