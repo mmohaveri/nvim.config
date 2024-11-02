@@ -7,14 +7,20 @@ local buffer_manage_ui = require("buffer_manager.ui")
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
 local ufo = require("ufo")
+local FastLiveGrep = require("utils.fast_live_grep")
 
 local show_file_tree = vim.cmd.NvimTreeToggle -- ":Lex<CR>"
 local function delete_buffer() require("bufdelete").bufdelete(0) end -- ":bdelete <CR>"
-local list_buffers = buffer_manage_ui.toggle_quick_menu -- ":buffers"
-local show_references = telescope_builtin.lsp_references -- vim.lsp.buf.references
-local show_definitions = telescope_builtin.lsp_definitions -- vim.lsp.buf.definition
-local show_implementations = telescope_builtin.lsp_implementations -- vim.lsp.buf.implementation
-local show_type_definitions = telescope_builtin.lsp_type_definitions
+local function list_buffers() buffer_manage_ui.toggle_quick_menu() end -- ":buffers"
+local function show_references() telescope_builtin.lsp_references() end -- vim.lsp.buf.references
+local function show_definitions() telescope_builtin.lsp_definitions() end -- vim.lsp.buf.definition
+local function show_implementations() telescope_builtin.lsp_implementations() end -- vim.lsp.buf.implementation
+local function show_type_definitions() telescope_builtin.lsp_type_definitions() end
+local function show_diagnostic() telescope_builtin.diagnostics() end
+local function show_find_files() telescope_builtin.find_files() end
+local function resume_last_telescope_picker() telescope_builtin.resume() end
+local function show_pickers_list() telescope.extensions.picker_list.picker_list() end
+local function live_grep_word_under_cursor() FastLiveGrep.word_under_cursor() end
 
 nmap("<leader>ft", show_file_tree, "Show file tree")
 nmap("<leader>s", vim.cmd.vsplit, "Split vertically")
@@ -69,9 +75,9 @@ nmap("L", peek_folded_lines_under_cursor, "Peek folded lines under the cursor in
 
 nmap("<leader>F", ":FormatWriteLock<CR>", "Format document")
 
-nmap("<leader>t", telescope.extensions.picker_list.picker_list, "Show telescope's pickers list")
-nmap("<leader>ff", telescope_builtin.find_files, "Show telescope's find files")
-nmap("<leader>rt", telescope_builtin.resume, "Resume last telescope picker")
+nmap("<leader>t", show_pickers_list, "Show telescope's pickers list")
+nmap("<leader>ff", show_find_files, "Show telescope's find files")
+nmap("<leader>rt", resume_last_telescope_picker, "Resume last telescope picker")
 
 ---@param bufnr integer
 function _G.ez_lsp_set_lsp_keymaps_for_buffer(bufnr)
@@ -91,13 +97,11 @@ function _G.ez_lsp_set_lsp_keymaps_for_buffer(bufnr)
     nmapb("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
     nmapb("gl", vim.diagnostic.open_float, "Show line diagnostics")
     nmapb("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
-    nmapb("<leader>D", telescope_builtin.diagnostics, "Show buffer diagnostics")
+    nmapb("<leader>D", show_diagnostic, "Show buffer diagnostics")
 
     nmapb("<leader>rn", vim.lsp.buf.rename, "Smart rename")
 
     nmapb("<leader>q", vim.diagnostic.setloclist, "")
 end
 
-local FastLiveGrep = require("utils.fast_live_grep")
-
-map("n", "<leader>fw", FastLiveGrep.word_under_cursor)
+map("n", "<leader>fw", live_grep_word_under_cursor)
