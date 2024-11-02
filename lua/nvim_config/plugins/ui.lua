@@ -52,7 +52,7 @@ return {
         opts = {
             render = "wrapped-compact",
             stages = "slide",
-            timeout = 5000,
+            timeout = 1000,
         },
     },
 }
