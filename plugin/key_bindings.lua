@@ -9,7 +9,7 @@ local telescope_builtin = require("telescope.builtin")
 local ufo = require("ufo")
 
 local show_file_tree = vim.cmd.NvimTreeToggle -- ":Lex<CR>"
-local delete_buffer = ":Bdelete <CR>" -- ":bdelete <CR>"
+local function delete_buffer() require("bufdelete").bufdelete(0) end -- ":bdelete <CR>"
 local list_buffers = buffer_manage_ui.toggle_quick_menu -- ":buffers"
 local show_references = telescope_builtin.lsp_references -- vim.lsp.buf.references
 local show_definitions = telescope_builtin.lsp_definitions -- vim.lsp.buf.definition
