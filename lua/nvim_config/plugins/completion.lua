@@ -28,35 +28,27 @@ local kind_icons = {
 
 return {
     {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+        lazy = true,
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+        config = function()
+            require("luasnip").setup({})
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+    },
+
+    {
         "hrsh7th/nvim-cmp",
         event = {
             "InsertEnter",
             "CmdlineEnter",
         },
         dependencies = {
-            {
-                "benfowler/telescope-luasnip.nvim",
-                dependencies = {
-                    "nvim-tree/nvim-tree.lua",
-                    {
-                        "L3MON4D3/LuaSnip",
-                        version = "v2.*",
-                        build = "make install_jsregexp",
-                        dependencies = {
-                            "rafamadriz/friendly-snippets",
-                        },
-                        config = function()
-                            require("luasnip").setup({})
-                            require("luasnip.loaders.from_vscode").lazy_load()
-                        end,
-                    },
-                },
-                module = "telescope._extensions.luasnip",
-                config = function()
-                    require("telescope").load_extension("luasnip")
-                    require("telescope._extensions.picker_list.main").register("luasnip")
-                end,
-            },
+            { "L3MON4D3/LuaSnip" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-cmdline" },
@@ -124,6 +116,15 @@ return {
                 },
             }
         end,
+    },
+    {
+        "benfowler/telescope-luasnip.nvim",
+        lazy = true,
+        dependencies = {
+            "nvim-tree/nvim-tree.lua",
+            "hrsh7th/nvim-cmp",
+            "nvim-telescope/telescope.nvim",
+        },
     },
     {
         "windwp/nvim-autopairs",
