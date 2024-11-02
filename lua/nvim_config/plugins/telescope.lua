@@ -2,7 +2,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        key = {
+        keys = {
             "<leader>t",
             "<leader>b",
             "<leader>ff",
@@ -15,8 +15,6 @@ return {
             },
             "nvim-tree/nvim-web-devicons",
             "OliverChao/telescope-picker-list.nvim",
-            "xiyaowong/telescope-emoji.nvim",
-            "ghassan0/telescope-glyph.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             {
                 "nvim-telescope/telescope-live-grep-args.nvim",
@@ -28,6 +26,14 @@ return {
             local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
             local telescope_themes = require("telescope.themes")
+
+            telescope.load_extension("fzf")
+            telescope.load_extension("notify")
+            telescope.load_extension("live_grep_args")
+
+            -- extenstions loaded before picker_list will automatically get registered in its list.
+            telescope.load_extension("picker_list")
+            -- extenstions loaded after picker_list should be registered manaually
 
             return {
                 defaults = {
@@ -141,8 +147,6 @@ return {
                 extensions = {
                     picker_list = {
                         opts = {
-                            emoji = telescope_themes.get_dropdown({}),
-                            glyph = telescope_themes.get_dropdown({}),
                             symbols = telescope_themes.get_dropdown({}),
                         },
                         excluded_pickers = {
@@ -174,13 +178,52 @@ return {
                             {
                                 "EZ-LSP",
                                 function()
-                                    local _, extension_isloaded = pcall(
+                                    local _, extension_is_loaded = pcall(
                                         function() telescope.extensions.ez_lsp.ez_lsp() end
                                     )
 
-                                    if not extension_isloaded then
+                                    if not extension_is_loaded then
                                         telescope.load_extension("ez_lsp")
                                         telescope.extensions.ez_lsp.ez_lsp()
+                                    end
+                                end,
+                            },
+                            {
+                                "emoji",
+                                function()
+                                    local _, extension_is_loaded = pcall(
+                                        function() telescope.extensions.emoji.emoji() end
+                                    )
+
+                                    if not extension_is_loaded then
+                                        telescope.load_extension("emoji")
+                                        telescope.extensions.emoji.emoji()
+                                    end
+                                end,
+                            },
+                            {
+                                "glyph",
+                                function()
+                                    local _, extension_is_loaded = pcall(
+                                        function() telescope.extensions.glyph.glyph() end
+                                    )
+
+                                    if not extension_is_loaded then
+                                        telescope.load_extension("glyph")
+                                        telescope.extensions.glyph.glyph()
+                                    end
+                                end,
+                            },
+                            {
+                                "luasnip",
+                                function()
+                                    local _, extension_is_loaded = pcall(
+                                        function() telescope.extensions.luasnip.luasnip() end
+                                    )
+
+                                    if not extension_is_loaded then
+                                        telescope.load_extension("luasnip")
+                                        telescope.extensions.luasnip.luasnip()
                                     end
                                 end,
                             },
@@ -228,18 +271,15 @@ return {
                 },
             }
         end,
-        init = function()
-            local telescope = require("telescope")
-
-            telescope.load_extension("fzf")
-            telescope.load_extension("emoji")
-            telescope.load_extension("glyph")
-            telescope.load_extension("notify")
-            telescope.load_extension("live_grep_args")
-
-            -- extenstions loaded before picker_list will automatically get registered in its list.
-            telescope.load_extension("picker_list")
-            -- extenstions loaded after picker_list should be registered manaually
-        end,
+    },
+    {
+        {
+            "xiyaowong/telescope-emoji.nvim",
+            lazy = true,
+        },
+        {
+            "ghassan0/telescope-glyph.nvim",
+            lazy = true,
+        },
     },
 }
