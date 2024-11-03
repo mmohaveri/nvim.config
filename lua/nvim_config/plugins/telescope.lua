@@ -17,21 +17,13 @@ return {
                 version = "^1.0.0",
             },
         },
-        opts = function()
+        config = function()
             local telescope = require("telescope")
             local telescope_actions = require("telescope.actions")
             local telescope_builtin = require("telescope.builtin")
             local telescope_themes = require("telescope.themes")
 
-            telescope.load_extension("fzf")
-            telescope.load_extension("notify")
-            telescope.load_extension("live_grep_args")
-
-            -- extenstions loaded before picker_list will automatically get registered in its list.
-            telescope.load_extension("picker_list")
-            -- extenstions loaded after picker_list should be registered manaually
-
-            return {
+            local config_options = {
                 defaults = {
                     mappings = {
                         i = {
@@ -266,6 +258,16 @@ return {
                     },
                 },
             }
+
+            telescope.setup(config_options)
+
+            telescope.load_extension("fzf")
+            telescope.load_extension("notify")
+            telescope.load_extension("live_grep_args")
+
+            -- extenstions loaded before picker_list will automatically get registered in its list.
+            telescope.load_extension("picker_list")
+            -- extenstions loaded after picker_list should be registered manaually
         end,
     },
     {
