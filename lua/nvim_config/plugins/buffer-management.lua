@@ -1,15 +1,11 @@
 return {
     {
         "famiu/bufdelete.nvim",
-        keys = {
-            "<leader>d",
-        },
+        lazy = true,
     },
     {
         "j-morano/buffer_manager.nvim",
-        keys = {
-            "<leader>b",
-        },
+        lazy = true,
         opts = {
             short_file_names = false,
             short_term_names = true,

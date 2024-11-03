@@ -2,11 +2,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        keys = {
-            "<leader>t",
-            "<leader>b",
-            "<leader>ff",
-        },
+        lazy = true,
         dependencies = {
             "nvim-lua/plenary.nvim",
             {

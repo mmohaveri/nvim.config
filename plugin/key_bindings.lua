@@ -3,24 +3,20 @@ local map = key_bindings.map
 local nmap = key_bindings.nmap
 local get_nmap_for_buffer = key_bindings.get_nmap_for_buffer
 
-local buffer_manage_ui = require("buffer_manager.ui")
-local telescope = require("telescope")
-local telescope_builtin = require("telescope.builtin")
-local ufo = require("ufo")
-local FastLiveGrep = require("utils.fast_live_grep")
-
 local show_file_tree = vim.cmd.NvimTreeToggle -- ":Lex<CR>"
 local function delete_buffer() require("bufdelete").bufdelete(0) end -- ":bdelete <CR>"
-local function list_buffers() buffer_manage_ui.toggle_quick_menu() end -- ":buffers"
-local function show_references() telescope_builtin.lsp_references() end -- vim.lsp.buf.references
-local function show_definitions() telescope_builtin.lsp_definitions() end -- vim.lsp.buf.definition
-local function show_implementations() telescope_builtin.lsp_implementations() end -- vim.lsp.buf.implementation
-local function show_type_definitions() telescope_builtin.lsp_type_definitions() end
-local function show_diagnostic() telescope_builtin.diagnostics() end
-local function show_find_files() telescope_builtin.find_files() end
-local function resume_last_telescope_picker() telescope_builtin.resume() end
-local function show_pickers_list() telescope.extensions.picker_list.picker_list() end
-local function live_grep_word_under_cursor() FastLiveGrep.word_under_cursor() end
+local function list_buffers() require("buffer_manager.ui").toggle_quick_menu() end -- ":buffers"
+local function show_references() require("telescope.builtin").lsp_references() end -- vim.lsp.buf.references
+local function show_definitions() require("telescope.builtin").lsp_definitions() end -- vim.lsp.buf.definition
+local function show_implementations() require("telescope.builtin").lsp_implementations() end -- vim.lsp.buf.implementation
+local function show_type_definitions() require("telescope.builtin").lsp_type_definitions() end
+local function show_diagnostic() require("telescope.builtin").diagnostics() end
+local function show_find_files() require("telescope.builtin").find_files() end
+local function resume_last_telescope_picker() require("telescope.builtin").resume() end
+local function show_pickers_list() require("telescope").extensions.picker_list.picker_list() end
+local function live_grep_word_under_cursor() require("utils.fast_live_grep").word_under_cursor() end
+local function show_which_key_help() require("which-key").show({ global = false }) end
+local function toggle_termimnal() require("toggleterm").toggle() end
 
 nmap("<leader>ft", show_file_tree, "Show file tree")
 nmap("<leader>s", vim.cmd.vsplit, "Split vertically")
@@ -65,6 +61,7 @@ nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
 map("t", [[<C-n>]], [[<C-\><C-n>]], "Switch to normal mode from terminal mode")
 
 local function peek_folded_lines_under_cursor()
+    local ufo = require("ufo")
     if not ufo.peekFoldedLinesUnderCursor() then vim.lsp.buf.hover() end
 end
 -- map("zR", ufo.openAllFolds)
@@ -104,4 +101,10 @@ function _G.ez_lsp_set_lsp_keymaps_for_buffer(bufnr)
     nmapb("<leader>q", vim.diagnostic.setloclist, "")
 end
 
-map("n", "<leader>fw", live_grep_word_under_cursor)
+nmap("<leader>fw", live_grep_word_under_cursor, "live grep word under the cursor")
+
+nmap("<leader>?", show_which_key_help, "Buffer Local Keymaps (which-key)")
+
+nmap([[<C-\>]], toggle_termimnal, "Open/Close terminal window")
+map("i", [[<C-\>]], toggle_termimnal, "Open/Close terminal window")
+map("t", [[<C-\>]], toggle_termimnal, "Open/Close terminal window")
