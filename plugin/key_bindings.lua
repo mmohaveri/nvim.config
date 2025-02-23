@@ -16,7 +16,6 @@ local function resume_last_telescope_picker() require("telescope.builtin").resum
 local function show_pickers_list() require("telescope").extensions.picker_list.picker_list() end
 local function live_grep_word_under_cursor() require("utils.fast_live_grep").word_under_cursor() end
 local function show_which_key_help() require("which-key").show({ global = false }) end
-local function toggle_termimnal() require("toggleterm").toggle() end
 local function add_to_harpoon() require("harpoon"):list():add() end
 local function toggle_harpoon_quick_menu()
     local harpoon = require("harpoon")
@@ -111,7 +110,3 @@ end
 nmap("<leader>fw", live_grep_word_under_cursor, "live grep word under the cursor")
 
 nmap("<leader>?", show_which_key_help, "Buffer Local Keymaps (which-key)")
-
-nmap([[<C-\>]], toggle_termimnal, "Open/Close terminal window")
-map("i", [[<C-\>]], toggle_termimnal, "Open/Close terminal window")
-map("t", [[<C-\>]], toggle_termimnal, "Open/Close terminal window")
