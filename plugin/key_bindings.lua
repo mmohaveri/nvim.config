@@ -16,6 +16,12 @@ local function resume_last_telescope_picker() require("telescope.builtin").resum
 local function show_pickers_list() require("telescope").extensions.picker_list.picker_list() end
 local function live_grep_word_under_cursor() require("utils.fast_live_grep").word_under_cursor() end
 local function show_which_key_help() require("which-key").show({ global = false }) end
+local function goto_next_diagnostic() vim.diagnostic.goto_next() end
+local function goto_prev_diagnostic() vim.diagnostic.goto_prev() end
+local function goto_next_error() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end
+local function goto_prev_error() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end
+local function goto_next_git_change() require("gitsigns").next_hunk() end
+local function goto_prev_git_change() require("gitsigns").prev_hunk() end
 local function add_to_harpoon() require("harpoon"):list():add() end
 local function toggle_harpoon_quick_menu()
     local harpoon = require("harpoon")
@@ -60,8 +66,13 @@ end
 -- Diagnostics
 nmap("<leader><leader>t", vim.lsp.buf.hover, "Show type hint in floating window")
 nmap("<leader>e", vim.diagnostic.open_float, "Show diagnostics in floating window")
-nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
-nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+nmap("]d", goto_next_diagnostic, "Go to next diagnostic")
+nmap("[d", goto_prev_diagnostic, "Go to previous diagnostic")
+nmap("]e", goto_next_error, "Go to next error diagnostic")
+nmap("]e", goto_prev_error, "Go to previous error diagnostic")
+
+nmap("]c", goto_next_git_change, "Go to next hunk")
+nmap("[c", goto_prev_git_change, "Go to previous hunk")
 
 -- Using <esc> will prevents us from entering shell's VI mode
 map("t", [[<C-n>]], [[<C-\><C-n>]], "Switch to normal mode from terminal mode")
