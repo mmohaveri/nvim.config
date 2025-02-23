@@ -17,6 +17,11 @@ local function show_pickers_list() require("telescope").extensions.picker_list.p
 local function live_grep_word_under_cursor() require("utils.fast_live_grep").word_under_cursor() end
 local function show_which_key_help() require("which-key").show({ global = false }) end
 local function toggle_termimnal() require("toggleterm").toggle() end
+local function add_to_harpoon() require("harpoon"):list():add() end
+local function toggle_harpoon_quick_menu()
+    local harpoon = require("harpoon")
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end
 
 nmap("<leader>ft", show_file_tree, "Show file tree")
 nmap("<leader>s", vim.cmd.vsplit, "Split vertically")
@@ -25,7 +30,9 @@ nmap("<leader>s", vim.cmd.vsplit, "Split vertically")
 nmap("<leader>l", ":bnext<CR>", "Go to next buffer")
 nmap("<leader>h", ":bprevious<CR>", "Go to previous buffer")
 nmap("<leader>d", delete_buffer, "Delete current buffer")
-nmap("<leader>b", list_buffers, "List open buffers")
+nmap("<leader>B", list_buffers, "List open buffers")
+nmap("<leader>a", add_to_harpoon, "add the current buffer to harpoon")
+nmap("<leader>b", toggle_harpoon_quick_menu, "toggle harpoon quick menu")
 
 -- Window navigation
 nmap("<leader><leader>h", "<C-w>h", "Move one window left")

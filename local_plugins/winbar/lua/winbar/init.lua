@@ -23,6 +23,7 @@ local default_exclude_filetype = {
     "toggleterm",
     "TelescopePrompt",
     "buffer_manager",
+    "harpoon",
 }
 
 Module.setup = function()
