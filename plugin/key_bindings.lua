@@ -51,17 +51,15 @@ nmap("<leader><leader>l", "<C-w>l", "Move one window right")
 -- map("<leader>right", "<C-w>L")
 
 -- Window resize
-if vim.uv.os_uname().sysname == "Darwin" then
-    nmap("<M-Up>", ":resize +2<CR>", "Increase window hight")
-    nmap("<M-Down>", ":resize -2<CR>", "Decrease window hight")
-    nmap("<M-Left>", ":vertical resize +2<CR>", "Increase window width")
-    nmap("<M-Right>", ":vertical resize -2<CR>", "Decrease window width")
-else
-    nmap("<C-Up>", ":resize +2<CR>", "Increase window hight")
-    nmap("<C-Down>", ":resize -2<CR>", "Decrease window hight")
-    nmap("<C-Left>", ":vertical resize +2<CR>", "Increase window width")
-    nmap("<C-Right>", ":vertical resize -2<CR>", "Decrease window width")
-end
+local _size_change = "2"
+local _mod_key = "C"
+
+if vim.uv.os_uname().sysname == "Darwin" then _mod_key = "M" end
+
+nmap("<" .. _mod_key .. "-Up>", ":resize +" .. _size_change .. "<CR>", "Increase window hight")
+nmap("<" .. _mod_key .. "-Down>", ":resize -" .. _size_change .. "<CR>", "Decrease window hight")
+nmap("<" .. _mod_key .. "-Right>", ":vertical resize +" .. _size_change .. "<CR>", "Increase window width")
+nmap("<" .. _mod_key .. "-Left>", ":vertical resize -" .. _size_change .. "<CR>", "Decrease window width")
 
 -- Diagnostics
 nmap("<leader><leader>t", vim.lsp.buf.hover, "Show type hint in floating window")
