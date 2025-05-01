@@ -111,11 +111,6 @@ return {
                     before = "require('onenord')",
                 },
                 {
-                    name = "Gruv Box Baby",
-                    colorscheme = "gruvbox-baby",
-                    before = "require('gruvbox-baby')",
-                },
-                {
                     name = "Kanagawa (Wave)",
                     colorscheme = "kanagawa-wave",
                     before = "require('kanagawa')",
@@ -154,6 +149,26 @@ return {
                     name = "Night City (After Life)",
                     colorscheme = "nightcity-afterlife",
                     before = "require('nightcity')",
+                },
+                {
+                    name = "Gruv Box Baby",
+                    colorscheme = "gruvbox-baby",
+                    before = "require('gruvbox-baby')",
+                },
+                {
+                    name = "Tokyo Night",
+                    colorscheme = "tokyonight-night",
+                    before = "require('tokyonight')",
+                },
+                {
+                    name = "Tokyo Night (Moon)",
+                    colorscheme = "tokyonight-moon",
+                    before = "require('tokyonight')",
+                },
+                {
+                    name = "Tokyo Night (Storm)",
+                    colorscheme = "tokyonight-storm",
+                    before = "require('tokyonight')",
                 },
             },
         },
@@ -202,10 +217,6 @@ return {
         lazy = true,
     },
     {
-        "luisiacc/gruvbox-baby",
-        lazy = true,
-    },
-    {
         "rebelot/kanagawa.nvim",
         lazy = true,
     },
@@ -227,6 +238,14 @@ return {
     },
     {
         "cryptomilk/nightcity.nvim",
+        lazy = true,
+    },
+    {
+        "luisiacc/gruvbox-baby",
+        lazy = true,
+    },
+    {
+        "folke/tokyonight.nvim",
         lazy = true,
     },
 }
