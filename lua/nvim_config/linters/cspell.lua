@@ -1,14 +1,19 @@
 local event_format = "%f:%l:%c - %m"
 
 return {
-    cmd = "cspell",
+    cmd = "npm",
     stdin = true,
     args = {
+        "exec",
+        "--silent",
+        "--yes",
+        "--",
+        "cspell",
         "lint",
         "--no-color",
         "--no-progress",
         "--no-summary",
-        "stdin",
+        function() return "stdin://" .. vim.api.nvim_buf_get_name(0) end,
     },
     ignore_exitcode = true,
     stream = "stdout",
