@@ -1,25 +1,3 @@
-local linters_by_file_type = {
-    markdown = {
-        "vale",
-        "markdownlint",
-    },
-    go = {
-        "golangcilint",
-    },
-    yaml = {
-        "yamllint",
-    },
-    typescript = {
-        "eslint",
-    },
-    javascript = {
-        "eslint",
-    },
-    vue = {
-        "eslint",
-    },
-}
-
 local exclude_filetype = {
     "NvimTree",
     "DressingInput",
@@ -38,7 +16,28 @@ return {
         config = function()
             local lint = require("lint")
 
-            lint.linters_by_ft = linters_by_file_type
+            lint.linters_by_ft = {
+
+                markdown = {
+                    "vale",
+                    require("nvim_config.linters.markdownlint"),
+                },
+                go = {
+                    "golangcilint",
+                },
+                yaml = {
+                    "yamllint",
+                },
+                typescript = {
+                    "eslint",
+                },
+                javascript = {
+                    "eslint",
+                },
+                vue = {
+                    "eslint",
+                },
+            }
 
             lint.linters.cspell = require("nvim_config.linters.cspell")
 
