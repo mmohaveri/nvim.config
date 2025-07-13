@@ -7,7 +7,6 @@ return {
         },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            "nvim-telescope/telescope.nvim",
         },
         opts = {
             servers = {
@@ -26,16 +25,9 @@ return {
                 "vue",
                 "yaml",
                 "terraform",
+                "fga-lsp",
             },
         },
-    },
-    {
-        "mrded/nvim-lsp-notify",
-        event = "LspAttach",
-        dependencies = {
-            "rcarriga/nvim-notify",
-        },
-        config = true,
     },
     {
         "antosha417/nvim-lsp-file-operations",

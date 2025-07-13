@@ -40,7 +40,6 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
         end,
     },
-
     {
         "hrsh7th/nvim-cmp",
         event = {
@@ -114,51 +113,6 @@ return {
                 completion = {
                     completeopt = "menu,menuone,preview,noselect",
                 },
-            }
-        end,
-    },
-    {
-        "benfowler/telescope-luasnip.nvim",
-        lazy = true,
-        dependencies = {
-            "nvim-tree/nvim-tree.lua",
-            "hrsh7th/nvim-cmp",
-            "nvim-telescope/telescope.nvim",
-        },
-    },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = true,
-    },
-    {
-        "numToStr/Comment.nvim",
-        event = {
-            "BufReadPre",
-            "BufNewFile",
-        },
-        dependencies = {
-            {
-                "JoosepAlviste/nvim-ts-context-commentstring",
-                config = true,
-            },
-        },
-        opts = function()
-            local ts_context_commentstring_integration = require("ts_context_commentstring.integrations.comment_nvim")
-            return {
-                toggler = {
-                    line = "tcl",
-                    block = "tcb",
-                },
-                opleader = {
-                    line = "tcl",
-                    block = "tcb",
-                },
-                mappings = {
-                    basic = true,
-                    extra = false,
-                },
-                pre_hook = ts_context_commentstring_integration.create_pre_hook(),
             }
         end,
     },

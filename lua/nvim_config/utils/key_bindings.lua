@@ -16,6 +16,12 @@ end
 --- @param desc string | nil
 function M.nmap(lhs, rhs, desc) M.map("n", lhs, rhs, desc) end
 
+--- @param lhs string
+--- @param rhs string | function
+--- @param desc string | nil
+function M.imap(lhs, rhs, desc) M.map("i", lhs, rhs, desc) end
+
+
 --- @param bufnr integer
 function M.get_nmap_for_buffer(bufnr)
     --- @param lhs string

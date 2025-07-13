@@ -36,6 +36,9 @@ vim.hlsearch = true
 vim.o.laststatus = 3
 
 -- Fold config
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.require('nvim_config.utils.fold').fold_text()"
 vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99

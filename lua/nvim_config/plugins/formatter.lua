@@ -1,89 +1,111 @@
 return {
     {
-        "mhartington/formatter.nvim",
-        event = {
-            "BufReadPre",
-            "BufNewFile",
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+
+        cmd = { "ConformInfo", "Format" },
+        keys = {
+            {
+                "<leader>f",
+                function() require("conform").format({ async = true }) end,
+                mode = "",
+                desc = "Format buffer",
+            },
         },
-        opts = function()
-            return {
-                logging = true,
-                log_level = vim.log.levels.WARN,
-                -- Formatter of each filetyle will be executed in order
-                filetype = {
-                    ["*"] = {
-                        require("formatter.filetypes.any").remove_trailing_whitespace,
-                    },
-
-                    css = {},
-
-                    go = {
-                        require("formatter.filetypes.go").goimports,
-                        require("formatter.filetypes.go").gofmt,
-                    },
-                    javascript = {
-                        -- Requires [Biome](https://github.com/biomejs/biome): `npm install -g --save-exact @biomejs/biome`
-                        require("formatter.filetypes.javascript").biome,
-                    },
-                    javascriptreact = {
-                        require("formatter.filetypes.javascriptreact").biome,
-                    },
-                    typescript = {
-                        require("formatter.filetypes.typescript").biome,
-                    },
-                    typescriptreact = {
-                        require("formatter.filetypes.typescriptreact").biome,
-                    },
-                    json = {
-                        require("formatter.filetypes.json").biome,
-                        -- Requires [jq](https://github.com/jqlang/jq)
-                        require("formatter.filetypes.json").jq,
-                    },
-                    latex = {
-                        require("formatter.filetypes.latex").latexindent,
-                    },
-                    lua = {
-                        -- Requires [StyLua](https://github.com/JohnnyMorganz/StyLua): `cargo install stylua`
-                        require("formatter.filetypes.lua").stylua,
-                    },
-                    markdown = {},
-                    proto = {
-                        -- Requires [Buf](https://github.com/bufbuild/buf): `npm install -g @bufbuild/buf`
-                        require("formatter.filetypes.proto").buf_format,
-                    },
-                    python = {
-                        -- Requires [autopep8](): `pip install autopep8`
-                        require("formatter.filetypes.python").autopep8,
-                        -- Requires [ruff](): `pip install ruff`
-                        require("formatter.filetypes.python").ruff,
-                        {
-                            exe = "ruff",
-                            args = { "check", "--fix", "-q", "-" },
-                            stdin = true,
-                        },
-                    },
-                    rust = {
-                        require("formatter.filetypes.rust").rustfmt,
-                    },
-                    sql = {},
-                    sh = {
-                        require("formatter.filetypes.sh").shfmt,
-                    },
-                    toml = {
-                        -- Requires [taplo](https://github.com/tamasfe/taplo): `cargo install taplo-cli --locked --features lsp`
-                        require("formatter.filetypes.toml").taplo,
-                    },
-                    vue = {},
-                    yaml = {
-                        -- Requires [yamlfmt](https://github.com/google/yamlfmt): `go install github.com/google/yamlfmt/cmd/yamlfmt@latest`
-                        require("formatter.filetypes.yaml").yamlfmt,
-                    },
-                    zsh = {
-                        -- Requires [beutysh](https://github.com/lovesegfault/beautysh): `pip install beautysh`
-                        require("formatter.filetypes.yaml").beutysh,
+        opts = {
+            log_level = vim.log.levels.WARN,
+            format_on_save = { timeout_ms = 500 },
+            formatters_by_ft = {
+                bash = { "beautysh" },
+                css = {},
+                go = { "goimports", "gofmt" },
+                javascript = { "biome" },
+                javascriptreact = { "biome" },
+                typescript = { "biome" },
+                typescriptreact = { "biome" },
+                json = { "biome", "jq" },
+                latex = { "tex-fmt" },
+                lua = { "stylua" },
+                markdown = { "markdownfmt", "cbfmt" },
+                proto = { "buf" },
+                python = { "autopep8", "ruff_fix", "ruff_format" },
+                rust = { "rustfmt" },
+                sql = {},
+                sh = { "shfmt" },
+                toml = { "taplo" },
+                vue = {},
+                yaml = { "yamlfmt" },
+                zsh = { "beautysh" },
+            },
+            default_format_opts = {
+                lsp_format = "fallback",
+            },
+            formatters = {
+                ["*"] = { "trim_newlines", "trim_whitespace" },
+                autopep8 = {
+                    inherit = true,
+                    command = "uv",
+                    prepend_args = {
+                        "run",
+                        "--with",
+                        "autopep8",
+                        "autopep8",
                     },
                 },
-            }
+                beautysh = {
+                    inherit = true,
+                    command = "uv",
+                    prepend_args = {
+                        "run",
+                        "--with",
+                        "beautysh",
+                        "beautysh",
+                    },
+                },
+                biome = {
+                    inherit = true,
+                    command = "npm",
+                    prepend_args = {
+                        "exec",
+                        "--silent",
+                        "--yes",
+                        "--package=@biomejs/biome",
+                        "--",
+                        "biome",
+                    },
+                },
+                ruff_fix = {
+                    inherit = true,
+                    command = "uv",
+                    prepend_args = {
+                        "run",
+                        "--with",
+                        "ruff",
+                        "ruff",
+                    },
+                },
+                ruff_format = {
+                    inherit = true,
+                    command = "uv",
+                    prepend_args = {
+                        "run",
+                        "--with",
+                        "ruff",
+                        "ruff",
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
+            require("conform").setup(opts)
+            vim.api.nvim_create_user_command(
+                "Format",
+                function() require("conform").format({ async = true }) end,
+                { nargs = "?" }
+            )
         end,
+
+        init = function() vim.o.formatexpr = "v:lua.require('conform').formatexpr()" end,
     },
 }
+

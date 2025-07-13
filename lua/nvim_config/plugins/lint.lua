@@ -1,9 +1,5 @@
 local exclude_filetype = {
     "NvimTree",
-    "DressingInput",
-    "undotree",
-    "toggleterm",
-    "TelescopePrompt",
 }
 
 return {

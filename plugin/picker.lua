@@ -1,0 +1,44 @@
+-- local items = {
+--     {
+--         idx = 1,
+--         score = 1000,
+--         text = "autocmds",
+--         desc = "List autocommands",
+--         action = require("snacks").picker.autocmds,
+--     },
+--     {
+--         idx = 2,
+--         score = 1000,
+--         text = "buffers",
+--         desc = "List buffers",
+--         action = require("snacks").picker.buffers,
+--     },
+-- }
+--
+-- local function show_snacks_list()
+--     require("snacks").picker.pick("my_buf", {
+--         prompt = ">",
+--         -- layout = "vscode",
+--         items = items,
+--         -- preview = function(item)
+--         --     return {
+--         --         title = item.text,
+--         --         text = item.desc or "No description available",
+--         --     }
+--         -- end,
+--         format = "text",
+--         select = function(item)
+--             if item and item.idx then
+--                 local selected_item = items[item.idx]
+--                 if selected_item and selected_item.action then selected_item.action() end
+--             end
+--         end,
+--         jump = {
+--             jumplist = false, -- save the current position in the jumplist
+--             tagstack = false, -- save the current position in the tagstack
+--             reuse_win = false, -- reuse an existing window if the buffer is already open
+--             close = true, -- close the picker when jumping/editing to a location (defaults to true)
+--             match = false, -- jump to the first match position. (useful for `lines`)
+--         },
+--     })
+-- end

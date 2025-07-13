@@ -18,12 +18,6 @@ local default_icons = {
 
 local default_exclude_filetype = {
     "NvimTree",
-    "DressingInput",
-    "undotree",
-    "toggleterm",
-    "TelescopePrompt",
-    "buffer_manager",
-    "harpoon",
 }
 
 Module.setup = function()
