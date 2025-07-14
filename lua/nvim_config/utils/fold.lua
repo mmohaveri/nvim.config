@@ -1,15 +1,17 @@
-return {
-    get_fold_text = function()
-        local first_line = vim.fn.getline(vim.v.foldstart)
-        local last_line = vim.fn.getline(vim.v.foldend)
-        local line_count = vim.v.foldend - vim.v.foldstart + 1
+local M = {}
 
-        -- Remove leading whitespace from first line for cleaner display
-        last_line = last_line:gsub("^%s*", "")
+M.get_fold_text = function()
+    local first_line = vim.fn.getline(vim.v.foldstart)
+    local last_line = vim.fn.getline(vim.v.foldend)
+    local line_count = vim.v.foldend - vim.v.foldstart + 1
 
-        -- Create the single-line display with separators
-        local fold_symbol = " ▼ " .. line_count .. " lines folded ▼ "
+    -- Remove leading whitespace from first line for cleaner display
+    last_line = last_line:gsub("^%s*", "")
 
-        return first_line .. fold_symbol .. last_line
-    end,
-}
+    -- Create the single-line display with separators
+    local fold_symbol = " ▼ " .. line_count .. " lines folded ▼ "
+
+    return first_line .. fold_symbol .. last_line
+end
+
+return M

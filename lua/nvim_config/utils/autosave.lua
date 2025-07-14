@@ -1,5 +1,7 @@
-local function save_buffer_if_writable()
-    local bufnr = vim.api.nvim_get_current_buf()
+local M = {}
+
+M.save_buffer_if_writable = function()
+    local bufnr = vim.api.nvim_get_current_buf() 
 
     local buf_name = vim.api.nvim_buf_get_name(bufnr)
     local buf_type = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
@@ -19,10 +21,17 @@ local function save_buffer_if_writable()
     end
 end
 
-vim.api.nvim_create_autocmd({
-    "BufLeave",
-    "FocusLost",
-}, {
-    pattern = "*",
-    callback = save_buffer_if_writable,
-})
+---@param events string[] | nil
+M.register_autocmd = function(events)
+    if events == nil then events = {
+        "BufLeave",
+        "FocusLost",
+    } end
+
+    vim.api.nvim_create_autocmd(events, {
+        pattern = "*",
+        callback = M.save_buffer_if_writable,
+    })
+end
+
+return M

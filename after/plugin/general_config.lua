@@ -30,16 +30,10 @@ vim.opt.cursorline = true
 vim.hlsearch = true
 
 -- vim.opt.sp = "en"		-- spell
--- set clipboard+=unnamed
 
--- StatusLine
-vim.o.laststatus = 3
+require("nvim_config.config.fold").apply_fold_config()
+require("nvim_config.config.key_bindings").set_keybindings()
 
--- Fold config
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = "v:lua.require('nvim_config.utils.fold').fold_text()"
-vim.o.foldcolumn = "0"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+require("nvim_config.utils.autosave").register_autocmd()
+require("nvim_config.utils.copy_to_system_clipboard").register_user_command()
+require("nvim_config.utils.lsp_notification").register_autocmd()

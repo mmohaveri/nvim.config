@@ -1,12 +1,14 @@
+local M = {}
+
 ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
-local progress = vim.defaulttable()
+M._progress = vim.defaulttable()
 
 ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
-local function lsp_notification_callback(ev)
+M.lsp_notification_callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
     if not client or type(value) ~= "table" then return end
-    local p = progress[client.id]
+    local p = M._progress[client.id]
 
     for i = 1, #p + 1 do
         if i == #p + 1 or p[i].token == ev.data.params.token then
@@ -24,21 +26,19 @@ local function lsp_notification_callback(ev)
     end
 
     local msg = {} ---@type string[]
-    progress[client.id] = vim.tbl_filter(function(v) return table.insert(msg, v.msg) or not v.done end, p)
+    M._progress[client.id] = vim.tbl_filter(function(v) return table.insert(msg, v.msg) or not v.done end, p)
 
     local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     vim.notify(table.concat(msg, "\n"), vim.log.levels.INFO, {
         id = "lsp_progress",
         title = client.name,
         opts = function(notif)
-            notif.icon = #progress[client.id] == 0 and " "
+            notif.icon = #M._progress[client.id] == 0 and " "
                 or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
         end,
     })
 end
 
-return {
-    register_lsp_notifications = function()
-        vim.api.nvim_create_autocmd("LspProgress", { callback = lsp_notification_callback })
-    end,
-}
+M.register_autocmd = function() vim.api.nvim_create_autocmd("LspProgress", { callback = M.lsp_notification_callback }) end
+
+return M
