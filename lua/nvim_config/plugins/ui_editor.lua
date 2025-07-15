@@ -73,17 +73,32 @@ return {
                 },
                 -- replace `vim.ui.select` with the snacks picker
                 ui_select = true,
-                -- Configure explorer to use responsive layout
                 sources = {
+                    autocmds = {
+                        layout = "vscode",
+                    },
+                    commands = {
+                        layout = "dropdown",
+                    },
                     explorer = {
+                        -- Configure explorer picker to use responsive floating layout
                         layout = {
-                            preset = function()
-                                return vim.o.columns >= 120 and "default" or "dropdown"
-                            end,
-                            preview = function()
-                                return vim.o.columns >= 120
-                            end,
+                            preset = function() return vim.o.columns >= 120 and "default" or "dropdown" end,
+                            preview = function() return vim.o.columns >= 120 end,
                         },
+                        -- Configure explorer picker to close after opening a file
+                        jump = { close = true },
+                    },
+                    keymaps = {
+                        layout = "dropdown",
+                        -- Configure keymaps picker to use a different preview mechanism
+                        preview = require("nvim_config.utils.snacks.pickers").keymaps_preview,
+                    },
+                    qflist = {
+                        show_empty = true,
+                    },
+                    buffers = {
+                        show_empty = true,
                     },
                 },
             },
