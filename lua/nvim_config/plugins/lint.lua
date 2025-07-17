@@ -13,29 +13,29 @@ return {
             local lint = require("lint")
 
             lint.linters.cspell = require("nvim_config.linters.cspell")
+            lint.linters.eslint = require("nvim_config.linters.eslint")
             lint.linters.markdownlint = require("nvim_config.linters.markdownlint")
             lint.linters.yamllint = require("nvim_config.linters.yamllint")
-            lint.linters.eslint = require("nvim_config.linters.eslint")
 
             lint.linters_by_ft = {
-                markdown = {
-                    "vale",
-                    "markdownlint",
-                },
                 go = {
                     "golangcilint",
-                },
-                yaml = {
-                    "yamllint",
-                },
-                typescript = {
-                    "eslint",
                 },
                 javascript = {
                     "eslint",
                 },
+                markdown = {
+                    "vale",
+                    "markdownlint",
+                },
+                typescript = {
+                    "eslint",
+                },
                 vue = {
                     "eslint",
+                },
+                yaml = {
+                    "yamllint",
                 },
             }
 
