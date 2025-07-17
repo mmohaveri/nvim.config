@@ -14,6 +14,8 @@ return {
 
             lint.linters.cspell = require("nvim_config.linters.cspell")
             lint.linters.markdownlint = require("nvim_config.linters.markdownlint")
+            lint.linters.yamllint = require("nvim_config.linters.yamllint")
+            lint.linters.eslint = require("nvim_config.linters.eslint")
 
             lint.linters_by_ft = {
                 markdown = {
