@@ -1,20 +1,16 @@
-local efm = "stdin:%l:%c %m,stdin:%l %m"
-return {
-    cmd = "npm",
-    stdin = true,
-    args = {
-        "exec",
-        "--silent",
-        "--yes",
-        "--package=markdownlint-cli",
-        "--",
-        "markdownlint",
-        "--stdin",
-    },
-    ignore_exitcode = true,
-    stream = "stderr",
-    parser = require("lint.parser").from_errorformat(efm, {
-        source = "markdownlint",
-        severity = vim.diagnostic.severity.WARN,
-    }),
+local markdownlint_spec = require("lint.linters.markdownlint")
+
+markdownlint_spec.cmd = "npm"
+
+local new_args = {
+    "exec",
+    "--silent",
+    "--yes",
+    "--package=markdownlint-cli",
+    "--",
+    "markdownlint",
 }
+vim.list_extend(new_args, markdownlint_spec.args)
+markdownlint_spec.args = new_args
+
+return markdownlint_spec
