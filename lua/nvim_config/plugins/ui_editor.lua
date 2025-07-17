@@ -98,8 +98,10 @@ return {
                         show_empty = true,
                     },
                     buffers = {
+
                         show_empty = true,
                     },
+                    command_palette = require("nvim_config.pickers.command_palette"),
                 },
             },
             notifier = {

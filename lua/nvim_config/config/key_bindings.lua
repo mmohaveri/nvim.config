@@ -46,8 +46,8 @@ M.set_keybindings = function()
     nmap("bgc", function() require("gitsigns").prev_hunk() end, "Go to previous git hunk")
 
     -- Pickers
-    nmap("<C-j>", picker.pick, "Show pickers list")
-    imap("<C-j>", picker.pick, "Show pickers list")
+    nmap("<C-j>", picker.command_palette, "Show pickers list")
+    imap("<C-j>", picker.command_palette, "Show pickers list")
     nmap("<C-h>", picker.resume, "Resume last picker")
     imap("<C-h>", picker.resume, "Resume last picker")
     nmap("<leader>?", picker.keymaps, "List all Keymaps")
