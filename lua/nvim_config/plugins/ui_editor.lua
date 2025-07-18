@@ -62,54 +62,59 @@ return {
         "folke/snacks.nvim",
         priority = 1000,
         lazy = false,
-        opts = {
-            -- replace `vim.ui.input` with the snacks input
-            input = {
-                enabled = true,
-            },
-            picker = {
-                matcher = {
-                    sort_empty = true,
+        opts = function()
+            local options = {
+                -- replace `vim.ui.input` with the snacks input
+                input = {
+                    enabled = true,
                 },
-                -- replace `vim.ui.select` with the snacks picker
-                ui_select = true,
-                sources = {
-                    autocmds = {
-                        layout = "vscode",
+                picker = {
+                    matcher = {
+                        sort_empty = true,
                     },
-                    commands = {
-                        layout = "dropdown",
-                    },
-                    explorer = {
-                        -- Configure explorer picker to use responsive floating layout
-                        layout = {
-                            preset = function() return vim.o.columns >= 120 and "default" or "dropdown" end,
-                            preview = function() return vim.o.columns >= 120 end,
+                    -- replace `vim.ui.select` with the snacks picker
+                    ui_select = true,
+                    sources = {
+                        autocmds = {
+                            layout = "vscode",
                         },
-                        -- Configure explorer picker to close after opening a file
-                        jump = { close = true },
+                        commands = {
+                            layout = "dropdown",
+                        },
+                        explorer = {
+                            -- Configure explorer picker to use responsive floating layout
+                            layout = {
+                                preset = function() return vim.o.columns >= 120 and "default" or "dropdown" end,
+                                preview = function() return vim.o.columns >= 120 end,
+                            },
+                            -- Configure explorer picker to close after opening a file
+                            jump = { close = true },
+                        },
+                        keymaps = {
+                            layout = "dropdown",
+                            -- Configure keymaps picker to use a different preview mechanism
+                            preview = require("nvim_config.utils.snacks.pickers").keymaps_preview,
+                        },
+                        qflist = {
+                            show_empty = true,
+                        },
+                        buffers = {
+                            show_empty = true,
+                        },
                     },
-                    keymaps = {
-                        layout = "dropdown",
-                        -- Configure keymaps picker to use a different preview mechanism
-                        preview = require("nvim_config.utils.snacks.pickers").keymaps_preview,
-                    },
-                    qflist = {
-                        show_empty = true,
-                    },
-                    buffers = {
-
-                        show_empty = true,
-                    },
-                    command_palette = require("nvim_config.pickers.command_palette"),
-                    git_operations = require("nvim_config.pickers.git"),
                 },
-            },
-            notifier = {
-                timeout = 2000,
-                style = "fancy",
-            },
-        },
+                notifier = {
+                    timeout = 2000,
+                    style = "fancy",
+                },
+            }
+
+            for name, picker in pairs(require("nvim_config.pickers.palette_config")) do
+                options.picker.sources[name] = picker
+            end
+
+            return options
+        end,
     },
     {
         "folke/which-key.nvim",
