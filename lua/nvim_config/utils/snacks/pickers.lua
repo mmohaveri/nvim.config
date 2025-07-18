@@ -7,6 +7,7 @@ local mode_map = {
     s = "Select",
     o = "Operator Pending",
     [""] = "Normal, Visual, Select, Operator Pending",
+    [" "] = "Normal, Visual, Select, Operator Pending",
     ["!"] = "Insert & Command",
     ic = "Insert & Command",
     i = "Insert",
@@ -53,4 +54,5 @@ function M.keymaps_preview(ctx)
 
     return require("snacks.picker.preview").preview(ctx)
 end
+
 return M
