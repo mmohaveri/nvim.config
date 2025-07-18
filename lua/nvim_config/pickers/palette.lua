@@ -6,6 +6,7 @@ local M = {}
 ---@field picker? string
 ---@field callback? string
 ---@field cmd? string
+---@field picker_opts? table
 
 ---@class snacks.picker.Palette.Config: snacks.picker.Config
 ---@field title string
@@ -18,15 +19,6 @@ local function palette_finder(opts, ctx)
     return ctx.filter:filter(opts.items)
 end
 
----@type  snacks.picker.format
-local function palette_item_format(item, picker)
-    local a = Snacks.picker.util.align
-    ---@cast item snacks.picker.PaletteItem
-    local ret = {} ---@type snacks.picker.Highlight[]
-
-    ret[#ret + 1] = { a(item.text, 10), "SnacksPickerIconSource" }
-    return ret
-end
 
 ---@type snacks.picker.Action.spec
 local function palette_action(picker, item, action)
@@ -34,7 +26,7 @@ local function palette_action(picker, item, action)
     picker:close()
     if item then
         if item.picker then
-            require("snacks").picker[item.picker]()
+            require("snacks").picker[item.picker](item.picker_opts)
         elseif item.callback then
             item.callback()
         elseif item.cmd then
@@ -53,7 +45,7 @@ function M.new(palette_name, items)
     return {
         title = palette_name,
         finder = palette_finder,
-        format = palette_item_format,
+        format = require("nvim_config.pickers.formatters").palette_item,
         layout = { preset = "vscode" },
         confirm = palette_action,
         matcher = {

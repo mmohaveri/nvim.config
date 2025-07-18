@@ -57,8 +57,8 @@ M.command_palette = palette_picker.new("Command Palette", {
     },
     -- highlights
     {
-        text = "Emoji, Glyph, Symbols",
-        picker = "icons",
+        text = "Symbols",
+        picker = "symbols",
     },
     {
         text = "Jump List",
@@ -164,5 +164,67 @@ M.git = palette_picker.new("Git Commands", {
         picker = "git_status",
     },
 })
+
+M.symbols = palette_picker.new("Symbols", {
+    {
+        text = "All Symbols",
+        picker = "icons",
+        picker_opts = {
+            icon_sources = { "emoji", "gitmoji", "nerd_fonts" },
+            title = "All Symbols",
+        },
+    },
+    {
+        text = "Emoji",
+        picker = "icons",
+        picker_opts = {
+            format = require("nvim_config.pickers.formatters").icon_no_source,
+            icon_sources = { "emoji" },
+            title = "Emoji",
+        },
+    },
+    {
+        text = "NerdFonts",
+        picker = "icons",
+        picker_opts = {
+            format = require("nvim_config.pickers.formatters").icon_no_source,
+            icon_sources = { "nerd_fonts" },
+            title = "Nerd Fonts",
+        },
+    },
+    {
+        text = "Gitmoji",
+        picker = "icons",
+        picker_opts = {
+            format = require("nvim_config.pickers.formatters").icon_no_source,
+            icon_sources = { "gitmoji" },
+            title = "GitMoji",
+        },
+    },
+})
+
+---@class gitmoji_data
+---@field gitmojis {emoji: string, entity: string, code: string, description: string, name: string, semver: string|vim.NIL}[]
+
+require("snacks.picker.source.icons").sources.gitmoji = {
+    url = "https://raw.githubusercontent.com/carloscuesta/gitmoji/refs/heads/master/packages/gitmojis/src/gitmojis.json",
+    v = 1,
+    build = function(data)
+        ---@cast data gitmoji_data
+        local ret = {} ---@type snacks.picker.Icon[]
+        for _, info in ipairs(data.gitmojis) do
+            local category = info.semver
+            if category == vim.NIL then category = "" end
+
+            table.insert(ret, {
+                name = info.description,
+                icon = info.emoji,
+                source = "gitmoji",
+                category = category,
+            })
+        end
+        return ret
+    end,
+}
 
 return M
