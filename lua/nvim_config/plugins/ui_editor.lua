@@ -102,6 +102,7 @@ return {
                         show_empty = true,
                     },
                     command_palette = require("nvim_config.pickers.command_palette"),
+                    git_operations = require("nvim_config.pickers.git"),
                 },
             },
             notifier = {

@@ -37,31 +37,8 @@ return {
             picker = "files",
         },
         {
-            text = "Git Branches",
-            picker = "git_branches",
-        },
-        -- git diff
-        -- git files
-        -- git grep
-        {
-            text = "Git Log",
-            picker = "git_log",
-        },
-        {
-            text = "Git Log (File)",
-            picker = "git_log_file",
-        },
-        {
-            text = "Git Log (Line)",
-            picker = "git_log_line",
-        },
-        {
-            text = "Git Stash",
-            picker = "git_stash",
-        },
-        {
-            text = "Git Status",
-            picker = "git_status",
+            text = "Git Operations",
+            picker = "git_operations",
         },
         {
             text = "Grep",
