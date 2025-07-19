@@ -1,4 +1,4 @@
----@class snacks.picker.palette.formatter
+---@class snacks.picker.palette.formatters
 ---@field [string] snacks.picker.format
 local M = {}
 

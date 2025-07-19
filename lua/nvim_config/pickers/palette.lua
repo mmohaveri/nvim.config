@@ -20,22 +20,6 @@ local function palette_finder(opts, ctx)
 end
 
 
----@type snacks.picker.Action.spec
-local function palette_action(picker, item, action)
-    ---@cast item snacks.picker.PaletteItem
-    picker:close()
-    if item then
-        if item.picker then
-            require("snacks").picker[item.picker](item.picker_opts)
-        elseif item.callback then
-            item.callback()
-        elseif item.cmd then
-            vim.cmd[item.cmd]()
-        else
-            vim.notify("No picker, callback, or cmd defined for '" .. item.text .. "'", vim.log.levels.ERROR)
-        end
-    end
-end
 
 ---@param palette_name string
 ---@param items snacks.picker.PaletteItem[]
@@ -47,7 +31,7 @@ function M.new(palette_name, items)
         finder = palette_finder,
         format = require("nvim_config.pickers.formatters").palette_item,
         layout = { preset = "vscode" },
-        confirm = palette_action,
+        confirm = require("nvim_config.pickers.actions").palette_item,
         matcher = {
             fuzzy = true,
             smartcase = true,
