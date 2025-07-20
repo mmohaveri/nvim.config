@@ -16,7 +16,7 @@ local mode_map = {
     t = "Terminal",
 }
 
-function M.keymaps_preview(ctx)
+function M.keymaps(ctx)
     local km = ctx.item.item
     local lines = {}
     local mode = "No Mode!"

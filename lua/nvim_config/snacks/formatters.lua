@@ -1,5 +1,4 @@
----@class snacks.picker.palette.formatters
----@field [string] snacks.picker.format
+---@type snacks.picker.palette.formatters
 local M = {}
 
 function M.palette_item(item, picker)

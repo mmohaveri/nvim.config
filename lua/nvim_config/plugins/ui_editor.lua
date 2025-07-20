@@ -93,13 +93,16 @@ return {
                         keymaps = {
                             layout = "dropdown",
                             -- Configure keymaps picker to use a different preview mechanism
-                            preview = require("nvim_config.utils.snacks.pickers").keymaps_preview,
+                            preview = require("nvim_config.snacks.previewers").keymaps,
                         },
                         qflist = {
                             show_empty = true,
                         },
                         buffers = {
                             show_empty = true,
+                        },
+                        icons = {
+                            icon_sources = { "emoji", "gitmoji", "nerd_fonts" },
                         },
                     },
                 },
@@ -109,11 +112,15 @@ return {
                 },
             }
 
-            for name, picker in pairs(require("nvim_config.pickers.palette_config")) do
+            for name, picker in pairs(require("nvim_config.snacks.pickers")) do
                 options.picker.sources[name] = picker
             end
 
             return options
+        end,
+        config = function(_, opts)
+            require("snacks").setup(opts)
+            require("nvim_config.utils.snacks").register_gitmoji_source_for_icons__picker()
         end,
     },
     {

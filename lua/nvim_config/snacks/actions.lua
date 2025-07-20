@@ -1,5 +1,4 @@
----@class snacks.picker.palette.actions
----@field [string] snacks.picker.Action.spec
+---@type snacks.picker.palette.actions
 local M = {}
 
 function M.palette_item(picker, item, action)
@@ -9,6 +8,8 @@ function M.palette_item(picker, item, action)
     if item then
         if item.picker then
             require("snacks").picker[item.picker](item.picker_opts)
+        elseif item.picker_opts then
+            require("snacks").picker(item.picker_opts)
         elseif item.callback then
             item.callback()
         elseif item.cmd then
