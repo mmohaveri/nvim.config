@@ -44,7 +44,8 @@ local function new_palette(palette_name, items)
                     local parent = item.parent
                     while parent do
                         if parent.score == 0 or parent.match_tick ~= matcher.tick then
-                            parent.score = 1
+                            -- Add parent with same score as child initially, we'll rebalance in on_done
+                            parent.score = item.score
                             parent.match_tick = matcher.tick
                             parent.match_topk = nil
                             picker.list:add(parent)
@@ -72,7 +73,83 @@ local function new_palette(palette_name, items)
                     end
                 end
 
-                -- Rebuild the list with deduplicated items
+                -- Rebalance scores to ensure parents appear right before their children
+                local function rebalance_scores()
+                    -- Group items by parent
+                    local parent_groups = {}
+                    local standalone_items = {}
+
+                    for _, item in ipairs(unique_items) do
+                        if item.parent then
+                            local parent_text = item.parent.text
+                            if not parent_groups[parent_text] then
+                                parent_groups[parent_text] = { parent = nil, children = {} }
+                            end
+                            table.insert(parent_groups[parent_text].children, item)
+                        else
+                            table.insert(standalone_items, item)
+                            -- Check if this item is a parent
+                            for _, other_item in ipairs(unique_items) do
+                                if other_item.parent and other_item.parent.text == item.text then
+                                    parent_groups[item.text] = parent_groups[item.text]
+                                        or { parent = nil, children = {} }
+                                    parent_groups[item.text].parent = item
+                                    break
+                                end
+                            end
+                        end
+                    end
+
+                    -- For each parent group, rebalance scores
+                    for parent_text, group in pairs(parent_groups) do
+                        if group.parent and #group.children > 0 then
+                            -- Find min and max scores of children
+                            local min_child_score = math.huge
+                            local max_child_score = -math.huge
+                            for _, child in ipairs(group.children) do
+                                min_child_score = math.min(min_child_score, child.score)
+                                max_child_score = math.max(max_child_score, child.score)
+                            end
+
+                            -- Find standalone items that fall in the range [min_child_score, max_child_score]
+                            local conflicting_items = {}
+                            for _, item in ipairs(standalone_items) do
+                                if
+                                    item.score >= min_child_score
+                                    and item.score <= max_child_score
+                                    and item ~= group.parent
+                                then
+                                    table.insert(conflicting_items, item)
+                                end
+                            end
+
+                            -- If there are conflicts, adjust children scores to be higher than conflicting items
+                            if #conflicting_items > 0 then
+                                local max_conflict_score = -math.huge
+                                for _, item in ipairs(conflicting_items) do
+                                    max_conflict_score = math.max(max_conflict_score, item.score)
+                                end
+
+                                -- Adjust children scores to be above conflicts while preserving order
+                                table.sort(group.children, function(a, b) return a.score > b.score end)
+                                local score_increment = 0.01
+                                for i, child in ipairs(group.children) do
+                                    child.score = max_conflict_score + score_increment * i
+                                end
+
+                                -- Set parent score to be just above highest child
+                                group.parent.score = max_conflict_score + score_increment * #group.children + 0.01
+                            else
+                                -- No conflicts, just ensure parent is above highest child
+                                group.parent.score = max_child_score + 0.01
+                            end
+                        end
+                    end
+                end
+
+                rebalance_scores()
+
+                -- Rebuild the list with deduplicated and rebalanced items
                 picker.list:clear()
                 for _, item in ipairs(unique_items) do
                     picker.list:add(item)
