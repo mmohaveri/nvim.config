@@ -5,6 +5,7 @@
 ---@field picker_opts? table
 ---@field callback? string
 ---@field cmd? string
+---@field parent? snacks.picker.PaletteItem
 
 ---@class snacks.picker.Palette.Config: snacks.picker.Config
 ---@field title string
@@ -18,4 +19,3 @@
 
 ---@class snacks.picker.palette.formatters
 ---@field [string] snacks.picker.format
-

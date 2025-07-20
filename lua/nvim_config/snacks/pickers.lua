@@ -6,6 +6,9 @@ local M = {}
 ---@param items snacks.picker.PaletteItem[]
 ---@return snacks.picker.Palette.Config
 local function new_palette(palette_name, items)
+    local searching = false
+    local ref ---@type snacks.Picker.ref
+
     ---@type snacks.picker.Palette.Config
     return {
         title = palette_name,
@@ -13,10 +16,68 @@ local function new_palette(palette_name, items)
         format = require("nvim_config.snacks.formatters").palette_item,
         layout = { preset = "vscode" },
         confirm = require("nvim_config.snacks.actions").palette_item,
+        filter = {
+            --- Trigger finder when pattern toggles between empty / non-empty
+            ---@param picker snacks.Picker
+            ---@param filter snacks.picker.Filter
+            transform = function(picker, filter)
+                ref = picker:ref()
+                local s = not filter:is_empty()
+                if searching ~= s then
+                    searching = s
+                    filter.meta.searching = searching
+                    return true
+                end
+            end,
+        },
         matcher = {
             fuzzy = true,
             smartcase = true,
             sort_empty = false,
+            --- Add parent items to matching children (similar to explorer)
+            ---@param matcher snacks.picker.Matcher
+            ---@param item snacks.picker.PaletteItem
+            on_match = function(matcher, item)
+                if not searching then return end
+                local picker = ref.value
+                if picker and item.score > 0 then
+                    local parent = item.parent
+                    while parent do
+                        if parent.score == 0 or parent.match_tick ~= matcher.tick then
+                            parent.score = 1
+                            parent.match_tick = matcher.tick
+                            parent.match_topk = nil
+                            picker.list:add(parent)
+                        else
+                            break -- Critical: stop when parent already processed
+                        end
+                        parent = parent.parent
+                    end
+                end
+            end,
+            on_done = function()
+                if not searching then return end
+                local picker = ref.value
+                if not picker or picker.closed then return end
+
+                -- Deduplicate items based on text content
+                local seen = {}
+                local unique_items = {}
+
+                for item in picker:iter() do
+                    local key = item.text
+                    if not seen[key] then
+                        seen[key] = true
+                        table.insert(unique_items, item)
+                    end
+                end
+
+                -- Rebuild the list with deduplicated items
+                picker.list:clear()
+                for _, item in ipairs(unique_items) do
+                    picker.list:add(item)
+                end
+            end,
         },
         palette_items = items,
     }
