@@ -15,6 +15,7 @@
 ---@field [string] snacks.picker.Action.spec
 
 ---@class snacks.picker.palette.finders
+---@field _palette_all_items_cache table<string, snacks.picker.PaletteItem[] | nil>
 ---@field [string] snacks.picker.finder
 
 ---@class snacks.picker.palette.formatters
