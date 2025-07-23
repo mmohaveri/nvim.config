@@ -47,14 +47,14 @@ M.set_keybindings = function()
 
     -- Diagnostics & in buffer navigation
     global_map("n", "<leader>e", vim.diagnostic.open_float, "Show line diagnostics")
-    global_map("n", "nd", function() jump(1) end, "Go to next diagnostic")
-    global_map("n", "bd", function() jump(-1) end, "Go to previous diagnostic")
-    global_map("n", "ne", function() jump(1, _ERROR) end, "Go to next error diagnostic")
-    global_map("n", "be", function() jump(-1, _ERROR) end, "Go to previous error diagnostic")
+    global_map("n", "<leader>nd", function() jump(1) end, "Go to next diagnostic")
+    global_map("n", "<leader>bd", function() jump(-1) end, "Go to previous diagnostic")
+    global_map("n", "<leader>ne", function() jump(1, _ERROR) end, "Go to next error diagnostic")
+    global_map("n", "<leader>be", function() jump(-1, _ERROR) end, "Go to previous error diagnostic")
     -- global_map("n", "<leader>l", vim.diagnostic.setloclist, "Add diagnostics to the location list")
 
-    global_map("n", "ngc", function() require("gitsigns").next_hunk() end, "Go to next git hunk")
-    global_map("n", "bgc", function() require("gitsigns").prev_hunk() end, "Go to previous git hunk")
+    global_map("n", "<leader>ng", function() require("gitsigns").next_hunk() end, "Go to next git hunk")
+    global_map("n", "<leader>bg", function() require("gitsigns").prev_hunk() end, "Go to previous git hunk")
 
     -- Pickers
     global_map("", "<C-j>", picker.command_palette, "Show pickers list")
@@ -69,7 +69,7 @@ M.set_keybindings = function()
     )
     global_map("n", "<leader>ft", picker.explorer, "Show files tree")
     global_map("n", "<leader>fw", picker.grep_word, "live grep word under the cursor")
-    global_map("n", "U", picker.undo, "Show undo tree")
+    global_map("n", "<leader>ut", picker.undo, "Show undo tree")
 end
 
 -- LSP Keymaps
